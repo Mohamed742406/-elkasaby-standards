@@ -2757,24 +2757,80 @@ ${getSpecs().length} مواصفة
     <button onclick="uploadFiles()" style="background:#0f3460;color:white;padding:10px 15px;border:none;border-radius:5px;cursor:pointer;font-size:16px;">📤 رفع مواصفات</button>
 </div>
 
+\<!-- 🔐 Admin Panel -->
+<div id="adminPanel" style="display:none;position:fixed;top:10px;right:10px;z-index:9999;background:rgba(0,0,0,0.9);padding:15px;border-radius:10px;color:white;font-family:Arial;">
+    <div style="font-size:18px;margin-bottom:10px;">👑 وضع الإدارة مفعّل</div>
+    <button onclick="adminLogout()" style="background:#ff4444;color:white;padding:10px 15px;border:none;border-radius:5px;cursor:pointer;font-size:16px;margin-right:10px;">🚪 خروج</button>
+    <button onclick="uploadFiles()" style="background:#0f3460;color:white;padding:10px 15px;border:none;border-radius:5px;cursor:pointer;font-size:16px;">📤 رفع مواصفات</button>
+</div>
+
 <script>
-if(localStorage.getItem('admin') === 'true'){
-    document.getElementById('adminPanel').style.display = 'block';
-    document.title = '👑 Admin - منصة القصبى';
+// 🔧 ربط database.json مع الجدول والعدادات
+async function loadDatabase() {
+    try {
+        const response = await fetch('database.json');
+        const specs = await response.json();
+        
+        // حفظ في localStorage
+        localStorage.setItem('elkasabyspecs', JSON.stringify(specs));
+        
+        // تحديث عدادات المجموعات
+        const astmCount = specs.filter(s => s.group === 'ASTM').length;
+        const aciCount = specs.filter(s => s.group === 'ACI').length;
+        
+        // العثور على العدادات
+        document.querySelectorAll('.group-card .text-2xl.font-bold').forEach((el, i) => {
+            if(i === 0) el.textContent = astmCount;
+            if(i === 2) el.textContent = aciCount;
+        });
+        
+        // ملء الجدول
+        const tbody = document.getElementById('specsTableBody');
+        if(tbody) {
+            tbody.innerHTML = '';
+            specs.forEach(spec => {
+                const row = `
+                    <tr class="border-b hover:bg-gray-50">
+                        <td class="px-4 py-3 font-bold text-1E3A8A">${spec.code}</td>
+                        <td class="px-4 py-3">${spec.arabic}</td>
+                        <td class="px-4 py-3">${spec.group}</td>
+                        <td class="px-4 py-3 text-center">${spec.downloads || 0}</td>
+                        <td class="px-4 py-3 text-center">
+                            <a href="${spec.filename}" download class="bg-green-600 text-white px-3 py-2 rounded text-sm hover:bg-green-700">
+                                📥 تحميل
+                            </a>
+                        </td>
+                    </tr>
+                `;
+                tbody.innerHTML += row;
+            });
+            
+            document.getElementById('emptyState').style.display = 'none';
+        }
+    } catch(e) {
+        console.log('database.json غير جاهز');
+    }
 }
 
-function adminLogout(){
-    localStorage.removeItem('admin');
+// تشغيل عند تحميل الصفحة
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', loadDatabase);
+} else {
+    loadDatabase();
+}
+
+// Admin Functions
+function adminLogout() {
+    localStorage.removeItem('elkasabyauth');
+    document.getElementById('adminPanel').style.display = 'none';
     location.reload();
 }
 
-function uploadFiles(){
+function uploadFiles() {
     window.open('https://github.com/Mohamed742406/-elkasaby-standards/upload/main', '_blank');
 }
+
+if(localStorage.getItem('elkasabyauth') === 'true') {
+    document.getElementById('adminPanel').style.display = 'block';
+}
 </script>
-
-<script defer="" src="https://static.cloudflareinsights.com/beacon.min.js/vcd15cbe7772f49c399c6a5babf22c1241717689176015" integrity="sha512-ZpsOmlRQV6y907TI0dKBHq9Md29nnaEIPlkf84rnaERnq6zvWvPUqr2ft8M1aS28oN72PdrCzSjY4U6VaAw1EQ==" data-cf-beacon="{&quot;version&quot;:&quot;2024.11.0&quot;,&quot;token&quot;:&quot;cfb6543e268d4ceb92c8170675caa481&quot;,&quot;r&quot;:1,&quot;server_timing&quot;:{&quot;name&quot;:{&quot;cfCacheStatus&quot;:true,&quot;cfEdge&quot;:true,&quot;cfExtPri&quot;:true,&quot;cfL4&quot;:true,&quot;cfOrigin&quot;:true,&quot;cfSpeedBrain&quot;:true},&quot;location_startswith&quot;:null}}" crossorigin="anonymous"></script>
-
-</body></html>
-
-</body></html>
