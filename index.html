@@ -2750,5 +2750,31 @@ ${getSpecs().length} مواصفة
         });
     </script>
 <script defer="" src="https://static.cloudflareinsights.com/beacon.min.js/vcd15cbe7772f49c399c6a5babf22c1241717689176015" integrity="sha512-ZpsOmlRQV6y907TI0dKBHq9Md29nnaEIPlkf84rnaERnq6zvWvPUqr2ft8M1aS28oN72PdrCzSjY4U6VaAw1EQ==" data-cf-beacon="{&quot;version&quot;:&quot;2024.11.0&quot;,&quot;token&quot;:&quot;cfb6543e268d4ceb92c8170675caa481&quot;,&quot;r&quot;:1,&quot;server_timing&quot;:{&quot;name&quot;:{&quot;cfCacheStatus&quot;:true,&quot;cfEdge&quot;:true,&quot;cfExtPri&quot;:true,&quot;cfL4&quot;:true,&quot;cfOrigin&quot;:true,&quot;cfSpeedBrain&quot;:true},&quot;location_startswith&quot;:null}}" crossorigin="anonymous"></script>
+<!-- 🔐 Admin Panel -->
+<div id="adminPanel" style="display:none;position:fixed;top:10px;right:10px;z-index:9999;background:rgba(0,0,0,0.9);padding:15px;border-radius:10px;">
+    <div style="color:#fff;font-size:18px;margin-bottom:10px;">👑 وضع الإدارة مفعّل</div>
+    <button onclick="adminLogout()" style="background:#ff4444;color:white;padding:10px 15px;border:none;border-radius:5px;cursor:pointer;font-size:16px;margin-right:10px;">🚪 خروج</button>
+    <button onclick="uploadFiles()" style="background:#0f3460;color:white;padding:10px 15px;border:none;border-radius:5px;cursor:pointer;font-size:16px;">📤 رفع مواصفات</button>
+</div>
+
+<script>
+if(localStorage.getItem('admin') === 'true'){
+    document.getElementById('adminPanel').style.display = 'block';
+    document.title = '👑 Admin - منصة القصبى';
+}
+
+function adminLogout(){
+    localStorage.removeItem('admin');
+    location.reload();
+}
+
+function uploadFiles(){
+    window.open('https://github.com/Mohamed742406/-elkasaby-standards/upload/main', '_blank');
+}
+</script>
+
+<script defer="" src="https://static.cloudflareinsights.com/beacon.min.js/vcd15cbe7772f49c399c6a5babf22c1241717689176015" integrity="sha512-ZpsOmlRQV6y907TI0dKBHq9Md29nnaEIPlkf84rnaERnq6zvWvPUqr2ft8M1aS28oN72PdrCzSjY4U6VaAw1EQ==" data-cf-beacon="{&quot;version&quot;:&quot;2024.11.0&quot;,&quot;token&quot;:&quot;cfb6543e268d4ceb92c8170675caa481&quot;,&quot;r&quot;:1,&quot;server_timing&quot;:{&quot;name&quot;:{&quot;cfCacheStatus&quot;:true,&quot;cfEdge&quot;:true,&quot;cfExtPri&quot;:true,&quot;cfL4&quot;:true,&quot;cfOrigin&quot;:true,&quot;cfSpeedBrain&quot;:true},&quot;location_startswith&quot;:null}}" crossorigin="anonymous"></script>
+
+</body></html>
 
 </body></html>
