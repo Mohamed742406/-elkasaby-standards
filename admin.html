@@ -52,36 +52,32 @@
         </form>
     </div>
 
-    <script>
-        let showPassword = false;
-        
-        function togglePassword() {
-            const password = document.getElementById('password');
-            showPassword = !showPassword;
-            password.type = showPassword ? 'text' : 'password';
-        }
-        
-        function handleLogin(event) {
-            event.preventDefault();
-            
-            const username = document.getElementById('username').value;
-            const password = document.getElementById('password').value;
-            const errorDiv = document.getElementById('loginError');
-            
-            // بيانات الدخول الصحيحة
-            if(username === 'admin' && password === 'elkasaby2025') {
-                localStorage.setItem('elkasabyauth', 'true');
-                window.location.href = 'index.html';
-            } else {
-                errorDiv.classList.remove('hidden');
-                errorDiv.textContent = '❌ اسم المستخدم أو كلمة المرور غير صحيحة';
-            }
-        }
-        
-        // فحص تسجيل الدخول السابق
-        if(localStorage.getItem('elkasabyauth') === 'true') {
-            window.location.href = 'index.html';
-        }
-    </script>
-</body>
-</html>
+<script>
+let showPassword = false;
+
+function togglePassword() {
+    const password = document.getElementById('password');
+    showPassword = !showPassword;
+    password.type = showPassword ? 'text' : 'password';
+}
+
+function handleLogin(event) {
+    event.preventDefault();
+    
+    const username = document.getElementById('username').value;
+    const password = document.getElementById('password').value;
+    const errorDiv = document.getElementById('loginError');
+    
+    if(username === 'admin' && password === 'elkasaby2025') {
+        localStorage.setItem('elkasabyauth', 'true');
+        window.location.href = 'index.html';
+    } else {
+        errorDiv.classList.remove('hidden');
+        errorDiv.textContent = '❌ اسم المستخدم أو كلمة المرور غير صحيحة';
+    }
+}
+
+if(localStorage.getItem('elkasabyauth') === 'true') {
+    window.location.href = 'index.html';
+}
+</script>
