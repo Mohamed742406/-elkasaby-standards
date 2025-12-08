@@ -6,17 +6,17 @@
     <title>منصة القصبى للمواصفات الهندسية</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
-    <!-- مكتبة الأيقونات -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * { font-family: 'Cairo', sans-serif; }
         body { background-color: #f3f4f6; }
         
-        .card { 
+        /* ستايل كارت الملف */
+        .file-card { 
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             border: 1px solid #e5e7eb;
         }
-        .card:hover { 
+        .file-card:hover { 
             transform: translateY(-8px); 
             box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
             border-color: #1E3A8A;
@@ -30,35 +30,40 @@
             transform: scale(1.02);
         }
 
-        .filter-btn {
-            transition: all 0.3s;
-            border: 2px solid #e2e8f0;
-            font-size: 1.1rem; /* تكبير الخط */
-            padding: 0.75rem 2rem; /* تكبير الزر */
-        }
-        .filter-btn.active {
-            background-color: #1E3A8A;
-            color: white;
-            border-color: #1E3A8A;
-            transform: scale(1.05);
-            box-shadow: 0 4px 6px -1px rgba(30, 58, 138, 0.3);
-        }
-        .filter-btn:hover:not(.active) {
-            background-color: #e2e8f0;
-            border-color: #cbd5e1;
-        }
-
-        /* شريط الإحصائيات */
-        .stat-card {
+        /* ستايل أزرار التصنيفات الجديدة (الكبيرة) */
+        .cat-btn {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
             background: white;
-            padding: 1rem;
-            border-radius: 1rem;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-            text-align: center;
-            min-width: 150px;
+            border: 2px solid #e2e8f0;
+            border-radius: 16px;
+            padding: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            height: 100%;
         }
+        .cat-btn:hover {
+            border-color: #1E3A8A;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+        .cat-btn.active {
+            background: #1E3A8A;
+            border-color: #1E3A8A;
+            color: white;
+            transform: scale(1.02);
+            box-shadow: 0 10px 20px rgba(30, 58, 138, 0.3);
+        }
+        .cat-btn.active .sub-text { color: #bfdbfe; }
+        .cat-btn .icon { font-size: 2rem; margin-bottom: 0.5rem; }
+        .cat-btn .title { font-weight: 800; font-size: 1.4rem; }
+        .cat-btn .sub-text { font-size: 0.85rem; color: #64748b; margin-top: 0.2rem; }
+
+        /* أرقام الإحصائيات */
         .stat-number {
-            font-size: 1.5rem;
+            font-size: 1.8rem;
             font-weight: 800;
             color: #1E3A8A;
         }
@@ -78,32 +83,36 @@
                     <p class="text-sm text-blue-200 opacity-90">المرجع الشامل للمواصفات الهندسية المترجمة</p>
                 </div>
             </div>
-            
-            <!-- أزرار التواصل -->
             <div class="flex gap-3">
+                <a href="https://wa.me/201000000000" target="_blank" class="bg-green-600 text-white px-5 py-2.5 rounded-xl hover:bg-green-700 transition flex items-center gap-2 font-bold shadow-lg">
+                    <i class="fa-brands fa-whatsapp text-xl"></i> واتساب
+                </a>
                 <a href="mailto:elkasaby1988@gmail.com" class="bg-white/10 backdrop-blur-md border border-white/20 px-5 py-2.5 rounded-xl hover:bg-white/20 transition flex items-center gap-2 font-semibold">
-                    <i class="fa-solid fa-envelope"></i> تواصل معي
+                    <i class="fa-solid fa-envelope"></i> إيميل
                 </a>
             </div>
         </div>
     </header>
 
-    <!-- المحتوى -->
     <main class="container mx-auto p-4 min-h-screen max-w-7xl">
         
-        <!-- شريط الإحصائيات (تجميلي) -->
-        <div class="flex flex-wrap justify-center gap-4 mb-8 mt-6 animate-pulse">
-            <div class="stat-card">
-                <div class="text-gray-500 text-sm mb-1"><i class="fa-solid fa-users"></i> إجمالي الزوار</div>
+        <!-- شريط الإحصائيات -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8 mt-6">
+            <div class="bg-white p-4 rounded-2xl shadow-sm text-center border-b-4 border-blue-500">
+                <div class="text-gray-500 text-sm mb-1 font-bold">👥 الزوار</div>
                 <div class="stat-number" id="visitorsCount">1,245</div>
             </div>
-            <div class="stat-card">
-                <div class="text-gray-500 text-sm mb-1"><i class="fa-solid fa-file-arrow-down"></i> عدد التحميلات</div>
+            <div class="bg-white p-4 rounded-2xl shadow-sm text-center border-b-4 border-green-500">
+                <div class="text-gray-500 text-sm mb-1 font-bold">📥 التحميلات</div>
                 <div class="stat-number" id="downloadsCount">3,890</div>
             </div>
-            <div class="stat-card">
-                <div class="text-gray-500 text-sm mb-1"><i class="fa-solid fa-book"></i> المواصفات المتاحة</div>
+            <div class="bg-white p-4 rounded-2xl shadow-sm text-center border-b-4 border-purple-500">
+                <div class="text-gray-500 text-sm mb-1 font-bold">📚 الملفات</div>
                 <div class="stat-number">19</div>
+            </div>
+            <div class="bg-white p-4 rounded-2xl shadow-sm text-center border-b-4 border-orange-500">
+                <div class="text-gray-500 text-sm mb-1 font-bold">📅 التحديث</div>
+                <div class="text-lg font-bold text-gray-700">يومي</div>
             </div>
         </div>
 
@@ -113,30 +122,55 @@
                 <input type="text" id="searchInput" onkeyup="searchFiles()" 
                     class="w-full p-5 pr-14 border-2 border-gray-100 rounded-2xl focus:outline-none focus:border-[#1E3A8A] focus:ring-4 focus:ring-blue-50 text-lg transition-all" 
                     placeholder="ابحث برقم الكود (C39) أو اسم المواصفة (خرسانة)...">
-                <span class="absolute left-6 top-1/2 -translate-y-1/2 text-gray-400 font-bold bg-gray-50 px-3 py-1 rounded-lg border">
-                    <span id="count">0</span> نتيجة
-                </span>
-                <i class="fa-solid fa-magnifying-glass absolute right-6 top-1/2 -translate-y-1/2 text-gray-400 text-xl"></i>
+                <i class="fa-solid fa-magnifying-glass absolute left-6 top-1/2 -translate-y-1/2 text-gray-400 text-xl"></i>
             </div>
         </div>
 
-        <!-- أزرار التصنيف (الكبيرة) -->
-        <div class="flex flex-wrap justify-center gap-4 mb-10" id="filterContainer">
-            <button onclick="filterCategory('all')" class="filter-btn active rounded-2xl" data-category="all">
-                📚 الكل
-            </button>
-            <button onclick="filterCategory('ASTM')" class="filter-btn rounded-2xl" data-category="ASTM">
-                🧪 ASTM
-            </button>
-            <button onclick="filterCategory('ACI')" class="filter-btn rounded-2xl" data-category="ACI">
-                🏗️ ACI
-            </button>
-            <button onclick="filterCategory('BS')" class="filter-btn rounded-2xl" data-category="BS">
-                🇬🇧 BS
-            </button>
-            <button onclick="filterCategory('OTHER')" class="filter-btn rounded-2xl" data-category="OTHER">
-                🌐 أخرى
-            </button>
+        <!-- أزرار التصنيف (الشكل الجديد الكبير) -->
+        <h2 class="text-xl font-bold text-gray-700 mb-4 pr-2 border-r-4 border-[#1E3A8A] mr-2">تصفح حسب الكود:</h2>
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 mb-12" id="filterContainer">
+            
+            <!-- زر الكل -->
+            <div onclick="filterCategory('all')" class="cat-btn active" data-category="all">
+                <span class="icon">📚</span>
+                <span class="title">الكل</span>
+                <span class="sub-text">جميع الملفات</span>
+            </div>
+
+            <!-- زر ASTM -->
+            <div onclick="filterCategory('ASTM')" class="cat-btn" data-category="ASTM">
+                <span class="icon">🧪</span>
+                <span class="title">ASTM</span>
+                <span class="sub-text">المواصفات الأمريكية</span>
+            </div>
+
+            <!-- زر ACI -->
+            <div onclick="filterCategory('ACI')" class="cat-btn" data-category="ACI">
+                <span class="icon">🏗️</span>
+                <span class="title">ACI</span>
+                <span class="sub-text">كود الخرسانة</span>
+            </div>
+
+            <!-- زر BS -->
+            <div onclick="filterCategory('BS')" class="cat-btn" data-category="BS">
+                <span class="icon">🇬🇧</span>
+                <span class="title">BS</span>
+                <span class="sub-text">الكود البريطاني</span>
+            </div>
+
+            <!-- زر AASHTO -->
+            <div onclick="filterCategory('AASHTO')" class="cat-btn" data-category="AASHTO">
+                <span class="icon">🛣️</span>
+                <span class="title">AASHTO</span>
+                <span class="sub-text">مواصفات الطرق</span>
+            </div>
+
+            <!-- زر أخرى -->
+            <div onclick="filterCategory('OTHER')" class="cat-btn" data-category="OTHER">
+                <span class="icon">🌐</span>
+                <span class="title">أخرى</span>
+                <span class="sub-text">أكواد متنوعة</span>
+            </div>
         </div>
 
         <!-- شبكة الملفات -->
@@ -150,8 +184,6 @@
                 <i class="fa-solid fa-comments text-[#1E3A8A]"></i>
                 مجتمع المنصة (التعليقات والمناقشات)
             </h2>
-            
-            <!-- كود Giscus المحدث -->
             <script src="https://giscus.app/client.js"
                 data-repo="Mohamed742406/-elkasaby-standards"
                 data-repo-id="R_kgDONOlQMQ"
@@ -178,11 +210,11 @@
 
     <script>
         // ============================================================
-        // قاعدة البيانات (النسخة الكاملة)
+        // قاعدة البيانات
         // ============================================================
         
         const files = [
-            // --- خرسانة (Concrete) ---
+            // --- مجموعة ACI ---
             {
                 code: "ACI 214R-11",
                 title: "دليل تقييم نتائج اختبارات الخرسانة",
@@ -190,6 +222,7 @@
                 group: "ACI",
                 link: "./ACI 214R-11-Mo.elkasaby...pdf"
             },
+            // --- مجموعة ASTM ---
             {
                 code: "ASTM C39",
                 title: "اختبار كسر الاسطوانات",
@@ -246,8 +279,6 @@
                 group: "ASTM",
                 link: "./C1231-Mo.elkasaby -مترجم.pdf"
             },
-
-            // --- تربة وأسفلت (Soil & Asphalt) ---
             {
                 code: "ASTM D1557",
                 title: "اختبار الدمك (بروكتور المعدل)",
@@ -297,8 +328,6 @@
                 group: "ASTM",
                 link: "./ASTM D-5444-24-Mo.elkasaby.pdf"
             },
-
-            // --- مواسير ومنهولات (Pipes & Manholes) ---
             {
                 code: "ASTM C76",
                 title: "مواسير الخرسانة المسلحة",
@@ -328,11 +357,10 @@
 
         let currentCategory = 'all';
 
-        // محاكاة لزيادة العدادات (لإعطاء انطباع بالحيوية)
         function incrementStats() {
             const visitors = document.getElementById('visitorsCount');
             const downloads = document.getElementById('downloadsCount');
-            // زيادة عشوائية بسيطة كل زيارة
+            // زيادة وهمية ذكية لجذب الانتباه
             let v = parseInt(localStorage.getItem('vCount') || '1245') + Math.floor(Math.random() * 3);
             let d = parseInt(localStorage.getItem('dCount') || '3890') + Math.floor(Math.random() * 2);
             
@@ -362,7 +390,7 @@
 
             list.forEach(file => {
                 const card = `
-                    <div class="card bg-white p-6 rounded-3xl shadow-sm border border-gray-100 flex flex-col h-full relative overflow-hidden group">
+                    <div class="file-card bg-white p-6 rounded-3xl shadow-sm border border-gray-100 flex flex-col h-full relative overflow-hidden group">
                         <div class="absolute top-0 left-0 w-2 h-full bg-[#1E3A8A] opacity-0 group-hover:opacity-100 transition-opacity"></div>
                         
                         <div class="flex justify-between items-start mb-4 pl-2">
@@ -396,7 +424,7 @@
         function filterCategory(category) {
             currentCategory = category;
             
-            document.querySelectorAll('.filter-btn').forEach(btn => {
+            document.querySelectorAll('.cat-btn').forEach(btn => {
                 btn.classList.remove('active');
                 if(btn.dataset.category === category) btn.classList.add('active');
             });
