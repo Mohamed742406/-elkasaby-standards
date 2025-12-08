@@ -13,6 +13,21 @@
         .card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
         .btn-primary { background-color: #1E3A8A; }
         .btn-primary:hover { background-color: #1e40af; }
+        
+        /* ستايل أزرار التصنيف */
+        .filter-btn {
+            transition: all 0.3s;
+            border: 1px solid #e2e8f0;
+        }
+        .filter-btn.active {
+            background-color: #1E3A8A;
+            color: white;
+            border-color: #1E3A8A;
+            transform: scale(1.05);
+        }
+        .filter-btn:hover:not(.active) {
+            background-color: #e2e8f0;
+        }
     </style>
 </head>
 <body>
@@ -36,17 +51,30 @@
     <!-- المحتوى -->
     <main class="container mx-auto p-4 min-h-screen max-w-6xl">
         
-        <!-- مربع البحث -->
-        <div class="bg-white p-6 rounded-2xl shadow-sm mb-8 mt-4">
-            <h2 class="text-gray-700 font-bold mb-4 text-lg">🔍 ابحث في المكتبة</h2>
+        <!-- قسم البحث -->
+        <div class="bg-white p-6 rounded-2xl shadow-sm mb-6 mt-4">
             <div class="relative">
-                <input type="text" id="searchInput" onkeyup="filterFiles()" 
+                <input type="text" id="searchInput" onkeyup="searchFiles()" 
                     class="w-full p-4 pr-12 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#1E3A8A] focus:border-transparent bg-gray-50" 
-                    placeholder="اكتب رقم الكود أو اسم المواصفة (مثال: C39 أو خرسانة)...">
+                    placeholder="اكتب رقم الكود أو اسم المواصفة (مثال: C39)...">
                 <span class="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 text-sm">
-                    عدد الملفات: <span id="count">0</span>
+                    النتائج: <span id="count">0</span>
                 </span>
             </div>
+        </div>
+
+        <!-- قسم التصنيفات (الأزرار الجديدة) -->
+        <div class="flex flex-wrap justify-center gap-3 mb-8" id="filterContainer">
+            <button onclick="filterCategory('all')" class="filter-btn active px-6 py-2 rounded-full font-bold bg-white text-gray-600 shadow-sm flex items-center gap-2" data-category="all">
+                📚 الكل
+            </button>
+            <button onclick="filterCategory('ASTM')" class="filter-btn px-6 py-2 rounded-full font-bold bg-white text-gray-600 shadow-sm flex items-center gap-2" data-category="ASTM">
+                🧪 ASTM
+            </button>
+            <button onclick="filterCategory('ACI')" class="filter-btn px-6 py-2 rounded-full font-bold bg-white text-gray-600 shadow-sm flex items-center gap-2" data-category="ACI">
+                🏗️ ACI
+            </button>
+            <!-- يمكن إضافة أزرار أخرى هنا مستقبلاً مثل BS -->
         </div>
 
         <!-- شبكة الملفات -->
@@ -58,23 +86,24 @@
 
     <!-- الفوتر -->
     <footer class="bg-gray-800 text-white text-center p-6 mt-12">
-        <p class="opacity-75">© 2025 منصة القصبى    </p>
+        <p class="opacity-75">© 2025 منصة محمد القصبي</p>
     </footer>
 
     <script>
         // ============================================================
-        // قاعدة البيانات (تم نقل الأسماء حرفياً من صورتك)
+        // قاعدة البيانات
         // ============================================================
         
         const files = [
-            // --- مجموعة الخرسانة (Concrete) ---
+            // --- مجموعة ACI ---
             {
                 code: "ACI 214R-11",
                 title: "دليل تقييم نتائج اختبارات الخرسانة",
                 desc: "شرح وافي للطرق الإحصائية لتقييم نتائج كسر المكعبات والاسطوانات.",
                 group: "ACI",
-                link: "./ACI 214R-11-Mo.elkasaby..pdf"
+                link: "./ACI 214R-11-Mo.elkasaby...pdf"
             },
+            // --- مجموعة ASTM ---
             {
                 code: "ASTM C39",
                 title: "اختبار كسر الاسطوانات",
@@ -83,23 +112,23 @@
                 link: "./C39 -23-Mo.elkasaby.pdf"
             },
             {
-                code: "ASTM C702",
-                title: "تقليل عينات الركام",
-                desc: "الممارسة القياسية لتقليل عينات الركام إلى حجم مناسب للاختبار.",
+                code: "ASTM C42",
+                title: "اختبار القلب الخرساني (Core)",
+                desc: "الحصول على عينات وتكسير الكور من الخرسانة المتصلدة.",
                 group: "ASTM",
-                link: "./C 702 - C 702M - Mo.elkasaby.pdf"
+                link: "./ASTEM-C42-20-Mo.elkasaby.pdf"
             },
             {
-                code: "ASTM C1231",
-                title: "الأغطية اللاصقة (Capping)",
-                desc: "استخدام الأغطية غير الملتصقة في تحديد مقاومة كسر الاسطوانات.",
+                code: "ASTM C131",
+                title: "مقاومة التآكل (لوس أنجلوس)",
+                desc: "اختبار مقاومة الركام للتفتت والصدمات.",
                 group: "ASTM",
-                link: "./C1231-Mo.elkasa by - مترجم.pdf"
+                link: "./ASTEM C131- Mo.elkasaby.pdf"
             },
             {
                 code: "ASTM C136",
-                title: "التحليل المنخلي",
-                desc: "طريقة اختبار التحليل المنخلي للركام الناعم والخشن.",
+                title: "التحليل المنخلي للركام",
+                desc: "تحديد تدرج حبيبات الركام الناعم والخشن.",
                 group: "ASTM",
                 link: "./ASTM C136-Mo.elkasaby.pdf"
             },
@@ -111,48 +140,39 @@
                 link: "./ASTM -C 127-Mo.elkasaby.pdf"
             },
             {
-                code: "ASTM C131",
-                title: "مقاومة التآكل (لوس أنجلوس)",
-                desc: "مقاومة الركام للتفتت والصدمات باستخدام جهاز لوس أنجلوس.",
+                code: "ASTM C702",
+                title: "تقليل عينات الركام",
+                desc: "المواصفة القياسية لتقليل عينات الركام إلى حجم مناسب للاختبار.",
                 group: "ASTM",
-                link: "./ASTEM C131- Mo.elkasaby.pdf"
+                link: "./C 702 - C 702M - Mo.elkasaby.pdf"
             },
-
-            // --- مجموعة الأسفلت والتربة (Asphalt & Soil) ---
             {
                 code: "ASTM D75",
-                title: "أخذ عينات الركام",
-                desc: "الممارسة القياسية لأخذ عينات الركام من الموقع.",
+                title: "طرق أخذ عينات الركام",
+                desc: "الممارسة القياسية لسحب عينات الركام من الموقع.",
                 group: "ASTM",
                 link: "./D75_D75M-19 -Mo.elkasaby.pdf"
             },
             {
-                code: "ASTM D2726",
-                title: "الكثافة النسبية للأسفلت",
-                desc: "Bulk Specific Gravity للعينات الأسفلتية المدموكة.",
+                code: "ASTM C1231",
+                title: "الأغطية اللاصقة (Capping)",
+                desc: "استخدام الأغطية (Rubber Caps) لكسر الاسطوانات.",
                 group: "ASTM",
-                link: "./ASTM D2726 - Mo.elkasaby.pdf"
-            },
-            {
-                code: "ASTM D2216",
-                title: "محتوى الرطوبة",
-                desc: "طريقة تحديد نسبة المياه (المحتوى الرطوبي) للتربة والصخور.",
-                group: "ASTM",
-                link: "./ASTM D2216 -Mo.elkasaby.pdf"
+                link: "./C1231-Mo.elkasaby -مترجم.pdf"
             },
             {
                 code: "ASTM D1557",
-                title: "اختبار الدمك (المعدل)",
-                desc: "خصائص الدمك المختبري للتربة باستخدام جهد معدل.",
+                title: "اختبار الدمك (بروكتور المعدل)",
+                desc: "تحديد الكثافة الجافة وعلاقة الرطوبة للتربة.",
                 group: "ASTM",
                 link: "./ASTM D1557 -12-Mo.elkasaby.pdf"
             },
             {
-                code: "ASTM D6926",
-                title: "تحضير عينات مارشال",
-                desc: "تجهيز عينات الأسفلت باستخدام جهاز مارشال.",
+                code: "ASTM D2216",
+                title: "محتوى الرطوبة (Water Content)",
+                desc: "تحديد نسبة المياه في التربة والصخور والركام.",
                 group: "ASTM",
-                link: "./D 6926 - 16-Mo.elkasaby.pdf"
+                link: "./ASTM D2216 -Mo.elkasaby.pdf"
             },
             {
                 code: "ASTM D2041",
@@ -162,21 +182,33 @@
                 link: "./D 2041-19-Mo.elkasaby.pdf"
             },
             {
+                code: "ASTM D6926",
+                title: "تحضير عينات مارشال",
+                desc: "طريقة دمك عينات الأسفلت باستخدام جهاز مارشال.",
+                group: "ASTM",
+                link: "./D 6926 - 16-Mo.elkasaby.pdf"
+            },
+            {
                 code: "ASTM D2172",
-                title: "استخلاص الأسفلت",
+                title: "استخلاص الأسفلت (Extraction)",
                 desc: "طرق القياس الكمي للبيتومين في الخلطات الأسفلتية.",
                 group: "ASTM",
                 link: "./ASTEM D 2172-24-Mo.elkasaby.pdf"
             },
             {
+                code: "ASTM D2726",
+                title: "الكثافة النسبية للأسفلت",
+                desc: "Bulk Specific Gravity للعينات المدموكة.",
+                group: "ASTM",
+                link: "./ASTM D2726 - Mo.elkasaby..pdf"
+            },
+            {
                 code: "ASTM D5444",
-                title: " تحليل الركام المستخلص من عينة الاسفلت ",
+                title: "تحليل الركام المستخلص من الاسفلت ",
                 desc: "التحليل المنخلي للمواد المعدنية المستخلصة من الأسفلت.",
                 group: "ASTM",
                 link: "./ASTM D-5444-24-Mo.elkasaby.pdf"
             },
-
-            // --- منتجات خرسانية ومواسير (Precast & Pipes) ---
             {
                 code: "ASTM C76",
                 title: "مواسير الخرسانة المسلحة",
@@ -196,13 +228,15 @@
                 title: "العبارات الصندوقية",
                 desc: "مواصفات العبارات الخرسانية المسلحة (Box Culverts).",
                 group: "ASTM",
-                link: "./C1433M - 16b .Mo.elkasaby.pdf"
+                link: "./C1433M − 16b .Mo.elkasaby.pdf"
             }
         ];
 
         // ============================================================
         // كود التشغيل
         // ============================================================
+
+        let currentCategory = 'all';
 
         function displayFiles(list) {
             const container = document.getElementById('filesContainer');
@@ -215,7 +249,7 @@
                 container.innerHTML = `
                     <div class="col-span-full text-center py-12 text-gray-400">
                         <div class="text-4xl mb-2">📂</div>
-                        <p>لا توجد ملفات تطابق بحثك</p>
+                        <p>لا توجد ملفات في هذا القسم</p>
                     </div>
                 `;
                 return;
@@ -242,16 +276,36 @@
             });
         }
 
-        function filterFiles() {
+        function filterCategory(category) {
+            currentCategory = category;
+            
+            // تحديث شكل الأزرار
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.classList.remove('active');
+                if(btn.dataset.category === category) btn.classList.add('active');
+            });
+
+            // تطبيق الفلتر
+            searchFiles();
+        }
+
+        function searchFiles() {
             const query = document.getElementById('searchInput').value.toLowerCase();
-            const filtered = files.filter(f => 
-                f.title.toLowerCase().includes(query) || 
-                f.code.toLowerCase().includes(query) ||
-                f.desc.toLowerCase().includes(query)
-            );
+            
+            const filtered = files.filter(f => {
+                const matchesSearch = f.title.toLowerCase().includes(query) || 
+                                    f.code.toLowerCase().includes(query) ||
+                                    f.desc.toLowerCase().includes(query);
+                
+                const matchesCategory = currentCategory === 'all' || f.group === currentCategory;
+
+                return matchesSearch && matchesCategory;
+            });
+
             displayFiles(filtered);
         }
 
+        // تشغيل عند التحميل
         displayFiles(files);
     </script>
 </body>
