@@ -82,7 +82,7 @@
                 </div>
             </div>
             <div class="flex gap-2">
-                <!-- تم إضافة رقمك هنا -->
+                <!-- رقمك في السعودية -->
                 <a href="https://wa.me/966581295794" target="_blank" class="bg-green-500 px-4 py-2 rounded-lg text-sm font-bold hover:bg-green-600 transition flex items-center gap-2">
                     <i class="fa-brands fa-whatsapp text-lg"></i> واتساب
                 </a>
@@ -107,7 +107,7 @@
             </div>
             <div class="stat-card border-b-4 border-purple-500">
                 <div class="text-gray-500 text-xs font-bold mb-1">الملفات</div>
-                <div class="stat-number">19</div>
+                <div class="stat-number" id="filesCount">19</div>
             </div>
             <div class="stat-card border-b-4 border-orange-500">
                 <div class="text-gray-500 text-xs font-bold mb-1">التحديث</div>
@@ -130,149 +130,4 @@
         <!-- التصنيفات -->
         <h2 class="text-lg font-bold text-gray-700 mb-4 border-r-4 border-[#1E3A8A] pr-2">تصفح حسب الكود:</h2>
         <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 mb-10">
-            <div onclick="filterCategory('all')" class="cat-btn active" data-category="all">
-                <span class="icon">📚</span><span class="title">الكل</span>
-            </div>
-            <div onclick="filterCategory('ASTM')" class="cat-btn" data-category="ASTM">
-                <span class="icon">🧪</span><span class="title">ASTM</span>
-            </div>
-            <div onclick="filterCategory('ACI')" class="cat-btn" data-category="ACI">
-                <span class="icon">🏗️</span><span class="title">ACI</span>
-            </div>
-            <div onclick="filterCategory('BS')" class="cat-btn" data-category="BS">
-                <span class="icon">🇬🇧</span><span class="title">BS</span>
-            </div>
-            <div onclick="filterCategory('AASHTO')" class="cat-btn" data-category="AASHTO">
-                <span class="icon">🛣️</span><span class="title">AASHTO</span>
-            </div>
-            <div onclick="filterCategory('OTHER')" class="cat-btn" data-category="OTHER">
-                <span class="icon">🌐</span><span class="title">أخرى</span>
-            </div>
-        </div>
-
-        <!-- الملفات -->
-        <div id="filesContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
-            <!-- سيتم ملء الملفات هنا -->
-        </div>
-
-        <!-- التعليقات -->
-        <div class="bg-white p-6 rounded-2xl shadow-sm border-t-4 border-[#1E3A8A]">
-            <h2 class="text-xl font-bold mb-4 flex items-center gap-2">
-                <i class="fa-solid fa-comments text-[#1E3A8A]"></i> مجتمع المنصة (التعليقات والمناقشات)
-            </h2>
-            <script src="https://giscus.app/client.js"
-                data-repo="Mohamed742406/-elkasaby-standards"
-                data-repo-id="R_kgDONOlQMQ"
-                data-category="General"
-                data-category-id="DIC_kwDONOlQMc4CkOjl"
-                data-mapping="pathname"
-                data-strict="0"
-                data-reactions-enabled="1"
-                data-emit-metadata="0"
-                data-input-position="top"
-                data-theme="light"
-                data-lang="ar"
-                crossorigin="anonymous"
-                async>
-            </script>
-        </div>
-
-    </main>
-
-    <footer class="bg-gray-800 text-white text-center p-6 mt-8">
-        <p>© 2025 منصة القصبى - م. محمد القصبي</p>
-    </footer>
-
-    <script>
-        const files = [
-            { code: "ACI 214R-11", title: "دليل تقييم نتائج اختبارات الخرسانة", desc: "شرح وافي للطرق الإحصائية لتقييم نتائج كسر المكعبات والاسطوانات.", group: "ACI", link: "./ACI 214R-11-Mo.elkasaby...pdf" },
-            { code: "ASTM C39", title: "اختبار كسر الاسطوانات", desc: "الطريقة القياسية لاختبار مقاومة الضغط لعينات الخرسانة الاسطوانية.", group: "ASTM", link: "./C39 -23-Mo.elkasaby.pdf" },
-            { code: "ASTM C42", title: "اختبار القلب الخرساني (Core)", desc: "الحصول على عينات وتكسير الكور من الخرسانة المتصلدة.", group: "ASTM", link: "./ASTEM-C42-20-Mo.elkasaby.pdf" },
-            { code: "ASTM C131", title: "مقاومة التآكل (لوس أنجلوس)", desc: "اختبار مقاومة الركام للتفتت والصدمات.", group: "ASTM", link: "./ASTEM C131- Mo.elkasaby.pdf" },
-            { code: "ASTM C136", title: "التحليل المنخلي للركام", desc: "تحديد تدرج حبيبات الركام الناعم والخشن.", group: "ASTM", link: "./ASTM C136-Mo.elkasaby.pdf" },
-            { code: "ASTM C127", title: "الكثافة والامتصاص (ركام خشن)", desc: "طريقة اختبار الكثافة والوزن النوعي والامتصاص للركام الخشن.", group: "ASTM", link: "./ASTM -C 127-Mo.elkasaby.pdf" },
-            { code: "ASTM C702", title: "تقليل عينات الركام", desc: "الممارسة القياسية لتقليل عينات الركام إلى حجم مناسب للاختبار.", group: "ASTM", link: "./C 702 - C 702M - Mo.elkasaby.pdf" },
-            { code: "ASTM D75", title: "طرق أخذ عينات الركام", desc: "الممارسة القياسية لسحب عينات الركام من الموقع.", group: "ASTM", link: "./D75_D75M-19 -Mo.elkasaby.pdf" },
-            { code: "ASTM C1231", title: "الأغطية اللاصقة (Capping)", desc: "استخدام الأغطية (Rubber Caps) لكسر الاسطوانات.", group: "ASTM", link: "./C1231-Mo.elkasaby -مترجم.pdf" },
-            { code: "ASTM D1557", title: "اختبار الدمك (بروكتور المعدل)", desc: "تحديد الكثافة الجافة وعلاقة الرطوبة للتربة.", group: "ASTM", link: "./ASTM D1557 -12-Mo.elkasaby.pdf" },
-            { code: "ASTM D2216", title: "محتوى الرطوبة (Water Content)", desc: "تحديد نسبة المياه في التربة والصخور والركام.", group: "ASTM", link: "./ASTM D2216 -Mo.elkasaby.pdf" },
-            { code: "ASTM D2041", title: "الكثافة القصوى (Rice Test)", desc: "الكثافة النظرية القصوى للخلطات الأسفلتية.", group: "ASTM", link: "./D 2041-19-Mo.elkasaby.pdf" },
-            { code: "ASTM D6926", title: "تحضير عينات مارشال", desc: "طريقة دمك عينات الأسفلت باستخدام جهاز مارشال.", group: "ASTM", link: "./D 6926 - 16-Mo.elkasaby.pdf" },
-            { code: "ASTM D2172", title: "استخلاص الأسفلت (Extraction)", desc: "طرق القياس الكمي للبيتومين في الخلطات الأسفلتية.", group: "ASTM", link: "./ASTEM D 2172-24-Mo.elkasaby.pdf" },
-            { code: "ASTM D2726", title: "الكثافة النسبية للأسفلت", desc: "Bulk Specific Gravity للعينات المدموكة.", group: "ASTM", link: "./ASTM D2726 - Mo.elkasaby..pdf" },
-            { code: "ASTM D5444", title: "تحليل البودرة المستخلصة", desc: "التحليل المنخلي للمواد المعدنية المستخلصة من الأسفلت.", group: "ASTM", link: "./ASTM D-5444-24-Mo.elkasaby.pdf" },
-            { code: "ASTM C76", title: "مواسير الخرسانة المسلحة", desc: "مواصفات أنابيب الصرف الخرسانية المسلحة.", group: "ASTM", link: "./C76-Mo.elkasaby.pdf" },
-            { code: "ASTM C478", title: "غرف التفتيش (Manholes)", desc: "مواصفات غرف المنهولات الخرسانية سابقة الصب.", group: "ASTM", link: "./C478M -Mo.elkasaby.pdf" },
-            { code: "ASTM C1433", title: "العبارات الصندوقية", desc: "مواصفات العبارات الخرسانية المسلحة (Box Culverts).", group: "ASTM", link: "./C1433M − 16b .Mo.elkasaby.pdf" }
-        ];
-
-        let currentCategory = 'all';
-
-        function incrementStats() {
-            const v = document.getElementById('visitorsCount');
-            const d = document.getElementById('downloadsCount');
-            let vCount = parseInt(localStorage.getItem('vCount') || '1245') + Math.floor(Math.random() * 2);
-            let dCount = parseInt(localStorage.getItem('dCount') || '3890') + Math.floor(Math.random() * 3);
-            
-            localStorage.setItem('vCount', vCount);
-            localStorage.setItem('dCount', dCount);
-            
-            v.textContent = vCount.toLocaleString();
-            d.textContent = dCount.toLocaleString();
-        }
-
-        function displayFiles(list) {
-            const container = document.getElementById('filesContainer');
-            const countSpan = document.getElementById('count');
-            
-            container.innerHTML = '';
-            countSpan.textContent = list.length;
-
-            if (list.length === 0) {
-                container.innerHTML = '<div class="col-span-full text-center py-10 text-gray-400 text-xl">لا توجد ملفات</div>';
-                return;
-            }
-
-            list.forEach(file => {
-                const card = `
-                    <div class="file-card p-6">
-                        <div class="flex justify-between mb-4">
-                            <span class="bg-blue-50 text-[#1E3A8A] px-3 py-1 rounded-lg font-bold font-mono text-sm border border-blue-100">${file.code}</span>
-                            <span class="bg-gray-100 text-gray-500 px-2 py-1 rounded-lg text-xs font-medium">${file.group}</span>
-                        </div>
-                        <h3 class="text-lg font-bold text-gray-800 mb-2">${file.title}</h3>
-                        <p class="text-gray-500 text-sm mb-6 flex-grow leading-relaxed">${file.desc}</p>
-                        <a href="${file.link}" target="_blank" class="btn-primary w-full py-3 rounded-xl font-bold flex items-center justify-center gap-2 shadow-md">
-                            <span>📥</span> تحميل الملف
-                        </a>
-                    </div>
-                `;
-                container.innerHTML += card;
-            });
-        }
-
-        function filterCategory(cat) {
-            currentCategory = cat;
-            document.querySelectorAll('.cat-btn').forEach(b => {
-                b.classList.remove('active');
-                if(b.dataset.category === cat) b.classList.add('active');
-            });
-            searchFiles();
-        }
-
-        function searchFiles() {
-            const q = document.getElementById('searchInput').value.toLowerCase();
-            const filtered = files.filter(f => {
-                const matchSearch = f.title.toLowerCase().includes(q) || f.code.toLowerCase().includes(q);
-                const matchCat = currentCategory === 'all' || f.group === currentCategory;
-                return matchSearch && matchCat;
-            });
-            displayFiles(filtered);
-        }
-
-        // تشغيل
-        incrementStats();
-        displayFiles(files);
-    </script>
-</body>
-</html>
+            <div onclick="filterCategory('all')" class="cat-btn acti
