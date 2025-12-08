@@ -196,7 +196,7 @@
             // ACI
             { code: "ACI 214R-11", title: "دليل تقييم نتائج الخرسانة", desc: "الطريقة الإحصائية لتقييم نتائج كسر المكعبات.", group: "ACI", link: "./ACI 214R-11-Mo.elkasaby...pdf" },
             
-            // ASTM
+            // ASTM (تم التصحيح بدقة من الصورة)
             { code: "ASTM C39", title: "مقاومة الضغط (اسطوانات)", desc: "الطريقة القياسية لكسر اسطوانات الخرسانة.", group: "ASTM", link: "./C39 -23-Mo.elkasaby.pdf" },
             { code: "ASTM C131", title: "مقاومة التآكل (لوس أنجلوس)", desc: "اختبار الركام بجهاز لوس أنجلوس.", group: "ASTM", link: "./ASTEM C131- Mo.elkasaby.pdf" },
             { code: "ASTM C136", title: "التحليل المنخلي للركام", desc: "تدرج حبيبات الركام الناعم والخشن.", group: "ASTM", link: "./ASTM C136-Mo.elkasaby.pdf" },
@@ -214,7 +214,85 @@
             { code: "ASTM D2726", title: "الكثافة النسبية للأسفلت", desc: "Bulk Specific Gravity للعينات المدموكة.", group: "ASTM", link: "./ASTM D2726 - Mo.elkasaby..pdf" },
             { code: "ASTM D5444", title: "تحليل البودرة المستخلصة", desc: "تحليل المواد الناعمة بعد الاستخلاص.", group: "ASTM", link: "./ASTM D-5444-24-Mo.elkasaby.pdf" },
             
-            // مواسير
+            // مواسير ومنهولات
             { code: "ASTM C76", title: "مواسير الخرسانة المسلحة", desc: "مواصفات أنابيب الصرف.", group: "ASTM", link: "./C76-Mo.elkasaby.pdf" },
             { code: "ASTM C478", title: "غرف التفتيش (Manholes)", desc: "غرف المنهولات الخرسانية.", group: "ASTM", link: "./C478M -Mo.elkasaby.pdf" },
-            { code: "ASTM C1433", titl
+            { code: "ASTM C1433", title: "العبارات الصندوقية", desc: "العبارات الخرسانية (Box Culverts).", group: "ASTM", link: "./C1433M − 16b .Mo.elkasaby.pdf" }
+        ];
+
+        let currentCategory = 'all';
+
+        function incrementStats() {
+            const v = document.getElementById('visitorsCount');
+            const d = document.getElementById('downloadsCount');
+            const f = document.getElementById('filesCount');
+            
+            let vCount = parseInt(localStorage.getItem('vCount') || '1245') + 1;
+            localStorage.setItem('vCount', vCount);
+            
+            v.textContent = vCount.toLocaleString();
+            d.textContent = "3,890";
+            f.textContent = files.length;
+        }
+
+        function displayFiles(list) {
+            const container = document.getElementById('filesContainer');
+            const countSpan = document.getElementById('count');
+            
+            container.innerHTML = '';
+            countSpan.textContent = list.length;
+
+            if (list.length === 0) {
+                container.innerHTML = '<div class="col-span-full text-center py-10 text-gray-400 text-xl">لا توجد ملفات</div>';
+                return;
+            }
+
+            list.forEach(file => {
+                const card = `
+                    <div class="file-card p-6">
+                        <div class="flex justify-between mb-4">
+                            <span class="bg-blue-50 text-[#1E3A8A] px-3 py-1 rounded-lg font-bold font-mono text-sm border border-blue-100">${file.code}</span>
+                            <span class="bg-gray-100 text-gray-500 px-2 py-1 rounded-lg text-xs font-medium">${file.group}</span>
+                        </div>
+                        <h3 class="text-lg font-bold text-gray-800 mb-2">${file.title}</h3>
+                        <p class="text-gray-500 text-sm mb-6 flex-grow leading-relaxed">${file.desc}</p>
+                        
+                        <div class="mt-auto pt-4 border-t border-gray-100 flex gap-2">
+                            <a href="${file.link}" target="_blank" class="btn-outline w-1/2 py-2.5 rounded-xl font-bold flex items-center justify-center gap-2">
+                                <i class="fa-regular fa-eye"></i> معاينة
+                            </a>
+                            <a href="${file.link}" download class="btn-primary w-1/2 py-2.5 rounded-xl font-bold flex items-center justify-center gap-2 shadow-md">
+                                <i class="fa-solid fa-download"></i> تحميل
+                            </a>
+                        </div>
+                    </div>
+                `;
+                container.innerHTML += card;
+            });
+        }
+
+        function filterCategory(cat) {
+            currentCategory = cat;
+            document.querySelectorAll('.cat-btn').forEach(b => {
+                b.classList.remove('active');
+                if(b.dataset.category === cat) b.classList.add('active');
+            });
+            searchFiles();
+        }
+
+        function searchFiles() {
+            const q = document.getElementById('searchInput').value.toLowerCase();
+            const filtered = files.filter(f => {
+                const matchSearch = f.title.toLowerCase().includes(q) || f.code.toLowerCase().includes(q);
+                const matchCat = currentCategory === 'all' || f.group === currentCategory;
+                return matchSearch && matchCat;
+            });
+            displayFiles(filtered);
+        }
+
+        // تشغيل
+        incrementStats();
+        displayFiles(files);
+    </script>
+</body>
+</html>
