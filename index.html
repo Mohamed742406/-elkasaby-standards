@@ -14,7 +14,6 @@
         .btn-primary { background-color: #1E3A8A; }
         .btn-primary:hover { background-color: #1e40af; }
         
-        /* ستايل أزرار التصنيف */
         .filter-btn {
             transition: all 0.3s;
             border: 1px solid #e2e8f0;
@@ -65,21 +64,34 @@
 
         <!-- قسم التصنيفات (الأزرار الجديدة) -->
         <div class="flex flex-wrap justify-center gap-3 mb-8" id="filterContainer">
-            <button onclick="filterCategory('all')" class="filter-btn active px-6 py-2 rounded-full font-bold bg-white text-gray-600 shadow-sm flex items-center gap-2" data-category="all">
+            <button onclick="filterCategory('all')" class="filter-btn active px-5 py-2 rounded-full font-bold bg-white text-gray-600 shadow-sm flex items-center gap-2" data-category="all">
                 📚 الكل
             </button>
-            <button onclick="filterCategory('ASTM')" class="filter-btn px-6 py-2 rounded-full font-bold bg-white text-gray-600 shadow-sm flex items-center gap-2" data-category="ASTM">
+            <button onclick="filterCategory('ASTM')" class="filter-btn px-5 py-2 rounded-full font-bold bg-white text-gray-600 shadow-sm flex items-center gap-2" data-category="ASTM">
                 🧪 ASTM
             </button>
-            <button onclick="filterCategory('ACI')" class="filter-btn px-6 py-2 rounded-full font-bold bg-white text-gray-600 shadow-sm flex items-center gap-2" data-category="ACI">
+            <button onclick="filterCategory('ACI')" class="filter-btn px-5 py-2 rounded-full font-bold bg-white text-gray-600 shadow-sm flex items-center gap-2" data-category="ACI">
                 🏗️ ACI
             </button>
-            <!-- يمكن إضافة أزرار أخرى هنا مستقبلاً مثل BS -->
+            <button onclick="filterCategory('BS')" class="filter-btn px-5 py-2 rounded-full font-bold bg-white text-gray-600 shadow-sm flex items-center gap-2" data-category="BS">
+                🇬🇧 BS
+            </button>
+            <button onclick="filterCategory('OTHER')" class="filter-btn px-5 py-2 rounded-full font-bold bg-white text-gray-600 shadow-sm flex items-center gap-2" data-category="OTHER">
+                🌐 أخرى
+            </button>
         </div>
 
         <!-- شبكة الملفات -->
-        <div id="filesContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div id="filesContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
             <!-- الملفات ستظهر هنا -->
+        </div>
+
+        <!-- قسم التعليقات -->
+        <div class="bg-white p-6 rounded-2xl shadow-sm border-t-4 border-[#1E3A8A]">
+            <h2 class="text-xl font-bold text-gray-800 mb-4 flex items-center gap-2">
+                💬 المناقشات والتعليقات
+            </h2>
+            <div class="giscus"></div>
         </div>
 
     </main>
@@ -88,6 +100,23 @@
     <footer class="bg-gray-800 text-white text-center p-6 mt-12">
         <p class="opacity-75">© 2025 منصة القصبى - م. محمد القصبي</p>
     </footer>
+
+    <!-- سكربت التعليقات (Giscus) -->
+    <script src="https://giscus.app/client.js"
+        data-repo="Mohamed742406/-elkasaby-standards"
+        data-repo-id="R_kgDONOlQMQ"
+        data-category="General"
+        data-category-id="DIC_kwDONOlQMc4CkOjl"
+        data-mapping="pathname"
+        data-strict="0"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="bottom"
+        data-theme="light"
+        data-lang="ar"
+        crossorigin="anonymous"
+        async>
+    </script>
 
     <script>
         // ============================================================
