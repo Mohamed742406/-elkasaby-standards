@@ -35,6 +35,16 @@
             background: #1e40af;
         }
 
+        .btn-outline {
+            border: 2px solid #1E3A8A;
+            color: #1E3A8A;
+            background: white;
+            transition: 0.3s;
+        }
+        .btn-outline:hover {
+            background: #f0f9ff;
+        }
+
         .cat-btn {
             background: white;
             border: 2px solid #e2e8f0;
@@ -59,7 +69,7 @@
             border-color: #1E3A8A;
             transform: translateY(-2px);
         }
-        .cat-btn .icon { font-size: 2rem; display: block; margin-bottom: 0.5rem; }
+        .cat-btn .icon { font-size: 1.5rem; display: block; margin-bottom: 0.5rem; }
         .cat-btn .title { font-weight: 700; font-size: 1.1rem; }
 
         .stat-card {
@@ -189,18 +199,19 @@
 
     <script>
         const files = [
-            // --- ACI ---
+            // ACI
             { code: "ACI 214R-11", title: "دليل تقييم نتائج الخرسانة", desc: "الطريقة الإحصائية لتقييم نتائج كسر المكعبات.", group: "ACI", link: "./ACI 214R-11-Mo.elkasaby...pdf" },
             
-            // --- ASTM (تم النسخ حرفياً من قائمة ملفاتك) ---
+            // ASTM (تم إزالة C42 حسب طلبك)
             { code: "ASTM C39", title: "مقاومة الضغط (اسطوانات)", desc: "الطريقة القياسية لكسر اسطوانات الخرسانة.", group: "ASTM", link: "./C39 -23-Mo.elkasaby.pdf" },
-            { code: "ASTM C42", title: "اختبار القلب الخرساني (Core)", desc: "عينات الكور من الخرسانة المتصلدة.", group: "ASTM", link: "./ASTEM-C42-20-Mo.elkasaby.pdf" },
             { code: "ASTM C131", title: "مقاومة التآكل (لوس أنجلوس)", desc: "اختبار الركام بجهاز لوس أنجلوس.", group: "ASTM", link: "./ASTEM C131- Mo.elkasaby.pdf" },
             { code: "ASTM C136", title: "التحليل المنخلي للركام", desc: "تدرج حبيبات الركام الناعم والخشن.", group: "ASTM", link: "./ASTM C136-Mo.elkasaby.pdf" },
             { code: "ASTM C127", title: "الكثافة والامتصاص (ركام)", desc: "الوزن النوعي والامتصاص للركام الخشن.", group: "ASTM", link: "./ASTM -C 127-Mo.elkasaby.pdf" },
             { code: "ASTM C702", title: "تقليل عينات الركام", desc: "تقسيم العينات الكبيرة لعينات اختبار.", group: "ASTM", link: "./C 702 - C 702M - Mo.elkasaby.pdf" },
             { code: "ASTM D75", title: "طرق أخذ عينات الركام", desc: "سحب عينات الركام من الموقع.", group: "ASTM", link: "./D75_D75M-19 -Mo.elkasaby.pdf" },
             { code: "ASTM C1231", title: "الأغطية اللاصقة (Capping)", desc: "استخدام الـ Rubber Caps لكسر الاسطوانات.", group: "ASTM", link: "./C1231-Mo.elkasaby -مترجم.pdf" },
+            
+            // التربة والأسفلت
             { code: "ASTM D1557", title: "اختبار الدمك (المعدل)", desc: "الكثافة الجافة وعلاقة الرطوبة للتربة.", group: "ASTM", link: "./ASTM D1557 -12-Mo.elkasaby.pdf" },
             { code: "ASTM D2216", title: "محتوى الرطوبة", desc: "نسبة المياه في التربة والصخور.", group: "ASTM", link: "./ASTM D2216 -Mo.elkasaby.pdf" },
             { code: "ASTM D2041", title: "الكثافة القصوى (Rice Test)", desc: "الكثافة النظرية للخلطات الأسفلتية.", group: "ASTM", link: "./D 2041-19-Mo.elkasaby.pdf" },
@@ -208,6 +219,8 @@
             { code: "ASTM D2172", title: "استخلاص الأسفلت", desc: "فصل البيتومين عن الخلطة.", group: "ASTM", link: "./ASTEM D 2172-24-Mo.elkasaby.pdf" },
             { code: "ASTM D2726", title: "الكثافة النسبية للأسفلت", desc: "Bulk Specific Gravity للعينات المدموكة.", group: "ASTM", link: "./ASTM D2726 - Mo.elkasaby..pdf" },
             { code: "ASTM D5444", title: "تحليل البودرة المستخلصة", desc: "تحليل المواد الناعمة بعد الاستخلاص.", group: "ASTM", link: "./ASTM D-5444-24-Mo.elkasaby.pdf" },
+            
+            // مواسير ومنهولات
             { code: "ASTM C76", title: "مواسير الخرسانة المسلحة", desc: "مواصفات أنابيب الصرف.", group: "ASTM", link: "./C76-Mo.elkasaby.pdf" },
             { code: "ASTM C478", title: "غرف التفتيش (Manholes)", desc: "غرف المنهولات الخرسانية.", group: "ASTM", link: "./C478M -Mo.elkasaby.pdf" },
             { code: "ASTM C1433", title: "العبارات الصندوقية", desc: "العبارات الخرسانية (Box Culverts).", group: "ASTM", link: "./C1433M − 16b .Mo.elkasaby.pdf" }
@@ -246,9 +259,15 @@
                         </div>
                         <h3 class="text-lg font-bold text-gray-800 mb-2">${file.title}</h3>
                         <p class="text-gray-500 text-sm mb-6 flex-grow leading-relaxed">${file.desc}</p>
-                        <a href="${file.link}" target="_blank" class="btn-primary w-full py-3 rounded-xl font-bold flex items-center justify-center gap-2 shadow-md">
-                            <span>📥</span> تحميل الملف
-                        </a>
+                        
+                        <div class="mt-auto pt-4 border-t border-gray-100 flex gap-2">
+                            <a href="${file.link}" target="_blank" class="btn-outline w-1/2 py-2.5 rounded-xl font-bold flex items-center justify-center gap-2">
+                                <i class="fa-regular fa-eye"></i> معاينة
+                            </a>
+                            <a href="${file.link}" download class="btn-primary w-1/2 py-2.5 rounded-xl font-bold flex items-center justify-center gap-2 shadow-md">
+                                <i class="fa-solid fa-download"></i> تحميل
+                            </a>
+                        </div>
                     </div>
                 `;
                 container.innerHTML += card;
