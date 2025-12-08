@@ -10,22 +10,13 @@
     <style>
         * { font-family: 'Cairo', sans-serif; }
         body { background-color: #f3f4f6; }
-        .file-card { 
-            background: white; border: 1px solid #e5e7eb; border-radius: 1rem;
-            transition: all 0.3s ease; display: flex; flex-direction: column; height: 100%;
-        }
-        .file-card:hover { 
-            transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); border-color: #1E3A8A;
-        }
+        .file-card { background: white; border: 1px solid #e5e7eb; border-radius: 1rem; transition: all 0.3s ease; display: flex; flex-direction: column; height: 100%; }
+        .file-card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); border-color: #1E3A8A; }
         .btn-primary { background: #1E3A8A; color: white; transition: 0.3s; }
         .btn-primary:hover { background: #1e40af; }
         .btn-outline { border: 2px solid #1E3A8A; color: #1E3A8A; background: white; transition: 0.3s; }
         .btn-outline:hover { background: #f0f9ff; }
-        .cat-btn {
-            background: white; border: 2px solid #e2e8f0; border-radius: 12px; padding: 1rem;
-            text-align: center; cursor: pointer; transition: all 0.3s;
-            display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 100px;
-        }
+        .cat-btn { background: white; border: 2px solid #e2e8f0; border-radius: 12px; padding: 1rem; text-align: center; cursor: pointer; transition: all 0.3s; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 100px; }
         .cat-btn.active { background: #1E3A8A; color: white; border-color: #1E3A8A; box-shadow: 0 8px 15px -3px rgba(30, 58, 138, 0.3); }
         .cat-btn:hover:not(.active) { border-color: #1E3A8A; transform: translateY(-2px); }
         .stat-card { background: white; padding: 1rem; border-radius: 1rem; text-align: center; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
@@ -138,27 +129,27 @@
     </footer>
 
     <script>
-        // تم معالجة الأسماء لتجنب أخطاء الروابط (URL Encoding)
+        // حل مشكلة الروابط: استخدام encodeURIComponent للأسماء المعقدة
         const files = [
-            { code: "ACI 214R-11", title: "دليل تقييم نتائج الخرسانة", desc: "الطريقة الإحصائية لتقييم نتائج كسر المكعبات.", group: "ACI", link: "ACI%20214R-11-Mo.elkasaby...pdf" },
-            { code: "ASTM C39", title: "مقاومة الضغط (اسطوانات)", desc: "الطريقة القياسية لكسر اسطوانات الخرسانة.", group: "ASTM", link: "C39%20-23-Mo.elkasaby.pdf" },
-            { code: "ASTM C42", title: "اختبار القلب الخرساني (Core)", desc: "عينات الكور من الخرسانة المتصلدة.", group: "ASTM", link: "ASTEM-C42-20-Mo.elkasaby.pdf" },
-            { code: "ASTM C131", title: "مقاومة التآكل (لوس أنجلوس)", desc: "اختبار الركام بجهاز لوس أنجلوس.", group: "ASTM", link: "ASTEM%20C131-%20Mo.elkasaby.pdf" },
-            { code: "ASTM C136", title: "التحليل المنخلي للركام", desc: "تدرج حبيبات الركام الناعم والخشن.", group: "ASTM", link: "ASTM%20C136-Mo.elkasaby.pdf" },
-            { code: "ASTM C127", title: "الكثافة والامتصاص (ركام)", desc: "الوزن النوعي والامتصاص للركام الخشن.", group: "ASTM", link: "ASTM%20-C%20127-Mo.elkasaby.pdf" },
-            { code: "ASTM C702", title: "تقليل عينات الركام", desc: "تقسيم العينات الكبيرة لعينات اختبار.", group: "ASTM", link: "C%20702%20-%20C%20702M%20-%20Mo.elkasaby.pdf" },
-            { code: "ASTM D75", title: "طرق أخذ عينات الركام", desc: "سحب عينات الركام من الموقع.", group: "ASTM", link: "D75_D75M-19%20-Mo.elkasaby.pdf" },
-            { code: "ASTM C1231", title: "الأغطية اللاصقة (Capping)", desc: "استخدام الـ Rubber Caps لكسر الاسطوانات.", group: "ASTM", link: "C1231-Mo.elkasaby%20-%D9%85%D8%AA%D8%B1%D8%AC%D9%85.pdf" },
-            { code: "ASTM D1557", title: "اختبار الدمك (المعدل)", desc: "الكثافة الجافة وعلاقة الرطوبة للتربة.", group: "ASTM", link: "ASTM%20D1557%20-12-Mo.elkasaby.pdf" },
-            { code: "ASTM D2216", title: "محتوى الرطوبة", desc: "نسبة المياه في التربة والصخور.", group: "ASTM", link: "ASTM%20D2216%20-Mo.elkasaby.pdf" },
-            { code: "ASTM D2041", title: "الكثافة القصوى (Rice Test)", desc: "الكثافة النظرية للخلطات الأسفلتية.", group: "ASTM", link: "D%202041-19-Mo.elkasaby.pdf" },
-            { code: "ASTM D6926", title: "تحضير عينات مارشال", desc: "دمك الأسفلت بجهاز مارشال.", group: "ASTM", link: "D%206926%20-%2016-Mo.elkasaby.pdf" },
-            { code: "ASTM D2172", title: "استخلاص الأسفلت", desc: "فصل البيتومين عن الخلطة.", group: "ASTM", link: "ASTEM%20D%202172-24-Mo.elkasaby.pdf" },
-            { code: "ASTM D2726", title: "الكثافة النسبية للأسفلت", desc: "Bulk Specific Gravity للعينات المدموكة.", group: "ASTM", link: "ASTM%20D2726%20-%20Mo.elkasaby..pdf" },
-            { code: "ASTM D5444", title: "تحليل البودرة المستخلصة", desc: "تحليل المواد الناعمة بعد الاستخلاص.", group: "ASTM", link: "ASTM%20D-5444-24-Mo.elkasaby.pdf" },
-            { code: "ASTM C76", title: "مواسير الخرسانة المسلحة", desc: "مواصفات أنابيب الصرف.", group: "ASTM", link: "C76-Mo.elkasaby.pdf" },
-            { code: "ASTM C478", title: "غرف التفتيش (Manholes)", desc: "غرف المنهولات الخرسانية.", group: "ASTM", link: "C478M%20-Mo.elkasaby.pdf" },
-            { code: "ASTM C1433", title: "العبارات الصندوقية", desc: "العبارات الخرسانية (Box Culverts).", group: "ASTM", link: "C1433M%20%E2%88%92%2016b%20.Mo.elkasaby.pdf" }
+            { code: "ACI 214R-11", title: "دليل تقييم نتائج الخرسانة", desc: "الطريقة الإحصائية لتقييم نتائج كسر المكعبات.", group: "ACI", fileName: "ACI 214R-11-Mo.elkasaby...pdf" },
+            { code: "ASTM C39", title: "مقاومة الضغط (اسطوانات)", desc: "الطريقة القياسية لكسر اسطوانات الخرسانة.", group: "ASTM", fileName: "C39 -23-Mo.elkasaby.pdf" },
+            { code: "ASTM C42", title: "اختبار القلب الخرساني (Core)", desc: "عينات الكور من الخرسانة المتصلدة.", group: "ASTM", fileName: "ASTEM-C42-20-Mo.elkasaby.pdf" },
+            { code: "ASTM C131", title: "مقاومة التآكل (لوس أنجلوس)", desc: "اختبار الركام بجهاز لوس أنجلوس.", group: "ASTM", fileName: "ASTEM C131- Mo.elkasaby.pdf" },
+            { code: "ASTM C136", title: "التحليل المنخلي للركام", desc: "تدرج حبيبات الركام الناعم والخشن.", group: "ASTM", fileName: "ASTM C136-Mo.elkasaby.pdf" },
+            { code: "ASTM C127", title: "الكثافة والامتصاص (ركام)", desc: "الوزن النوعي والامتصاص للركام الخشن.", group: "ASTM", fileName: "ASTM -C 127-Mo.elkasaby.pdf" },
+            { code: "ASTM C702", title: "تقليل عينات الركام", desc: "تقسيم العينات الكبيرة لعينات اختبار.", group: "ASTM", fileName: "C 702 - C 702M - Mo.elkasaby.pdf" },
+            { code: "ASTM D75", title: "طرق أخذ عينات الركام", desc: "سحب عينات الركام من الموقع.", group: "ASTM", fileName: "D75_D75M-19 -Mo.elkasaby.pdf" },
+            { code: "ASTM C1231", title: "الأغطية اللاصقة (Capping)", desc: "استخدام الـ Rubber Caps لكسر الاسطوانات.", group: "ASTM", fileName: "C1231-Mo.elkasaby -مترجم.pdf" },
+            { code: "ASTM D1557", title: "اختبار الدمك (المعدل)", desc: "الكثافة الجافة وعلاقة الرطوبة للتربة.", group: "ASTM", fileName: "ASTM D1557 -12-Mo.elkasaby.pdf" },
+            { code: "ASTM D2216", title: "محتوى الرطوبة", desc: "نسبة المياه في التربة والصخور.", group: "ASTM", fileName: "ASTM D2216 -Mo.elkasaby.pdf" },
+            { code: "ASTM D2041", title: "الكثافة القصوى (Rice Test)", desc: "الكثافة النظرية للخلطات الأسفلتية.", group: "ASTM", fileName: "D 2041-19-Mo.elkasaby.pdf" },
+            { code: "ASTM D6926", title: "تحضير عينات مارشال", desc: "دمك الأسفلت بجهاز مارشال.", group: "ASTM", fileName: "D 6926 - 16-Mo.elkasaby.pdf" },
+            { code: "ASTM D2172", title: "استخلاص الأسفلت", desc: "فصل البيتومين عن الخلطة.", group: "ASTM", fileName: "ASTEM D 2172-24-Mo.elkasaby.pdf" },
+            { code: "ASTM D2726", title: "الكثافة النسبية للأسفلت", desc: "Bulk Specific Gravity للعينات المدموكة.", group: "ASTM", fileName: "ASTM D2726 - Mo.elkasaby..pdf" },
+            { code: "ASTM D5444", title: "تحليل البودرة المستخلصة", desc: "تحليل المواد الناعمة بعد الاستخلاص.", group: "ASTM", fileName: "ASTM D-5444-24-Mo.elkasaby.pdf" },
+            { code: "ASTM C76", title: "مواسير الخرسانة المسلحة", desc: "مواصفات أنابيب الصرف.", group: "ASTM", fileName: "C76-Mo.elkasaby.pdf" },
+            { code: "ASTM C478", title: "غرف التفتيش (Manholes)", desc: "غرف المنهولات الخرسانية.", group: "ASTM", fileName: "C478M -Mo.elkasaby.pdf" },
+            { code: "ASTM C1433", title: "العبارات الصندوقية", desc: "العبارات الخرسانية (Box Culverts).", group: "ASTM", fileName: "C1433M − 16b .Mo.elkasaby.pdf" }
         ];
 
         let currentCategory = 'all';
@@ -186,6 +177,9 @@
             }
 
             list.forEach(file => {
+                // تحويل اسم الملف لرابط صحيح
+                const safeLink = encodeURI(file.fileName);
+                
                 const card = `
                     <div class="file-card p-6">
                         <div class="flex justify-between mb-4">
@@ -196,10 +190,10 @@
                         <p class="text-gray-500 text-sm mb-6 flex-grow leading-relaxed">${file.desc}</p>
                         
                         <div class="mt-auto pt-4 border-t border-gray-100 flex gap-2">
-                            <a href="${file.link}" target="_blank" class="btn-outline w-1/2 py-2.5 rounded-xl font-bold flex items-center justify-center gap-2">
+                            <a href="${safeLink}" target="_blank" class="btn-outline w-1/2 py-2.5 rounded-xl font-bold flex items-center justify-center gap-2">
                                 <i class="fa-regular fa-eye"></i> معاينة
                             </a>
-                            <a href="${file.link}" download class="btn-primary w-1/2 py-2.5 rounded-xl font-bold flex items-center justify-center gap-2 shadow-md">
+                            <a href="${safeLink}" download class="btn-primary w-1/2 py-2.5 rounded-xl font-bold flex items-center justify-center gap-2 shadow-md">
                                 <i class="fa-solid fa-download"></i> تحميل
                             </a>
                         </div>
@@ -228,6 +222,7 @@
             displayFiles(filtered);
         }
 
+        // تشغيل
         incrementStats();
         displayFiles(files);
     </script>
