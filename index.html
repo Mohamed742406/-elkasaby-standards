@@ -11,59 +11,59 @@
         * { font-family: 'Cairo', sans-serif; }
         body { background-color: #f3f4f6; }
         
-        /* ستايل كارت الملف */
         .file-card { 
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            background: white;
             border: 1px solid #e5e7eb;
+            border-radius: 1rem;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
         }
         .file-card:hover { 
-            transform: translateY(-8px); 
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            transform: translateY(-5px); 
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
             border-color: #1E3A8A;
         }
         
         .btn-primary { 
-            background: linear-gradient(135deg, #1E3A8A 0%, #1e40af 100%);
+            background: #1E3A8A;
+            color: white;
+            transition: 0.3s;
         }
         .btn-primary:hover { 
-            background: linear-gradient(135deg, #1e40af 0%, #2563eb 100%);
-            transform: scale(1.02);
+            background: #1e40af;
         }
 
-        /* ستايل أزرار التصنيفات الجديدة (الكبيرة) */
         .cat-btn {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
             background: white;
             border: 2px solid #e2e8f0;
-            border-radius: 16px;
-            padding: 1.5rem;
+            border-radius: 12px;
+            padding: 1rem;
+            text-align: center;
             cursor: pointer;
-            transition: all 0.3s ease;
-            height: 100%;
-        }
-        .cat-btn:hover {
-            border-color: #1E3A8A;
-            transform: translateY(-3px);
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s;
         }
         .cat-btn.active {
             background: #1E3A8A;
-            border-color: #1E3A8A;
             color: white;
-            transform: scale(1.02);
-            box-shadow: 0 10px 20px rgba(30, 58, 138, 0.3);
+            border-color: #1E3A8A;
         }
-        .cat-btn.active .sub-text { color: #bfdbfe; }
-        .cat-btn .icon { font-size: 2rem; margin-bottom: 0.5rem; }
-        .cat-btn .title { font-weight: 800; font-size: 1.4rem; }
-        .cat-btn .sub-text { font-size: 0.85rem; color: #64748b; margin-top: 0.2rem; }
+        .cat-btn:hover:not(.active) {
+            border-color: #1E3A8A;
+        }
+        .cat-btn .icon { font-size: 1.5rem; display: block; margin-bottom: 0.5rem; }
+        .cat-btn .title { font-weight: 700; font-size: 1.1rem; }
 
-        /* أرقام الإحصائيات */
+        .stat-card {
+            background: white;
+            padding: 1rem;
+            border-radius: 1rem;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
         .stat-number {
-            font-size: 1.8rem;
+            font-size: 1.5rem;
             font-weight: 800;
             color: #1E3A8A;
         }
@@ -72,117 +72,93 @@
 <body>
 
     <!-- الهيدر -->
-    <header class="bg-[#1E3A8A] text-white shadow-lg sticky top-0 z-50">
-        <div class="container mx-auto p-4 flex flex-col md:flex-row items-center justify-between gap-4">
+    <header class="bg-[#1E3A8A] text-white p-4 shadow-md sticky top-0 z-50">
+        <div class="container mx-auto flex flex-wrap justify-between items-center gap-4">
             <div class="flex items-center gap-3">
-                <div class="bg-white/10 p-3 rounded-full">
-                    <span class="text-4xl">🏗️</span>
-                </div>
+                <span class="text-3xl">🏗️</span>
                 <div>
-                    <h1 class="text-2xl font-bold tracking-wide">منصة القصبى</h1>
-                    <p class="text-sm text-blue-200 opacity-90">المرجع الشامل للمواصفات الهندسية المترجمة</p>
+                    <h1 class="text-xl font-bold">منصة القصبى</h1>
+                    <p class="text-xs text-blue-200">للمواصفات الهندسية</p>
                 </div>
             </div>
-            <div class="flex gap-3">
-                <a href="https://wa.me/201000000000" target="_blank" class="bg-green-600 text-white px-5 py-2.5 rounded-xl hover:bg-green-700 transition flex items-center gap-2 font-bold shadow-lg">
-                    <i class="fa-brands fa-whatsapp text-xl"></i> واتساب
+            <div class="flex gap-2">
+                <!-- تم إضافة رقمك هنا -->
+                <a href="https://wa.me/966581295794" target="_blank" class="bg-green-500 px-4 py-2 rounded-lg text-sm font-bold hover:bg-green-600 transition flex items-center gap-2">
+                    <i class="fa-brands fa-whatsapp text-lg"></i> واتساب
                 </a>
-                <a href="mailto:elkasaby1988@gmail.com" class="bg-white/10 backdrop-blur-md border border-white/20 px-5 py-2.5 rounded-xl hover:bg-white/20 transition flex items-center gap-2 font-semibold">
-                    <i class="fa-solid fa-envelope"></i> إيميل
+                <a href="mailto:elkasaby1988@gmail.com" class="bg-white/20 px-4 py-2 rounded-lg text-sm font-bold hover:bg-white/30 transition flex items-center gap-2">
+                    <i class="fa-regular fa-envelope text-lg"></i> إيميل
                 </a>
             </div>
         </div>
     </header>
 
-    <main class="container mx-auto p-4 min-h-screen max-w-7xl">
+    <main class="container mx-auto p-4 max-w-7xl">
         
-        <!-- شريط الإحصائيات -->
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8 mt-6">
-            <div class="bg-white p-4 rounded-2xl shadow-sm text-center border-b-4 border-blue-500">
-                <div class="text-gray-500 text-sm mb-1 font-bold">👥 الزوار</div>
+        <!-- الإحصائيات -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8 mt-4">
+            <div class="stat-card border-b-4 border-blue-500">
+                <div class="text-gray-500 text-xs font-bold mb-1">الزوار</div>
                 <div class="stat-number" id="visitorsCount">1,245</div>
             </div>
-            <div class="bg-white p-4 rounded-2xl shadow-sm text-center border-b-4 border-green-500">
-                <div class="text-gray-500 text-sm mb-1 font-bold">📥 التحميلات</div>
+            <div class="stat-card border-b-4 border-green-500">
+                <div class="text-gray-500 text-xs font-bold mb-1">التحميلات</div>
                 <div class="stat-number" id="downloadsCount">3,890</div>
             </div>
-            <div class="bg-white p-4 rounded-2xl shadow-sm text-center border-b-4 border-purple-500">
-                <div class="text-gray-500 text-sm mb-1 font-bold">📚 الملفات</div>
+            <div class="stat-card border-b-4 border-purple-500">
+                <div class="text-gray-500 text-xs font-bold mb-1">الملفات</div>
                 <div class="stat-number">19</div>
             </div>
-            <div class="bg-white p-4 rounded-2xl shadow-sm text-center border-b-4 border-orange-500">
-                <div class="text-gray-500 text-sm mb-1 font-bold">📅 التحديث</div>
+            <div class="stat-card border-b-4 border-orange-500">
+                <div class="text-gray-500 text-xs font-bold mb-1">التحديث</div>
                 <div class="text-lg font-bold text-gray-700">يومي</div>
             </div>
         </div>
 
-        <!-- قسم البحث -->
-        <div class="bg-white p-8 rounded-3xl shadow-md mb-8 border border-gray-100">
+        <!-- البحث -->
+        <div class="bg-white p-6 rounded-2xl shadow-sm mb-8">
             <div class="relative">
                 <input type="text" id="searchInput" onkeyup="searchFiles()" 
-                    class="w-full p-5 pr-14 border-2 border-gray-100 rounded-2xl focus:outline-none focus:border-[#1E3A8A] focus:ring-4 focus:ring-blue-50 text-lg transition-all" 
-                    placeholder="ابحث برقم الكود (C39) أو اسم المواصفة (خرسانة)...">
-                <i class="fa-solid fa-magnifying-glass absolute left-6 top-1/2 -translate-y-1/2 text-gray-400 text-xl"></i>
+                    class="w-full p-4 pr-10 border-2 border-gray-100 rounded-xl focus:outline-none focus:border-[#1E3A8A] text-lg" 
+                    placeholder="🔍 ابحث برقم الكود أو اسم المواصفة...">
+                <span class="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 text-sm font-bold">
+                    <span id="count">0</span> نتيجة
+                </span>
             </div>
         </div>
 
-        <!-- أزرار التصنيف (الشكل الجديد الكبير) -->
-        <h2 class="text-xl font-bold text-gray-700 mb-4 pr-2 border-r-4 border-[#1E3A8A] mr-2">تصفح حسب الكود:</h2>
-        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 mb-12" id="filterContainer">
-            
-            <!-- زر الكل -->
+        <!-- التصنيفات -->
+        <h2 class="text-lg font-bold text-gray-700 mb-4 border-r-4 border-[#1E3A8A] pr-2">تصفح حسب الكود:</h2>
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 mb-10">
             <div onclick="filterCategory('all')" class="cat-btn active" data-category="all">
-                <span class="icon">📚</span>
-                <span class="title">الكل</span>
-                <span class="sub-text">جميع الملفات</span>
+                <span class="icon">📚</span><span class="title">الكل</span>
             </div>
-
-            <!-- زر ASTM -->
             <div onclick="filterCategory('ASTM')" class="cat-btn" data-category="ASTM">
-                <span class="icon">🧪</span>
-                <span class="title">ASTM</span>
-                <span class="sub-text">المواصفات الأمريكية</span>
+                <span class="icon">🧪</span><span class="title">ASTM</span>
             </div>
-
-            <!-- زر ACI -->
             <div onclick="filterCategory('ACI')" class="cat-btn" data-category="ACI">
-                <span class="icon">🏗️</span>
-                <span class="title">ACI</span>
-                <span class="sub-text">كود الخرسانة</span>
+                <span class="icon">🏗️</span><span class="title">ACI</span>
             </div>
-
-            <!-- زر BS -->
             <div onclick="filterCategory('BS')" class="cat-btn" data-category="BS">
-                <span class="icon">🇬🇧</span>
-                <span class="title">BS</span>
-                <span class="sub-text">الكود البريطاني</span>
+                <span class="icon">🇬🇧</span><span class="title">BS</span>
             </div>
-
-            <!-- زر AASHTO -->
             <div onclick="filterCategory('AASHTO')" class="cat-btn" data-category="AASHTO">
-                <span class="icon">🛣️</span>
-                <span class="title">AASHTO</span>
-                <span class="sub-text">مواصفات الطرق</span>
+                <span class="icon">🛣️</span><span class="title">AASHTO</span>
             </div>
-
-            <!-- زر أخرى -->
             <div onclick="filterCategory('OTHER')" class="cat-btn" data-category="OTHER">
-                <span class="icon">🌐</span>
-                <span class="title">أخرى</span>
-                <span class="sub-text">أكواد متنوعة</span>
+                <span class="icon">🌐</span><span class="title">أخرى</span>
             </div>
         </div>
 
-        <!-- شبكة الملفات -->
-        <div id="filesContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
-            <!-- الملفات ستظهر هنا -->
+        <!-- الملفات -->
+        <div id="filesContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+            <!-- سيتم ملء الملفات هنا -->
         </div>
 
-        <!-- قسم التعليقات -->
-        <div class="bg-white p-8 rounded-3xl shadow-md border-t-8 border-[#1E3A8A]">
-            <h2 class="text-2xl font-bold text-gray-800 mb-6 flex items-center gap-3">
-                <i class="fa-solid fa-comments text-[#1E3A8A]"></i>
-                مجتمع المنصة (التعليقات والمناقشات)
+        <!-- التعليقات -->
+        <div class="bg-white p-6 rounded-2xl shadow-sm border-t-4 border-[#1E3A8A]">
+            <h2 class="text-xl font-bold mb-4 flex items-center gap-2">
+                <i class="fa-solid fa-comments text-[#1E3A8A]"></i> مجتمع المنصة (التعليقات والمناقشات)
             </h2>
             <script src="https://giscus.app/client.js"
                 data-repo="Mohamed742406/-elkasaby-standards"
@@ -203,172 +179,46 @@
 
     </main>
 
-    <footer class="bg-gray-900 text-white text-center p-8 mt-12 border-t-4 border-[#1E3A8A]">
-        <p class="opacity-80 font-medium text-lg">© 2025 منصة القصبى - جميع الحقوق محفوظة</p>
-        <p class="text-sm text-gray-500 mt-2">تم التطوير بواسطة: م. محمد القصبي</p>
+    <footer class="bg-gray-800 text-white text-center p-6 mt-8">
+        <p>© 2025 منصة القصبى - م. محمد القصبي</p>
     </footer>
 
     <script>
-        // ============================================================
-        // قاعدة البيانات
-        // ============================================================
-        
         const files = [
-            // --- مجموعة ACI ---
-            {
-                code: "ACI 214R-11",
-                title: "دليل تقييم نتائج اختبارات الخرسانة",
-                desc: "شرح وافي للطرق الإحصائية لتقييم نتائج كسر المكعبات والاسطوانات.",
-                group: "ACI",
-                link: "./ACI 214R-11-Mo.elkasaby...pdf"
-            },
-            // --- مجموعة ASTM ---
-            {
-                code: "ASTM C39",
-                title: "اختبار كسر الاسطوانات",
-                desc: "الطريقة القياسية لاختبار مقاومة الضغط لعينات الخرسانة الاسطوانية.",
-                group: "ASTM",
-                link: "./C39 -23-Mo.elkasaby.pdf"
-            },
-            {
-                code: "ASTM C42",
-                title: "اختبار القلب الخرساني (Core)",
-                desc: "الحصول على عينات وتكسير الكور من الخرسانة المتصلدة.",
-                group: "ASTM",
-                link: "./ASTEM-C42-20-Mo.elkasaby.pdf"
-            },
-            {
-                code: "ASTM C131",
-                title: "مقاومة التآكل (لوس أنجلوس)",
-                desc: "اختبار مقاومة الركام للتفتت والصدمات.",
-                group: "ASTM",
-                link: "./ASTEM C131- Mo.elkasaby.pdf"
-            },
-            {
-                code: "ASTM C136",
-                title: "التحليل المنخلي للركام",
-                desc: "تحديد تدرج حبيبات الركام الناعم والخشن.",
-                group: "ASTM",
-                link: "./ASTM C136-Mo.elkasaby.pdf"
-            },
-            {
-                code: "ASTM C127",
-                title: "الكثافة والامتصاص (ركام خشن)",
-                desc: "طريقة اختبار الكثافة والوزن النوعي والامتصاص للركام الخشن.",
-                group: "ASTM",
-                link: "./ASTM -C 127-Mo.elkasaby.pdf"
-            },
-            {
-                code: "ASTM C702",
-                title: "تقليل عينات الركام",
-                desc: "الممارسة القياسية لتقليل عينات الركام إلى حجم مناسب للاختبار.",
-                group: "ASTM",
-                link: "./C 702 - C 702M - Mo.elkasaby.pdf"
-            },
-            {
-                code: "ASTM D75",
-                title: "طرق أخذ عينات الركام",
-                desc: "الممارسة القياسية لسحب عينات الركام من الموقع.",
-                group: "ASTM",
-                link: "./D75_D75M-19 -Mo.elkasaby.pdf"
-            },
-            {
-                code: "ASTM C1231",
-                title: "الأغطية اللاصقة (Capping)",
-                desc: "استخدام الأغطية (Rubber Caps) لكسر الاسطوانات.",
-                group: "ASTM",
-                link: "./C1231-Mo.elkasaby -مترجم.pdf"
-            },
-            {
-                code: "ASTM D1557",
-                title: "اختبار الدمك (بروكتور المعدل)",
-                desc: "تحديد الكثافة الجافة وعلاقة الرطوبة للتربة.",
-                group: "ASTM",
-                link: "./ASTM D1557 -12-Mo.elkasaby.pdf"
-            },
-            {
-                code: "ASTM D2216",
-                title: "محتوى الرطوبة (Water Content)",
-                desc: "تحديد نسبة المياه في التربة والصخور والركام.",
-                group: "ASTM",
-                link: "./ASTM D2216 -Mo.elkasaby.pdf"
-            },
-            {
-                code: "ASTM D2041",
-                title: "الكثافة القصوى (Rice Test)",
-                desc: "الكثافة النظرية القصوى للخلطات الأسفلتية.",
-                group: "ASTM",
-                link: "./D 2041-19-Mo.elkasaby.pdf"
-            },
-            {
-                code: "ASTM D6926",
-                title: "تحضير عينات مارشال",
-                desc: "طريقة دمك عينات الأسفلت باستخدام جهاز مارشال.",
-                group: "ASTM",
-                link: "./D 6926 - 16-Mo.elkasaby.pdf"
-            },
-            {
-                code: "ASTM D2172",
-                title: "استخلاص الأسفلت (Extraction)",
-                desc: "طرق القياس الكمي للبيتومين في الخلطات الأسفلتية.",
-                group: "ASTM",
-                link: "./ASTEM D 2172-24-Mo.elkasaby.pdf"
-            },
-            {
-                code: "ASTM D2726",
-                title: "الكثافة النسبية للأسفلت",
-                desc: "Bulk Specific Gravity للعينات المدموكة.",
-                group: "ASTM",
-                link: "./ASTM D2726 - Mo.elkasaby..pdf"
-            },
-            {
-                code: "ASTM D5444",
-                title: "تحليل البودرة المستخلصة",
-                desc: "التحليل المنخلي للمواد المعدنية المستخلصة من الأسفلت.",
-                group: "ASTM",
-                link: "./ASTM D-5444-24-Mo.elkasaby.pdf"
-            },
-            {
-                code: "ASTM C76",
-                title: "مواسير الخرسانة المسلحة",
-                desc: "مواصفات أنابيب الصرف الخرسانية المسلحة.",
-                group: "ASTM",
-                link: "./C76-Mo.elkasaby.pdf"
-            },
-            {
-                code: "ASTM C478",
-                title: "غرف التفتيش (Manholes)",
-                desc: "مواصفات غرف المنهولات الخرسانية سابقة الصب.",
-                group: "ASTM",
-                link: "./C478M -Mo.elkasaby.pdf"
-            },
-            {
-                code: "ASTM C1433",
-                title: "العبارات الصندوقية",
-                desc: "مواصفات العبارات الخرسانية المسلحة (Box Culverts).",
-                group: "ASTM",
-                link: "./C1433M − 16b .Mo.elkasaby.pdf"
-            }
+            { code: "ACI 214R-11", title: "دليل تقييم نتائج اختبارات الخرسانة", desc: "شرح وافي للطرق الإحصائية لتقييم نتائج كسر المكعبات والاسطوانات.", group: "ACI", link: "./ACI 214R-11-Mo.elkasaby...pdf" },
+            { code: "ASTM C39", title: "اختبار كسر الاسطوانات", desc: "الطريقة القياسية لاختبار مقاومة الضغط لعينات الخرسانة الاسطوانية.", group: "ASTM", link: "./C39 -23-Mo.elkasaby.pdf" },
+            { code: "ASTM C42", title: "اختبار القلب الخرساني (Core)", desc: "الحصول على عينات وتكسير الكور من الخرسانة المتصلدة.", group: "ASTM", link: "./ASTEM-C42-20-Mo.elkasaby.pdf" },
+            { code: "ASTM C131", title: "مقاومة التآكل (لوس أنجلوس)", desc: "اختبار مقاومة الركام للتفتت والصدمات.", group: "ASTM", link: "./ASTEM C131- Mo.elkasaby.pdf" },
+            { code: "ASTM C136", title: "التحليل المنخلي للركام", desc: "تحديد تدرج حبيبات الركام الناعم والخشن.", group: "ASTM", link: "./ASTM C136-Mo.elkasaby.pdf" },
+            { code: "ASTM C127", title: "الكثافة والامتصاص (ركام خشن)", desc: "طريقة اختبار الكثافة والوزن النوعي والامتصاص للركام الخشن.", group: "ASTM", link: "./ASTM -C 127-Mo.elkasaby.pdf" },
+            { code: "ASTM C702", title: "تقليل عينات الركام", desc: "الممارسة القياسية لتقليل عينات الركام إلى حجم مناسب للاختبار.", group: "ASTM", link: "./C 702 - C 702M - Mo.elkasaby.pdf" },
+            { code: "ASTM D75", title: "طرق أخذ عينات الركام", desc: "الممارسة القياسية لسحب عينات الركام من الموقع.", group: "ASTM", link: "./D75_D75M-19 -Mo.elkasaby.pdf" },
+            { code: "ASTM C1231", title: "الأغطية اللاصقة (Capping)", desc: "استخدام الأغطية (Rubber Caps) لكسر الاسطوانات.", group: "ASTM", link: "./C1231-Mo.elkasaby -مترجم.pdf" },
+            { code: "ASTM D1557", title: "اختبار الدمك (بروكتور المعدل)", desc: "تحديد الكثافة الجافة وعلاقة الرطوبة للتربة.", group: "ASTM", link: "./ASTM D1557 -12-Mo.elkasaby.pdf" },
+            { code: "ASTM D2216", title: "محتوى الرطوبة (Water Content)", desc: "تحديد نسبة المياه في التربة والصخور والركام.", group: "ASTM", link: "./ASTM D2216 -Mo.elkasaby.pdf" },
+            { code: "ASTM D2041", title: "الكثافة القصوى (Rice Test)", desc: "الكثافة النظرية القصوى للخلطات الأسفلتية.", group: "ASTM", link: "./D 2041-19-Mo.elkasaby.pdf" },
+            { code: "ASTM D6926", title: "تحضير عينات مارشال", desc: "طريقة دمك عينات الأسفلت باستخدام جهاز مارشال.", group: "ASTM", link: "./D 6926 - 16-Mo.elkasaby.pdf" },
+            { code: "ASTM D2172", title: "استخلاص الأسفلت (Extraction)", desc: "طرق القياس الكمي للبيتومين في الخلطات الأسفلتية.", group: "ASTM", link: "./ASTEM D 2172-24-Mo.elkasaby.pdf" },
+            { code: "ASTM D2726", title: "الكثافة النسبية للأسفلت", desc: "Bulk Specific Gravity للعينات المدموكة.", group: "ASTM", link: "./ASTM D2726 - Mo.elkasaby..pdf" },
+            { code: "ASTM D5444", title: "تحليل البودرة المستخلصة", desc: "التحليل المنخلي للمواد المعدنية المستخلصة من الأسفلت.", group: "ASTM", link: "./ASTM D-5444-24-Mo.elkasaby.pdf" },
+            { code: "ASTM C76", title: "مواسير الخرسانة المسلحة", desc: "مواصفات أنابيب الصرف الخرسانية المسلحة.", group: "ASTM", link: "./C76-Mo.elkasaby.pdf" },
+            { code: "ASTM C478", title: "غرف التفتيش (Manholes)", desc: "مواصفات غرف المنهولات الخرسانية سابقة الصب.", group: "ASTM", link: "./C478M -Mo.elkasaby.pdf" },
+            { code: "ASTM C1433", title: "العبارات الصندوقية", desc: "مواصفات العبارات الخرسانية المسلحة (Box Culverts).", group: "ASTM", link: "./C1433M − 16b .Mo.elkasaby.pdf" }
         ];
-
-        // ============================================================
-        // كود التشغيل
-        // ============================================================
 
         let currentCategory = 'all';
 
         function incrementStats() {
-            const visitors = document.getElementById('visitorsCount');
-            const downloads = document.getElementById('downloadsCount');
-            // زيادة وهمية ذكية لجذب الانتباه
-            let v = parseInt(localStorage.getItem('vCount') || '1245') + Math.floor(Math.random() * 3);
-            let d = parseInt(localStorage.getItem('dCount') || '3890') + Math.floor(Math.random() * 2);
+            const v = document.getElementById('visitorsCount');
+            const d = document.getElementById('downloadsCount');
+            let vCount = parseInt(localStorage.getItem('vCount') || '1245') + Math.floor(Math.random() * 2);
+            let dCount = parseInt(localStorage.getItem('dCount') || '3890') + Math.floor(Math.random() * 3);
             
-            localStorage.setItem('vCount', v);
-            localStorage.setItem('dCount', d);
+            localStorage.setItem('vCount', vCount);
+            localStorage.setItem('dCount', dCount);
             
-            visitors.textContent = v.toLocaleString();
-            downloads.textContent = d.toLocaleString();
+            v.textContent = vCount.toLocaleString();
+            d.textContent = dCount.toLocaleString();
         }
 
         function displayFiles(list) {
@@ -379,72 +229,44 @@
             countSpan.textContent = list.length;
 
             if (list.length === 0) {
-                container.innerHTML = `
-                    <div class="col-span-full text-center py-16 text-gray-400">
-                        <div class="text-6xl mb-4">📂</div>
-                        <p class="text-xl font-medium">لا توجد ملفات في هذا القسم حالياً</p>
-                    </div>
-                `;
+                container.innerHTML = '<div class="col-span-full text-center py-10 text-gray-400 text-xl">لا توجد ملفات</div>';
                 return;
             }
 
             list.forEach(file => {
                 const card = `
-                    <div class="file-card bg-white p-6 rounded-3xl shadow-sm border border-gray-100 flex flex-col h-full relative overflow-hidden group">
-                        <div class="absolute top-0 left-0 w-2 h-full bg-[#1E3A8A] opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                        
-                        <div class="flex justify-between items-start mb-4 pl-2">
-                            <span class="bg-blue-50 text-[#1E3A8A] px-4 py-1.5 rounded-xl text-sm font-bold font-mono border border-blue-100">
-                                ${file.code}
-                            </span>
-                            <span class="text-xs text-gray-500 bg-gray-100 px-3 py-1 rounded-full font-medium">
-                                ${file.group}
-                            </span>
+                    <div class="file-card p-6">
+                        <div class="flex justify-between mb-4">
+                            <span class="bg-blue-50 text-[#1E3A8A] px-3 py-1 rounded-lg font-bold font-mono text-sm border border-blue-100">${file.code}</span>
+                            <span class="bg-gray-100 text-gray-500 px-2 py-1 rounded-lg text-xs font-medium">${file.group}</span>
                         </div>
-                        
-                        <h3 class="text-xl font-bold text-gray-800 mb-3 leading-tight pl-2 group-hover:text-[#1E3A8A] transition-colors">
-                            ${file.title}
-                        </h3>
-                        
-                        <p class="text-gray-500 text-sm mb-8 flex-grow pl-2 leading-relaxed">
-                            ${file.desc}
-                        </p>
-                        
-                        <div class="mt-auto pt-5 border-t border-gray-100">
-                            <a href="${file.link}" target="_blank" class="btn-primary text-white text-center py-3 rounded-xl w-full font-bold shadow-lg shadow-blue-900/10 flex items-center justify-center gap-3 hover:gap-4 transition-all">
-                                <span>📥</span> تحميل الملف
-                            </a>
-                        </div>
+                        <h3 class="text-lg font-bold text-gray-800 mb-2">${file.title}</h3>
+                        <p class="text-gray-500 text-sm mb-6 flex-grow leading-relaxed">${file.desc}</p>
+                        <a href="${file.link}" target="_blank" class="btn-primary w-full py-3 rounded-xl font-bold flex items-center justify-center gap-2 shadow-md">
+                            <span>📥</span> تحميل الملف
+                        </a>
                     </div>
                 `;
                 container.innerHTML += card;
             });
         }
 
-        function filterCategory(category) {
-            currentCategory = category;
-            
-            document.querySelectorAll('.cat-btn').forEach(btn => {
-                btn.classList.remove('active');
-                if(btn.dataset.category === category) btn.classList.add('active');
+        function filterCategory(cat) {
+            currentCategory = cat;
+            document.querySelectorAll('.cat-btn').forEach(b => {
+                b.classList.remove('active');
+                if(b.dataset.category === cat) b.classList.add('active');
             });
-
             searchFiles();
         }
 
         function searchFiles() {
-            const query = document.getElementById('searchInput').value.toLowerCase();
-            
+            const q = document.getElementById('searchInput').value.toLowerCase();
             const filtered = files.filter(f => {
-                const matchesSearch = f.title.toLowerCase().includes(query) || 
-                                    f.code.toLowerCase().includes(query) ||
-                                    f.desc.toLowerCase().includes(query);
-                
-                const matchesCategory = currentCategory === 'all' || f.group === currentCategory;
-
-                return matchesSearch && matchesCategory;
+                const matchSearch = f.title.toLowerCase().includes(q) || f.code.toLowerCase().includes(q);
+                const matchCat = currentCategory === 'all' || f.group === currentCategory;
+                return matchSearch && matchCat;
             });
-
             displayFiles(filtered);
         }
 
