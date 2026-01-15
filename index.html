@@ -4,41 +4,55 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>منصة القصبى للمواصفات الهندسية</title>
+    <meta name="description" content="منصة متخصصة في شرح وترجمة المواصفات الهندسية العالمية (ASTM, ACI, DIN) للمهندسين والفنيين العرب.">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        * { font-family: 'Cairo', sans-serif; }
-        body { background-color: #f3f4f6; }
-        .file-card { background: white; border: 1px solid #e5e7eb; border-radius: 1rem; transition: all 0.3s ease; display: flex; flex-direction: column; height: 100%; }
-        .file-card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); border-color: #1E3A8A; }
-        .btn-primary { background: #1E3A8A; color: white; transition: 0.3s; }
-        .btn-primary:hover { background: #1e40af; }
+        * { font-family: 'Cairo', sans-serif; scroll-behavior: smooth; }
+        body { background-color: #f8fafc; }
+        
+        .file-card { background: white; border: 1px solid #e2e8f0; border-radius: 1rem; transition: all 0.3s ease; display: flex; flex-direction: column; height: 100%; position: relative; overflow: hidden; }
+        .file-card:hover { transform: translateY(-5px); box-shadow: 0 15px 30px rgba(0,0,0,0.08); border-color: #1E3A8A; }
+        
+        .btn-primary { background: linear-gradient(135deg, #1E3A8A 0%, #1e40af 100%); color: white; transition: 0.3s; }
+        .btn-primary:hover { box-shadow: 0 4px 12px rgba(30, 58, 138, 0.3); transform: translateY(-1px); }
         .btn-outline { border: 2px solid #1E3A8A; color: #1E3A8A; background: white; transition: 0.3s; }
         .btn-outline:hover { background: #f0f9ff; }
-        .cat-btn { background: white; border: 2px solid #e2e8f0; border-radius: 12px; padding: 1rem; text-align: center; cursor: pointer; transition: all 0.3s; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 100px; }
-        .cat-btn.active { background: #1E3A8A; color: white; border-color: #1E3A8A; box-shadow: 0 8px 15px -3px rgba(30, 58, 138, 0.3); }
-        .cat-btn:hover:not(.active) { border-color: #1E3A8A; transform: translateY(-2px); }
-        .stat-card { background: white; padding: 1rem; border-radius: 1rem; text-align: center; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
-        .stat-number { font-size: 1.5rem; font-weight: 800; color: #1E3A8A; }
+        
+        .cat-btn { background: white; border: 2px solid #e2e8f0; border-radius: 16px; padding: 1rem; text-align: center; cursor: pointer; transition: all 0.3s; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 110px; }
+        .cat-btn.active { background: #1E3A8A; color: white; border-color: #1E3A8A; box-shadow: 0 8px 20px -4px rgba(30, 58, 138, 0.4); transform: scale(1.05); }
+        .cat-btn:hover:not(.active) { border-color: #1E3A8A; transform: translateY(-3px); }
+        
+        .stat-card { background: white; padding: 1.5rem; border-radius: 1rem; text-align: center; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05); transition: transform 0.3s; }
+        .stat-card:hover { transform: translateY(-2px); }
+        .stat-number { font-size: 1.8rem; font-weight: 800; color: #1E3A8A; }
+
+        .new-badge {
+            position: absolute; top: 12px; left: -32px; background: #ef4444; color: white;
+            padding: 4px 40px; font-size: 0.75rem; font-weight: bold; transform: rotate(-45deg);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2); z-index: 10;
+        }
     </style>
 </head>
 <body>
 
-    <header class="bg-[#1E3A8A] text-white p-4 shadow-md sticky top-0 z-50">
+    <header class="bg-gradient-to-r from-[#1E3A8A] to-[#172554] text-white p-4 shadow-lg sticky top-0 z-50">
         <div class="container mx-auto flex flex-wrap justify-between items-center gap-4">
             <div class="flex items-center gap-3">
-                <span class="text-3xl">🏗️</span>
+                <div class="bg-white/10 p-2 rounded-lg backdrop-blur-sm">
+                    <span class="text-3xl">🏗️</span>
+                </div>
                 <div>
-                    <h1 class="text-xl font-bold">منصة القصبى</h1>
-                    <p class="text-xs text-blue-200">للمواصفات الهندسية</p>
+                    <h1 class="text-xl font-bold tracking-wide">منصة القصبى</h1>
+                    <p class="text-xs text-blue-200 font-light">للمواصفات الهندسية وشرح الأكواد</p>
                 </div>
             </div>
             <div class="flex gap-2">
-                <a href="https://wa.me/966581295794" target="_blank" class="bg-green-500 px-4 py-2 rounded-lg text-sm font-bold hover:bg-green-600 transition flex items-center gap-2">
+                <a href="https://wa.me/966581295794?text=السلام%20عليكم%20يا%20هندسة،%20عندي%20استفسار%20بخصوص%20المنصة" target="_blank" class="bg-green-500 hover:bg-green-600 px-4 py-2 rounded-lg text-sm font-bold transition flex items-center gap-2 shadow-lg shadow-green-900/20">
                     <i class="fa-brands fa-whatsapp text-lg"></i> واتساب
                 </a>
-                <a href="mailto:elkasaby1988@gmail.com" class="bg-white/20 px-4 py-2 rounded-lg text-sm font-bold hover:bg-white/30 transition flex items-center gap-2">
+                <a href="mailto:elkasaby1988@gmail.com" class="bg-white/10 hover:bg-white/20 px-4 py-2 rounded-lg text-sm font-bold transition flex items-center gap-2 backdrop-blur-sm border border-white/10">
                     <i class="fa-regular fa-envelope text-lg"></i> إيميل
                 </a>
             </div>
@@ -47,62 +61,68 @@
 
     <main class="container mx-auto p-4 max-w-7xl">
         
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8 mt-4">
-            <div class="stat-card border-b-4 border-blue-500">
-                <div class="text-gray-500 text-xs font-bold mb-1">الزوار</div>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-10 mt-6">
+            <div class="stat-card border-b-4 border-blue-600">
+                <div class="text-gray-400 text-xs font-bold mb-2 uppercase tracking-wider">الزوار</div>
                 <div class="stat-number" id="visitorsCount">1,245</div>
             </div>
             <div class="stat-card border-b-4 border-green-500">
-                <div class="text-gray-500 text-xs font-bold mb-1">التحميلات</div>
+                <div class="text-gray-400 text-xs font-bold mb-2 uppercase tracking-wider">التحميلات</div>
                 <div class="stat-number" id="downloadsCount">3,890</div>
             </div>
             <div class="stat-card border-b-4 border-purple-500">
-                <div class="text-gray-500 text-xs font-bold mb-1">الملفات</div>
-                <div class="stat-number" id="filesCount">18</div>
+                <div class="text-gray-400 text-xs font-bold mb-2 uppercase tracking-wider">الملفات المتاحة</div>
+                <div class="stat-number" id="filesCount">0</div>
             </div>
             <div class="stat-card border-b-4 border-orange-500">
-                <div class="text-gray-500 text-xs font-bold mb-1">التحديث</div>
-                <div class="text-lg font-bold text-gray-700">يومي</div>
+                <div class="text-gray-400 text-xs font-bold mb-2 uppercase tracking-wider">حالة التحديث</div>
+                <div class="text-lg font-bold text-green-600 flex justify-center items-center gap-2">
+                    <span class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span> نشط يومياً
+                </div>
             </div>
         </div>
 
-        <div class="bg-white p-6 rounded-2xl shadow-sm mb-8">
+        <div class="bg-white p-8 rounded-2xl shadow-sm mb-10 border border-gray-100">
             <div class="relative">
                 <input type="text" id="searchInput" onkeyup="searchFiles()" 
-                    class="w-full p-4 pr-10 border-2 border-gray-100 rounded-xl focus:outline-none focus:border-[#1E3A8A] text-lg" 
-                    placeholder="🔍 ابحث برقم الكود أو اسم المواصفة...">
-                <span class="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 text-sm font-bold">
-                    <span id="count">0</span> نتيجة
+                    class="w-full p-4 pr-12 border-2 border-gray-200 rounded-xl focus:outline-none focus:border-[#1E3A8A] focus:ring-4 focus:ring-blue-50 text-lg transition-all" 
+                    placeholder="🔍 ابحث برقم الكود (مثلاً C94) أو اسم المواصفة...">
+                <span class="absolute left-6 top-1/2 -translate-y-1/2 text-gray-400 text-sm font-bold bg-gray-50 px-3 py-1 rounded-md">
+                    <span id="count" class="text-[#1E3A8A]">0</span> ملف
                 </span>
             </div>
         </div>
 
-        <h2 class="text-lg font-bold text-gray-700 mb-4 border-r-4 border-[#1E3A8A] pr-2">تصفح حسب الكود:</h2>
-        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 mb-10">
+        <div class="flex items-center gap-2 mb-6">
+            <div class="h-8 w-1 bg-[#1E3A8A] rounded-full"></div>
+            <h2 class="text-xl font-bold text-gray-800">تصفح الأقسام:</h2>
+        </div>
+        
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 mb-12">
             <div onclick="filterCategory('all')" class="cat-btn active" data-category="all">
-                <span class="icon">📚</span><span class="title">الكل</span>
+                <span class="text-2xl mb-2">📚</span><span class="title font-bold">الكل</span>
             </div>
             <div onclick="filterCategory('ASTM')" class="cat-btn" data-category="ASTM">
-                <span class="icon">🧪</span><span class="title">ASTM</span>
+                <span class="text-2xl mb-2">🧪</span><span class="title font-bold">ASTM</span>
             </div>
             <div onclick="filterCategory('ACI')" class="cat-btn" data-category="ACI">
-                <span class="icon">🏗️</span><span class="title">ACI</span>
+                <span class="text-2xl mb-2">🏗️</span><span class="title font-bold">ACI</span>
             </div>
             <div onclick="filterCategory('BS')" class="cat-btn" data-category="BS">
-                <span class="icon">🇬🇧</span><span class="title">BS</span>
+                <span class="text-2xl mb-2">🇬🇧</span><span class="title font-bold">BS</span>
             </div>
             <div onclick="filterCategory('AASHTO')" class="cat-btn" data-category="AASHTO">
-                <span class="icon">🛣️</span><span class="title">AASHTO</span>
+                <span class="text-2xl mb-2">🛣️</span><span class="title font-bold">AASHTO</span>
             </div>
-            <div onclick="filterCategory('OTHER')" class="cat-btn" data-category="OTHER">
-                <span class="icon">🌐</span><span class="title">أخرى</span>
+            <div onclick="filterCategory('أخرى')" class="cat-btn" data-category="أخرى">
+                <span class="text-2xl mb-2">🌐</span><span class="title font-bold">أخرى</span>
             </div>
         </div>
 
-        <div id="filesContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12"></div>
+        <div id="filesContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16"></div>
 
-        <div class="bg-white p-6 rounded-2xl shadow-sm border-t-4 border-[#1E3A8A]">
-            <h2 class="text-xl font-bold mb-4 flex items-center gap-2">
+        <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-200">
+            <h2 class="text-xl font-bold mb-6 flex items-center gap-2 border-b pb-4">
                 <i class="fa-solid fa-comments text-[#1E3A8A]"></i> مجتمع المنصة
             </h2>
             <script src="https://giscus.app/client.js"
@@ -124,19 +144,32 @@
 
     </main>
 
-    <footer class="bg-gray-800 text-white text-center p-6 mt-8">
-        <p>© 2025 منصة القصبى - م. محمد القصبي</p>
+    <footer class="bg-gray-900 text-gray-300 text-center p-8 mt-12">
+        <div class="container mx-auto">
+            <p class="font-bold text-lg text-white mb-2">© 2025 منصة القصبى للمواصفات الهندسية</p>
+            <p class="text-sm text-gray-500 mb-4">إعداد وترجمة: م. محمد القصبي</p>
+            <div class="text-xs text-gray-600 border-t border-gray-800 pt-4 max-w-2xl mx-auto">
+                إخلاء مسؤولية: الملفات المترجمة والشروحات هي مجهود شخصي لغرض التيسير التعليمي. المرجع الرسمي والملزم هو نص الكود الأصلي باللغة الإنجليزية.
+            </div>
+        </div>
     </footer>
 
     <script>
-        // مصفوفة الملفات (تمت إضافة ASTM C94 في البداية)
         const files = [
             {
                 code: "ASTM C94",
                 title: "مواصفة الخرسانة الجاهزة",
-                desc: "الدليل الشامل للخرسانة الجاهزة: حدود القبول والرفض (هبوط، حرارة، هواء)، وقت الصب، وإضافة المياه.",
+                desc: "الدليل الشامل للخرسانة الجاهزة: حدود القبول والرفض (هبوط، حرارة، هواء)، ضبط وقت الصب، وقواعد إضافة المياه في الموقع.",
                 group: "ASTM",
                 fileName: "ASTM C94.Mo.elkasaby.pdf"
+            },
+            // هنا ملف DIN مع المجموعة 'أخرى'
+            { 
+                code: "DIN 18134", 
+                title: "اختبار التحميل اللوحي", 
+                desc: "المواصفة الالمانية للاختبار التحميل (Plate Load Test).", 
+                group: "أخرى", 
+                fileName: "DIN-18134-Mo.elkasaby.pdf" 
             },
             {
                 code: "ACI 211",
@@ -152,7 +185,6 @@
                 group: "ASTM",
                 fileName: "ASTM D6913-MO.elkasaby.pdf"
             },
-            { code: "DIN 18134", title: "اختبار التحميل اللوحي", desc: "المواصفة الالمانية للاختبار التحميل.", group: "أخرى", fileName: "DIN-18134-Mo.elkasaby.pdf" },
             { code: "ACI 214R-11", title: "دليل تقييم نتائج الخرسانة", desc: "الطريقة الإحصائية لتقييم نتائج كسر المكعبات.", group: "ACI", fileName: "ACI 214R-11-Mo.elkasaby...pdf" },
             { code: "ASTM C39", title: "مقاومة الضغط (اسطوانات)", desc: "الطريقة القياسية لكسر اسطوانات الخرسانة.", group: "ASTM", fileName: "C39 -23-Mo.elkasaby.pdf" },
             { code: "ASTM C131", title: "مقاومة التآكل (لوس أنجلوس)", desc: "اختبار الركام بجهاز لوس أنجلوس.", group: "ASTM", fileName: "ASTEM C131- Mo.elkasaby.pdf" },
@@ -186,6 +218,8 @@
             v.textContent = vCount.toLocaleString();
             d.textContent = "3,890";
             f.textContent = files.length;
+            
+            document.getElementById('count').textContent = files.length;
         }
 
         function displayFiles(list) {
@@ -193,29 +227,43 @@
             container.innerHTML = '';
 
             if (list.length === 0) {
-                container.innerHTML = '<div class="col-span-full text-center py-10 text-gray-400 text-xl">لا توجد ملفات</div>';
+                container.innerHTML = `
+                    <div class="col-span-full text-center py-16">
+                        <div class="text-6xl mb-4">🔍</div>
+                        <h3 class="text-xl font-bold text-gray-600">لا توجد ملفات تطابق بحثك</h3>
+                        <p class="text-gray-400">جرب البحث برقم الكود فقط أو كلمة عامة</p>
+                    </div>`;
+                document.getElementById('count').textContent = 0;
                 return;
             }
 
-            list.forEach(file => {
-                // تحويل اسم الملف لرابط صحيح
+            document.getElementById('count').textContent = list.length;
+
+            list.forEach((file, index) => {
                 const safeLink = encodeURI(file.fileName);
                 
+                let badge = '';
+                if (file.code === files[0].code) {
+                    badge = '<div class="new-badge">جديد 🔥</div>';
+                }
+
                 const card = `
                     <div class="file-card p-6">
-                        <div class="flex justify-between mb-4">
-                            <span class="bg-blue-50 text-[#1E3A8A] px-3 py-1 rounded-lg font-bold font-mono text-sm border border-blue-100">${file.code}</span>
-                            <span class="bg-gray-100 text-gray-500 px-2 py-1 rounded-lg text-xs font-medium">${file.group}</span>
+                        ${badge}
+                        <div class="flex justify-between items-start mb-4">
+                            <span class="bg-blue-50 text-[#1E3A8A] px-3 py-1 rounded-lg font-bold font-mono text-sm border border-blue-100 shadow-sm">${file.code}</span>
+                            <span class="bg-gray-100 text-gray-600 px-3 py-1 rounded-full text-xs font-bold">${file.group}</span>
                         </div>
-                        <h3 class="text-lg font-bold text-gray-800 mb-2">${file.title}</h3>
+                        
+                        <h3 class="text-lg font-bold text-gray-800 mb-3 leading-snug hover:text-[#1E3A8A] transition-colors">${file.title}</h3>
                         <p class="text-gray-500 text-sm mb-6 flex-grow leading-relaxed">${file.desc}</p>
                         
-                        <div class="mt-auto pt-4 border-t border-gray-100 flex gap-2">
-                            <a href="${safeLink}" target="_blank" class="btn-outline w-1/2 py-2.5 rounded-xl font-bold flex items-center justify-center gap-2">
-                                <i class="fa-regular fa-eye"></i> معاينة
+                        <div class="mt-auto pt-5 border-t border-gray-50 flex gap-3">
+                            <a href="${safeLink}" target="_blank" class="btn-outline w-1/2 py-2.5 rounded-xl font-bold flex items-center justify-center gap-2 group">
+                                <i class="fa-regular fa-eye group-hover:scale-110 transition-transform"></i> معاينة
                             </a>
-                            <a href="${safeLink}" download class="btn-primary w-1/2 py-2.5 rounded-xl font-bold flex items-center justify-center gap-2 shadow-md">
-                                <i class="fa-solid fa-download"></i> تحميل
+                            <a href="${safeLink}" download class="btn-primary w-1/2 py-2.5 rounded-xl font-bold flex items-center justify-center gap-2 shadow-md group">
+                                <i class="fa-solid fa-download group-hover:animate-bounce"></i> تحميل
                             </a>
                         </div>
                     </div>
@@ -236,14 +284,13 @@
         function searchFiles() {
             const q = document.getElementById('searchInput').value.toLowerCase();
             const filtered = files.filter(f => {
-                const matchSearch = f.title.toLowerCase().includes(q) || f.code.toLowerCase().includes(q);
+                const matchSearch = f.title.toLowerCase().includes(q) || f.code.toLowerCase().includes(q) || f.desc.toLowerCase().includes(q);
                 const matchCat = currentCategory === 'all' || f.group === currentCategory;
                 return matchSearch && matchCat;
             });
             displayFiles(filtered);
         }
 
-        // تشغيل
         incrementStats();
         displayFiles(files);
     </script>
