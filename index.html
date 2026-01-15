@@ -1,43 +1,78 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="ar" dir="rtl" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>منصة القصبى للمواصفات الهندسية</title>
     <meta name="description" content="منصة متخصصة في شرح وترجمة المواصفات الهندسية العالمية (ASTM, ACI, DIN) للمهندسين والفنيين العرب.">
+    
     <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            light: '#1E3A8A', // أزرق غامق
+                            dark: '#3B82F6',  // أزرق فاتح للوضع الليلي
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <style>
-        * { font-family: 'Cairo', sans-serif; scroll-behavior: smooth; }
-        body { background-color: #f8fafc; }
+        * { font-family: 'Cairo', sans-serif; }
         
-        .file-card { background: white; border: 1px solid #e2e8f0; border-radius: 1rem; transition: all 0.3s ease; display: flex; flex-direction: column; height: 100%; position: relative; overflow: hidden; }
-        .file-card:hover { transform: translateY(-5px); box-shadow: 0 15px 30px rgba(0,0,0,0.08); border-color: #1E3A8A; }
+        /* كارت الملف */
+        .file-card { transition: all 0.3s ease; position: relative; overflow: hidden; }
+        .file-card:hover { transform: translateY(-5px); }
         
+        /* الأزرار */
         .btn-primary { background: linear-gradient(135deg, #1E3A8A 0%, #1e40af 100%); color: white; transition: 0.3s; }
-        .btn-primary:hover { box-shadow: 0 4px 12px rgba(30, 58, 138, 0.3); transform: translateY(-1px); }
-        .btn-outline { border: 2px solid #1E3A8A; color: #1E3A8A; background: white; transition: 0.3s; }
-        .btn-outline:hover { background: #f0f9ff; }
+        .btn-primary:hover { transform: translateY(-1px); box-shadow: 0 4px 12px rgba(30, 58, 138, 0.3); }
         
-        .cat-btn { background: white; border: 2px solid #e2e8f0; border-radius: 16px; padding: 1rem; text-align: center; cursor: pointer; transition: all 0.3s; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 110px; }
-        .cat-btn.active { background: #1E3A8A; color: white; border-color: #1E3A8A; box-shadow: 0 8px 20px -4px rgba(30, 58, 138, 0.4); transform: scale(1.05); }
-        .cat-btn:hover:not(.active) { border-color: #1E3A8A; transform: translateY(-3px); }
-        
-        .stat-card { background: white; padding: 1.5rem; border-radius: 1rem; text-align: center; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05); transition: transform 0.3s; }
-        .stat-card:hover { transform: translateY(-2px); }
-        .stat-number { font-size: 1.8rem; font-weight: 800; color: #1E3A8A; }
+        /* الوضع الليلي للأزرار */
+        .dark .btn-primary { background: linear-gradient(135deg, #2563EB 0%, #1D4ED8 100%); }
+        .dark .btn-outline { border-color: #60A5FA; color: #60A5FA; background: transparent; }
+        .dark .btn-outline:hover { background: rgba(96, 165, 250, 0.1); }
 
+        /* شريط جديد */
         .new-badge {
             position: absolute; top: 12px; left: -32px; background: #ef4444; color: white;
             padding: 4px 40px; font-size: 0.75rem; font-weight: bold; transform: rotate(-45deg);
             box-shadow: 0 2px 4px rgba(0,0,0,0.2); z-index: 10;
         }
+        
+        /* شريط قريباً */
+        .soon-badge {
+            position: absolute; top: 12px; left: -32px; background: #F59E0B; color: white;
+            padding: 4px 40px; font-size: 0.75rem; font-weight: bold; transform: rotate(-45deg);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2); z-index: 10;
+        }
+
+        /* زر الصعود للأعلى */
+        #scrollTopBtn {
+            display: none; position: fixed; bottom: 30px; left: 30px; z-index: 99;
+            border: none; outline: none; background-color: #1E3A8A; color: white;
+            cursor: pointer; width: 50px; height: 50px; border-radius: 50%;
+            font-size: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.3); transition: 0.3s;
+            align-items: center; justify-content: center;
+        }
+        #scrollTopBtn:hover { background-color: #1e40af; transform: scale(1.1); }
+        .dark #scrollTopBtn { background-color: #3B82F6; }
     </style>
 </head>
-<body>
+<body class="bg-[#f8fafc] text-gray-800 dark:bg-gray-900 dark:text-gray-100 transition-colors duration-300">
 
-    <header class="bg-gradient-to-r from-[#1E3A8A] to-[#172554] text-white p-4 shadow-lg sticky top-0 z-50">
+    <button onclick="topFunction()" id="scrollTopBtn" title="اصعد للأعلى"><i class="fa-solid fa-arrow-up"></i></button>
+
+    <header class="bg-gradient-to-r from-[#1E3A8A] to-[#172554] dark:from-gray-800 dark:to-gray-950 text-white p-4 shadow-lg sticky top-0 z-50 transition-colors duration-300">
         <div class="container mx-auto flex flex-wrap justify-between items-center gap-4">
             <div class="flex items-center gap-3">
                 <div class="bg-white/10 p-2 rounded-lg backdrop-blur-sm">
@@ -48,12 +83,16 @@
                     <p class="text-xs text-blue-200 font-light">للمواصفات الهندسية وشرح الأكواد</p>
                 </div>
             </div>
-            <div class="flex gap-2">
+            <div class="flex items-center gap-3">
+                <button onclick="toggleTheme()" class="bg-white/10 hover:bg-white/20 p-2 rounded-lg transition backdrop-blur-sm border border-white/10 w-10 h-10 flex items-center justify-center">
+                    <i id="themeIcon" class="fa-solid fa-moon text-lg"></i>
+                </button>
+
                 <a href="https://wa.me/966581295794?text=السلام%20عليكم%20يا%20هندسة،%20عندي%20استفسار%20بخصوص%20المنصة" target="_blank" class="bg-green-500 hover:bg-green-600 px-4 py-2 rounded-lg text-sm font-bold transition flex items-center gap-2 shadow-lg shadow-green-900/20">
-                    <i class="fa-brands fa-whatsapp text-lg"></i> واتساب
+                    <i class="fa-brands fa-whatsapp text-lg"></i> <span class="hidden md:inline">واتساب</span>
                 </a>
                 <a href="mailto:elkasaby1988@gmail.com" class="bg-white/10 hover:bg-white/20 px-4 py-2 rounded-lg text-sm font-bold transition flex items-center gap-2 backdrop-blur-sm border border-white/10">
-                    <i class="fa-regular fa-envelope text-lg"></i> إيميل
+                    <i class="fa-regular fa-envelope text-lg"></i> <span class="hidden md:inline">إيميل</span>
                 </a>
             </div>
         </div>
@@ -62,68 +101,68 @@
     <main class="container mx-auto p-4 max-w-7xl">
         
         <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-10 mt-6">
-            <div class="stat-card border-b-4 border-blue-600">
+            <div class="stat-card bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm border-b-4 border-blue-600 dark:border-blue-500">
                 <div class="text-gray-400 text-xs font-bold mb-2 uppercase tracking-wider">الزوار</div>
-                <div class="stat-number" id="visitorsCount">1,245</div>
+                <div class="stat-number text-[#1E3A8A] dark:text-blue-400 font-extrabold text-2xl" id="visitorsCount">1,245</div>
             </div>
-            <div class="stat-card border-b-4 border-green-500">
+            <div class="stat-card bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm border-b-4 border-green-500">
                 <div class="text-gray-400 text-xs font-bold mb-2 uppercase tracking-wider">التحميلات</div>
-                <div class="stat-number" id="downloadsCount">3,890</div>
+                <div class="stat-number text-[#1E3A8A] dark:text-blue-400 font-extrabold text-2xl" id="downloadsCount">3,890</div>
             </div>
-            <div class="stat-card border-b-4 border-purple-500">
+            <div class="stat-card bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm border-b-4 border-purple-500">
                 <div class="text-gray-400 text-xs font-bold mb-2 uppercase tracking-wider">الملفات المتاحة</div>
-                <div class="stat-number" id="filesCount">0</div>
+                <div class="stat-number text-[#1E3A8A] dark:text-blue-400 font-extrabold text-2xl" id="filesCount">0</div>
             </div>
-            <div class="stat-card border-b-4 border-orange-500">
+            <div class="stat-card bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm border-b-4 border-orange-500">
                 <div class="text-gray-400 text-xs font-bold mb-2 uppercase tracking-wider">حالة التحديث</div>
-                <div class="text-lg font-bold text-green-600 flex justify-center items-center gap-2">
+                <div class="text-lg font-bold text-green-600 dark:text-green-400 flex justify-center items-center gap-2">
                     <span class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span> نشط يومياً
                 </div>
             </div>
         </div>
 
-        <div class="bg-white p-8 rounded-2xl shadow-sm mb-10 border border-gray-100">
+        <div class="bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-sm mb-10 border border-gray-100 dark:border-gray-700 transition-colors">
             <div class="relative">
                 <input type="text" id="searchInput" onkeyup="searchFiles()" 
-                    class="w-full p-4 pr-12 border-2 border-gray-200 rounded-xl focus:outline-none focus:border-[#1E3A8A] focus:ring-4 focus:ring-blue-50 text-lg transition-all" 
+                    class="w-full p-4 pr-12 border-2 border-gray-200 dark:border-gray-600 rounded-xl focus:outline-none focus:border-[#1E3A8A] dark:focus:border-blue-500 bg-white dark:bg-gray-700 text-gray-800 dark:text-white text-lg transition-all" 
                     placeholder="🔍 ابحث برقم الكود (مثلاً C94) أو اسم المواصفة...">
-                <span class="absolute left-6 top-1/2 -translate-y-1/2 text-gray-400 text-sm font-bold bg-gray-50 px-3 py-1 rounded-md">
-                    <span id="count" class="text-[#1E3A8A]">0</span> ملف
+                <span class="absolute left-6 top-1/2 -translate-y-1/2 text-gray-400 dark:text-gray-300 text-sm font-bold bg-gray-50 dark:bg-gray-600 px-3 py-1 rounded-md">
+                    <span id="count" class="text-[#1E3A8A] dark:text-blue-400">0</span> ملف
                 </span>
             </div>
         </div>
 
         <div class="flex items-center gap-2 mb-6">
-            <div class="h-8 w-1 bg-[#1E3A8A] rounded-full"></div>
-            <h2 class="text-xl font-bold text-gray-800">تصفح الأقسام:</h2>
+            <div class="h-8 w-1 bg-[#1E3A8A] dark:bg-blue-500 rounded-full"></div>
+            <h2 class="text-xl font-bold text-gray-800 dark:text-white">تصفح الأقسام:</h2>
         </div>
         
         <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 mb-12">
-            <div onclick="filterCategory('all')" class="cat-btn active" data-category="all">
-                <span class="text-2xl mb-2">📚</span><span class="title font-bold">الكل</span>
+            <div onclick="filterCategory('all')" class="cat-btn active bg-white dark:bg-gray-800 border-2 border-gray-200 dark:border-gray-700 rounded-2xl p-4 text-center cursor-pointer transition hover:border-[#1E3A8A] dark:hover:border-blue-500 flex flex-col items-center justify-center min-h-[110px]" data-category="all">
+                <span class="text-2xl mb-2">📚</span><span class="title font-bold dark:text-white">الكل</span>
             </div>
-            <div onclick="filterCategory('ASTM')" class="cat-btn" data-category="ASTM">
-                <span class="text-2xl mb-2">🧪</span><span class="title font-bold">ASTM</span>
+            <div onclick="filterCategory('ASTM')" class="cat-btn bg-white dark:bg-gray-800 border-2 border-gray-200 dark:border-gray-700 rounded-2xl p-4 text-center cursor-pointer transition hover:border-[#1E3A8A] dark:hover:border-blue-500 flex flex-col items-center justify-center min-h-[110px]" data-category="ASTM">
+                <span class="text-2xl mb-2">🧪</span><span class="title font-bold dark:text-white">ASTM</span>
             </div>
-            <div onclick="filterCategory('ACI')" class="cat-btn" data-category="ACI">
-                <span class="text-2xl mb-2">🏗️</span><span class="title font-bold">ACI</span>
+            <div onclick="filterCategory('ACI')" class="cat-btn bg-white dark:bg-gray-800 border-2 border-gray-200 dark:border-gray-700 rounded-2xl p-4 text-center cursor-pointer transition hover:border-[#1E3A8A] dark:hover:border-blue-500 flex flex-col items-center justify-center min-h-[110px]" data-category="ACI">
+                <span class="text-2xl mb-2">🏗️</span><span class="title font-bold dark:text-white">ACI</span>
             </div>
-            <div onclick="filterCategory('BS')" class="cat-btn" data-category="BS">
-                <span class="text-2xl mb-2">🇬🇧</span><span class="title font-bold">BS</span>
+            <div onclick="filterCategory('BS')" class="cat-btn bg-white dark:bg-gray-800 border-2 border-gray-200 dark:border-gray-700 rounded-2xl p-4 text-center cursor-pointer transition hover:border-[#1E3A8A] dark:hover:border-blue-500 flex flex-col items-center justify-center min-h-[110px]" data-category="BS">
+                <span class="text-2xl mb-2">🇬🇧</span><span class="title font-bold dark:text-white">BS</span>
             </div>
-            <div onclick="filterCategory('AASHTO')" class="cat-btn" data-category="AASHTO">
-                <span class="text-2xl mb-2">🛣️</span><span class="title font-bold">AASHTO</span>
+            <div onclick="filterCategory('AASHTO')" class="cat-btn bg-white dark:bg-gray-800 border-2 border-gray-200 dark:border-gray-700 rounded-2xl p-4 text-center cursor-pointer transition hover:border-[#1E3A8A] dark:hover:border-blue-500 flex flex-col items-center justify-center min-h-[110px]" data-category="AASHTO">
+                <span class="text-2xl mb-2">🛣️</span><span class="title font-bold dark:text-white">AASHTO</span>
             </div>
-            <div onclick="filterCategory('أخرى')" class="cat-btn" data-category="أخرى">
-                <span class="text-2xl mb-2">🌐</span><span class="title font-bold">أخرى</span>
+            <div onclick="filterCategory('أخرى')" class="cat-btn bg-white dark:bg-gray-800 border-2 border-gray-200 dark:border-gray-700 rounded-2xl p-4 text-center cursor-pointer transition hover:border-[#1E3A8A] dark:hover:border-blue-500 flex flex-col items-center justify-center min-h-[110px]" data-category="أخرى">
+                <span class="text-2xl mb-2">🌐</span><span class="title font-bold dark:text-white">أخرى</span>
             </div>
         </div>
 
         <div id="filesContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16"></div>
 
-        <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-200">
-            <h2 class="text-xl font-bold mb-6 flex items-center gap-2 border-b pb-4">
-                <i class="fa-solid fa-comments text-[#1E3A8A]"></i> مجتمع المنصة
+        <div class="bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-sm border border-gray-200 dark:border-gray-700">
+            <h2 class="text-xl font-bold mb-6 flex items-center gap-2 border-b dark:border-gray-700 pb-4 text-gray-800 dark:text-white">
+                <i class="fa-solid fa-comments text-[#1E3A8A] dark:text-blue-500"></i> مجتمع المنصة
             </h2>
             <script src="https://giscus.app/client.js"
                 data-repo="Mohamed742406/-elkasaby-standards"
@@ -144,7 +183,7 @@
 
     </main>
 
-    <footer class="bg-gray-900 text-gray-300 text-center p-8 mt-12">
+    <footer class="bg-gray-900 text-gray-300 text-center p-8 mt-12 border-t border-gray-800">
         <div class="container mx-auto">
             <p class="font-bold text-lg text-white mb-2">© 2025 منصة القصبى للمواصفات الهندسية</p>
             <p class="text-sm text-gray-500 mb-4">إعداد وترجمة: م. محمد القصبي</p>
@@ -155,7 +194,15 @@
     </footer>
 
     <script>
+        // --- 1. إدارة الملفات ---
         const files = [
+            {
+                code: "ASTM D4318",
+                title: "حدود أتربرج (Liquid & Plastic) - قريباً",
+                desc: "انتظرونا قريباً مع الشرح الكامل لاختبارات حد السيولة واللدونة وتصنيف التربة (جاري التجهيز...).",
+                group: "ASTM",
+                fileName: "#" // الهاش معناه رابط فارغ، الكود تحت هيفهم ده ويغير الزرار
+            },
             {
                 code: "ASTM C94",
                 title: "مواصفة الخرسانة الجاهزة",
@@ -163,7 +210,6 @@
                 group: "ASTM",
                 fileName: "ASTM C94.Mo.elkasaby.pdf"
             },
-            // هنا ملف DIN مع المجموعة 'أخرى'
             { 
                 code: "DIN 18134", 
                 title: "اختبار التحميل اللوحي", 
@@ -207,6 +253,49 @@
 
         let currentCategory = 'all';
 
+        // --- 2. إدارة الوضع الليلي ---
+        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+            document.getElementById('themeIcon').classList.remove('fa-moon');
+            document.getElementById('themeIcon').classList.add('fa-sun');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+
+        function toggleTheme() {
+            const html = document.documentElement;
+            const icon = document.getElementById('themeIcon');
+            
+            if (html.classList.contains('dark')) {
+                html.classList.remove('dark');
+                localStorage.theme = 'light';
+                icon.classList.remove('fa-sun');
+                icon.classList.add('fa-moon');
+            } else {
+                html.classList.add('dark');
+                localStorage.theme = 'dark';
+                icon.classList.remove('fa-moon');
+                icon.classList.add('fa-sun');
+            }
+        }
+
+        // --- 3. زر الصعود للأعلى ---
+        let scrollTopBtn = document.getElementById("scrollTopBtn");
+        window.onscroll = function() { scrollFunction() };
+
+        function scrollFunction() {
+            if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+                scrollTopBtn.style.display = "flex";
+            } else {
+                scrollTopBtn.style.display = "none";
+            }
+        }
+
+        function topFunction() {
+            window.scrollTo({top: 0, behavior: 'smooth'});
+        }
+
+        // --- 4. وظائف المنصة الأساسية ---
         function incrementStats() {
             const v = document.getElementById('visitorsCount');
             const d = document.getElementById('downloadsCount');
@@ -217,7 +306,9 @@
             
             v.textContent = vCount.toLocaleString();
             d.textContent = "3,890";
-            f.textContent = files.length;
+            // نحسب الملفات الفعلية فقط (نستثني قريباً)
+            const activeFiles = files.filter(f => f.fileName !== "#").length;
+            f.textContent = activeFiles;
             
             document.getElementById('count').textContent = files.length;
         }
@@ -229,9 +320,9 @@
             if (list.length === 0) {
                 container.innerHTML = `
                     <div class="col-span-full text-center py-16">
-                        <div class="text-6xl mb-4">🔍</div>
-                        <h3 class="text-xl font-bold text-gray-600">لا توجد ملفات تطابق بحثك</h3>
-                        <p class="text-gray-400">جرب البحث برقم الكود فقط أو كلمة عامة</p>
+                        <div class="text-6xl mb-4 opacity-50">🔍</div>
+                        <h3 class="text-xl font-bold text-gray-600 dark:text-gray-400">لا توجد ملفات تطابق بحثك</h3>
+                        <p class="text-gray-400 dark:text-gray-500">جرب البحث برقم الكود فقط أو كلمة عامة</p>
                     </div>`;
                 document.getElementById('count').textContent = 0;
                 return;
@@ -240,31 +331,48 @@
             document.getElementById('count').textContent = list.length;
 
             list.forEach((file, index) => {
-                const safeLink = encodeURI(file.fileName);
+                const isComingSoon = file.fileName === "#"; // فحص هل الملف "قريباً"
+                const safeLink = isComingSoon ? "javascript:void(0)" : encodeURI(file.fileName);
                 
                 let badge = '';
-                if (file.code === files[0].code) {
+                if (isComingSoon) {
+                    badge = '<div class="soon-badge">قريباً ⏳</div>';
+                } else if (file.code === "ASTM C94") {
                     badge = '<div class="new-badge">جديد 🔥</div>';
                 }
 
+                // منطق الأزرار الذكي: لو قريباً، نخلي الأزرار معطلة وتتغير النصوص
+                let actionButtons = '';
+                if (isComingSoon) {
+                    actionButtons = `
+                        <div class="w-full text-center py-2.5 rounded-xl font-bold bg-gray-100 dark:bg-gray-700 text-gray-400 dark:text-gray-500 cursor-not-allowed border border-gray-200 dark:border-gray-600">
+                            <i class="fa-regular fa-clock ml-2"></i> جاري التجهيز...
+                        </div>
+                    `;
+                } else {
+                    actionButtons = `
+                        <a href="${safeLink}" target="_blank" class="btn-outline w-1/2 py-2.5 rounded-xl font-bold flex items-center justify-center gap-2 group border-2">
+                            <i class="fa-regular fa-eye group-hover:scale-110 transition-transform"></i> معاينة
+                        </a>
+                        <a href="${safeLink}" download class="btn-primary w-1/2 py-2.5 rounded-xl font-bold flex items-center justify-center gap-2 shadow-md group">
+                            <i class="fa-solid fa-download group-hover:animate-bounce"></i> تحميل
+                        </a>
+                    `;
+                }
+
                 const card = `
-                    <div class="file-card p-6">
+                    <div class="file-card p-6 bg-white dark:bg-gray-800 border dark:border-gray-700 shadow-sm rounded-2xl hover:shadow-lg dark:hover:border-blue-500 transition-all ${isComingSoon ? 'opacity-90' : ''}">
                         ${badge}
                         <div class="flex justify-between items-start mb-4">
-                            <span class="bg-blue-50 text-[#1E3A8A] px-3 py-1 rounded-lg font-bold font-mono text-sm border border-blue-100 shadow-sm">${file.code}</span>
-                            <span class="bg-gray-100 text-gray-600 px-3 py-1 rounded-full text-xs font-bold">${file.group}</span>
+                            <span class="bg-blue-50 dark:bg-blue-900/30 text-[#1E3A8A] dark:text-blue-300 px-3 py-1 rounded-lg font-bold font-mono text-sm border border-blue-100 dark:border-blue-800 shadow-sm">${file.code}</span>
+                            <span class="bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 px-3 py-1 rounded-full text-xs font-bold">${file.group}</span>
                         </div>
                         
-                        <h3 class="text-lg font-bold text-gray-800 mb-3 leading-snug hover:text-[#1E3A8A] transition-colors">${file.title}</h3>
-                        <p class="text-gray-500 text-sm mb-6 flex-grow leading-relaxed">${file.desc}</p>
+                        <h3 class="text-lg font-bold text-gray-800 dark:text-white mb-3 leading-snug hover:text-[#1E3A8A] dark:hover:text-blue-400 transition-colors">${file.title}</h3>
+                        <p class="text-gray-500 dark:text-gray-400 text-sm mb-6 flex-grow leading-relaxed">${file.desc}</p>
                         
-                        <div class="mt-auto pt-5 border-t border-gray-50 flex gap-3">
-                            <a href="${safeLink}" target="_blank" class="btn-outline w-1/2 py-2.5 rounded-xl font-bold flex items-center justify-center gap-2 group">
-                                <i class="fa-regular fa-eye group-hover:scale-110 transition-transform"></i> معاينة
-                            </a>
-                            <a href="${safeLink}" download class="btn-primary w-1/2 py-2.5 rounded-xl font-bold flex items-center justify-center gap-2 shadow-md group">
-                                <i class="fa-solid fa-download group-hover:animate-bounce"></i> تحميل
-                            </a>
+                        <div class="mt-auto pt-5 border-t border-gray-50 dark:border-gray-700 flex gap-3">
+                            ${actionButtons}
                         </div>
                     </div>
                 `;
@@ -276,7 +384,10 @@
             currentCategory = cat;
             document.querySelectorAll('.cat-btn').forEach(b => {
                 b.classList.remove('active');
-                if(b.dataset.category === cat) b.classList.add('active');
+                b.classList.remove('dark:border-blue-500'); 
+                if(b.dataset.category === cat) {
+                    b.classList.add('active');
+                }
             });
             searchFiles();
         }
