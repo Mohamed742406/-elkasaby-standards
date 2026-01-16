@@ -5,7 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>منصة القصبى للمواصفات الهندسية</title>
     <meta name="description" content="منصة متخصصة في شرح وترجمة المواصفات الهندسية العالمية (ASTM, ACI, DIN) للمهندسين والفنيين العرب.">
+    <meta name="keywords" content="شرح مواصفات ASTM, خرسانة جاهزة, ASTM C94 شرح عربي, هندسة مدنية, ضبط جودة, اختبارات مواد, منصة القصبي, ACI codes arabic">
     
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#1E3A8A">
+    <link rel="apple-touch-icon" href="icon.png">
+
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -14,8 +19,8 @@
                 extend: {
                     colors: {
                         brand: {
-                            light: '#1E3A8A', // أزرق غامق
-                            dark: '#3B82F6',  // أزرق فاتح للوضع الليلي
+                            light: '#1E3A8A', 
+                            dark: '#3B82F6',
                         }
                     }
                 }
@@ -160,6 +165,59 @@
 
         <div id="filesContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16"></div>
 
+        <div class="mt-16 mb-12">
+            <div class="flex items-center gap-2 mb-6">
+                <div class="h-8 w-1 bg-green-500 rounded-full"></div>
+                <h2 class="text-xl font-bold text-gray-800 dark:text-white">خدمات هندسية أخرى:</h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                
+                <a href="https://mohamed742406.github.io/plate-load-test/" target="_blank" class="group relative overflow-hidden bg-gradient-to-br from-blue-900 to-blue-800 rounded-2xl p-6 text-white shadow-lg hover:shadow-2xl transition-all transform hover:-translate-y-2">
+                    <div class="absolute top-0 left-0 w-full h-full bg-white/5 group-hover:bg-white/10 transition"></div>
+                    <div class="relative z-10 flex flex-col h-full">
+                        <div class="bg-white/20 w-12 h-12 rounded-lg flex items-center justify-center mb-4 backdrop-blur-sm">
+                            <i class="fa-solid fa-weight-hanging text-2xl"></i>
+                        </div>
+                        <h3 class="text-lg font-bold mb-2">منصة اختبار التحميل</h3>
+                        <p class="text-blue-100 text-sm mb-4">الدخول لمنصة حسابات Plate Load Test.</p>
+                        <div class="mt-auto flex items-center text-sm font-bold text-green-400">
+                            دخول للمنصة <i class="fa-solid fa-arrow-left mr-2 group-hover:translate-x-[-5px] transition-transform"></i>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="https://mohamed742406.github.io/materials-lab/" target="_blank" class="group relative overflow-hidden bg-gradient-to-br from-gray-800 to-gray-700 rounded-2xl p-6 text-white shadow-lg hover:shadow-2xl transition-all transform hover:-translate-y-2">
+                    <div class="absolute top-0 left-0 w-full h-full bg-white/5 group-hover:bg-white/10 transition"></div>
+                    <div class="relative z-10 flex flex-col h-full">
+                        <div class="bg-white/20 w-12 h-12 rounded-lg flex items-center justify-center mb-4 backdrop-blur-sm">
+                            <i class="fa-solid fa-vial text-2xl"></i>
+                        </div>
+                        <h3 class="text-lg font-bold mb-2">منصة صلاحية المواد</h3>
+                        <p class="text-gray-300 text-sm mb-4">الدخول لمنصة اختبارات صلاحية المحاجر.</p>
+                        <div class="mt-auto flex items-center text-sm font-bold text-green-400">
+                            دخول للمنصة <i class="fa-solid fa-arrow-left mr-2 group-hover:translate-x-[-5px] transition-transform"></i>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="https://mohamed742406.github.io/soil-lab-platform/" target="_blank" class="group relative overflow-hidden bg-gradient-to-br from-[#8B4513] to-[#654321] rounded-2xl p-6 text-white shadow-lg hover:shadow-2xl transition-all transform hover:-translate-y-2">
+                    <div class="absolute top-0 left-0 w-full h-full bg-white/5 group-hover:bg-white/10 transition"></div>
+                    <div class="relative z-10 flex flex-col h-full">
+                        <div class="bg-white/20 w-12 h-12 rounded-lg flex items-center justify-center mb-4 backdrop-blur-sm">
+                            <i class="fa-solid fa-layer-group text-2xl"></i>
+                        </div>
+                        <h3 class="text-lg font-bold mb-2">منصة اختبارات التربة</h3>
+                        <p class="text-orange-100 text-sm mb-4">الدخول لمنصة تصنيف وكثافة التربة.</p>
+                        <div class="mt-auto flex items-center text-sm font-bold text-green-400">
+                            دخول للمنصة <i class="fa-solid fa-arrow-left mr-2 group-hover:translate-x-[-5px] transition-transform"></i>
+                        </div>
+                    </div>
+                </a>
+
+            </div>
+        </div>
+
         <div class="bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-sm border border-gray-200 dark:border-gray-700">
             <h2 class="text-xl font-bold mb-6 flex items-center gap-2 border-b dark:border-gray-700 pb-4 text-gray-800 dark:text-white">
                 <i class="fa-solid fa-comments text-[#1E3A8A] dark:text-blue-500"></i> مجتمع المنصة
@@ -201,7 +259,7 @@
                 title: "حدود أتربرج (Liquid & Plastic) - قريباً",
                 desc: "انتظرونا قريباً مع الشرح الكامل لاختبارات حد السيولة واللدونة وتصنيف التربة (جاري التجهيز...).",
                 group: "ASTM",
-                fileName: "#" // الهاش معناه رابط فارغ، الكود تحت هيفهم ده ويغير الزرار
+                fileName: "#" 
             },
             {
                 code: "ASTM C94",
@@ -295,7 +353,7 @@
             window.scrollTo({top: 0, behavior: 'smooth'});
         }
 
-        // --- 4. وظائف المنصة الأساسية ---
+        // --- 4. وظائف المنصة والإحصائيات ---
         function incrementStats() {
             const v = document.getElementById('visitorsCount');
             const d = document.getElementById('downloadsCount');
@@ -305,14 +363,65 @@
             localStorage.setItem('vCount', vCount);
             
             v.textContent = vCount.toLocaleString();
-            d.textContent = "3,890";
-            // نحسب الملفات الفعلية فقط (نستثني قريباً)
+            let dCount = parseInt(localStorage.getItem('dCount') || '3890');
+            d.textContent = dCount.toLocaleString();
+            
             const activeFiles = files.filter(f => f.fileName !== "#").length;
             f.textContent = activeFiles;
             
             document.getElementById('count').textContent = files.length;
         }
 
+        function countDownload() {
+            let dCount = parseInt(localStorage.getItem('dCount') || '3890') + 1;
+            localStorage.setItem('dCount', dCount);
+            document.getElementById('downloadsCount').textContent = dCount.toLocaleString();
+        }
+
+        // --- 5. منطق "التعليق قبل التحميل" ---
+        function requestComment(fileName) {
+            document.querySelector('.giscus').scrollIntoView({ 
+                behavior: 'smooth' 
+            });
+
+            const overlay = document.createElement('div');
+            overlay.className = 'fixed inset-0 bg-black/80 z-[100] flex items-center justify-center p-4 backdrop-blur-sm';
+            overlay.innerHTML = `
+                <div class="bg-white dark:bg-gray-800 p-8 rounded-2xl max-w-md text-center shadow-2xl border-2 border-[#1E3A8A] transform scale-100 transition-transform">
+                    <div class="text-5xl mb-4">💬</div>
+                    <h3 class="text-2xl font-bold text-gray-800 dark:text-white mb-2">فضلاً.. اترك تعليقاً</h3>
+                    <p class="text-gray-600 dark:text-gray-300 mb-6 leading-relaxed">
+                        مجهود الترجمة والتنسيق يأخذ وقتاً طويلاً. <br>
+                        دعمك بكلمة طيبة في التعليقات هو ما يشجعنا على الاستمرار.
+                    </p>
+                    <div class="flex flex-col gap-3">
+                        <button onclick="unlockDownload('${fileName}', this)" class="bg-green-600 hover:bg-green-700 text-white py-3 px-6 rounded-xl font-bold transition shadow-lg flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-check"></i> كتبت تعليق، حمل الملف
+                        </button>
+                        <button onclick="this.closest('.fixed').remove()" class="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-white text-sm font-medium">
+                            إلغاء
+                        </button>
+                    </div>
+                </div>
+            `;
+            document.body.appendChild(overlay);
+        }
+
+        function unlockDownload(fileName, btn) {
+            btn.closest('.fixed').remove();
+            countDownload();
+
+            const link = document.createElement('a');
+            link.href = encodeURI(fileName);
+            link.download = fileName;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            
+            alert("شكراً لدعمك يا هندسة! ❤️ جاري التحميل...");
+        }
+
+        // --- عرض الملفات ---
         function displayFiles(list) {
             const container = document.getElementById('filesContainer');
             container.innerHTML = '';
@@ -330,9 +439,8 @@
 
             document.getElementById('count').textContent = list.length;
 
-            list.forEach((file, index) => {
-                const isComingSoon = file.fileName === "#"; // فحص هل الملف "قريباً"
-                const safeLink = isComingSoon ? "javascript:void(0)" : encodeURI(file.fileName);
+            list.forEach((file) => {
+                const isComingSoon = file.fileName === "#";
                 
                 let badge = '';
                 if (isComingSoon) {
@@ -341,7 +449,6 @@
                     badge = '<div class="new-badge">جديد 🔥</div>';
                 }
 
-                // منطق الأزرار الذكي: لو قريباً، نخلي الأزرار معطلة وتتغير النصوص
                 let actionButtons = '';
                 if (isComingSoon) {
                     actionButtons = `
@@ -351,12 +458,12 @@
                     `;
                 } else {
                     actionButtons = `
-                        <a href="${safeLink}" target="_blank" class="btn-outline w-1/2 py-2.5 rounded-xl font-bold flex items-center justify-center gap-2 group border-2">
+                        <a href="${encodeURI(file.fileName)}" target="_blank" class="btn-outline w-1/2 py-2.5 rounded-xl font-bold flex items-center justify-center gap-2 group border-2">
                             <i class="fa-regular fa-eye group-hover:scale-110 transition-transform"></i> معاينة
                         </a>
-                        <a href="${safeLink}" download class="btn-primary w-1/2 py-2.5 rounded-xl font-bold flex items-center justify-center gap-2 shadow-md group">
+                        <button onclick="requestComment('${file.fileName}')" class="btn-primary w-1/2 py-2.5 rounded-xl font-bold flex items-center justify-center gap-2 shadow-md group">
                             <i class="fa-solid fa-download group-hover:animate-bounce"></i> تحميل
-                        </a>
+                        </button>
                     `;
                 }
 
@@ -367,10 +474,8 @@
                             <span class="bg-blue-50 dark:bg-blue-900/30 text-[#1E3A8A] dark:text-blue-300 px-3 py-1 rounded-lg font-bold font-mono text-sm border border-blue-100 dark:border-blue-800 shadow-sm">${file.code}</span>
                             <span class="bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 px-3 py-1 rounded-full text-xs font-bold">${file.group}</span>
                         </div>
-                        
                         <h3 class="text-lg font-bold text-gray-800 dark:text-white mb-3 leading-snug hover:text-[#1E3A8A] dark:hover:text-blue-400 transition-colors">${file.title}</h3>
                         <p class="text-gray-500 dark:text-gray-400 text-sm mb-6 flex-grow leading-relaxed">${file.desc}</p>
-                        
                         <div class="mt-auto pt-5 border-t border-gray-50 dark:border-gray-700 flex gap-3">
                             ${actionButtons}
                         </div>
@@ -385,9 +490,7 @@
             document.querySelectorAll('.cat-btn').forEach(b => {
                 b.classList.remove('active');
                 b.classList.remove('dark:border-blue-500'); 
-                if(b.dataset.category === cat) {
-                    b.classList.add('active');
-                }
+                if(b.dataset.category === cat) b.classList.add('active');
             });
             searchFiles();
         }
@@ -400,6 +503,13 @@
                 return matchSearch && matchCat;
             });
             displayFiles(filtered);
+        }
+
+        // PWA Installation
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', function() {
+                navigator.serviceWorker.register('service-worker.js');
+            });
         }
 
         incrementStats();
