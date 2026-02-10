@@ -257,24 +257,31 @@
           
             {
                 code: "ASTM D1195",
-                title: "اختبار التحميل اللوحي المتكرر (Repetitive Plate Load)",
-                desc: "قريباً.. شرح طريقة إجراء اختبار التحميل المتكرر لتربة المطارات والطرق، وكيفية قياس الهبوط المرتد وتحديد جساءة التربة.",
+                title: "اختبار التحميل اللوحي المتكرر",
+                desc: "شرح كامل لمواصفة تعيين مرونة التربة ومكونات الرصف عبر دورات التحميل المتكرر، أساسي لتصميم المطارات.",
                 group: "ASTM",
-                fileName: "#"
+                fileName: "ASTM D1195.Mo.elkasaby.pdf"
             },
             {
                 code: "ASTM D1196",
-                title: "اختبار التحميل اللوحي غير المتكرر (Nonrepetitive Plate Load)",
-                desc: "قريباً.. الدليل الفني لاختبار التحميل الفردي لتعيين معامل رد فعل التربة (k-value) المستخدم في تصميم البلاطات الخرسانية.",
+                title: "اختبار التحميل اللوحي غير المتكرر",
+                desc: "الدليل العملي لحساب معامل رد فعل تربة التأسيس (k-value) وقدرة التحمل، مستخدم في تصميم الرصف والأساسات.",
                 group: "ASTM",
-                fileName: "#"
+                fileName: "ASTM D1196.Mo.elkasaby.pdf"
             },
             {
                 code: "ASTM D854",
                 title: "الوزن النوعي للتربة (Specific Gravity)",
-                desc: "الشرح التفصيلي الكامل لاختبار الوزن النوعي باستخدام القنينة (Pycnometer)، ومعادلات تصحيح الحرارة، وأهميته في حسابات العلاقات الحجمية والوزنية.",
+                desc: "الشرح التفصيلي الكامل لاختبار الوزن النوعي باستخدام القنينة (Pycnometer)، ومعادلات تصحيح الحرارة، وأهميته في ميكانيكا التربة.",
                 group: "ASTM",
                 fileName: "ASTM D854.Mo.elkasaby.pdf"
+            },
+            {
+                code: "ASTM D4318",
+                title: "حدود أتربرج (Liquid & Plastic)",
+                desc: "الشرح العملي الكامل لاختبارات حد السيولة واللدونة وطريقة حساب دليل اللدونة PI وتصنيف التربة.",
+                group: "ASTM",
+                fileName: "ASTM D4318-mo.elkasaby.pdf"
             },
             {
                 code: "ASTM D4318",
@@ -473,9 +480,10 @@
                 
                let badge = '';
                 if (isComingSoon) {
-                    badge = '<div class="soon-badge">قريباً ⏳</div>'; // هيظهر على D1195 و D1196 لأن الـ fileName بتاعهم #
-                } else if (file.code === "ASTM D854") {
-                    badge = '<div class="new-badge">جديد 🔥</div>'; // هيظهر على مواصفة الوزن النوعي
+                    badge = '<div class="soon-badge">قريباً ⏳</div>'; 
+                } else if (file.code === "ASTM D1195" || file.code === "ASTM D1196") {
+                    // سيظهر شريط "جديد" فقط على مواصفات التحميل اللوحي المضافة حالياً
+                    badge = '<div class="new-badge">جديد 🔥</div>';
                 }
 
                 let actionButtons = '';
