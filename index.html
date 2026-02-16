@@ -458,35 +458,34 @@
             alert("شكراً لدعمك يا هندسة! ❤️ جاري التحميل...");
         }
 
-        // --- عرض الملفات ---
-        function displayFiles(list) {
-            const container = document.getElementById('filesContainer');
-            container.innerHTML = '';
+// --- عرض الملفات ---
+function displayFiles(list) {
+    const container = document.getElementById('filesContainer');
+    container.innerHTML = '';
 
-            if (list.length === 0) {
-                container.innerHTML = `
-                    <div class="col-span-full text-center py-16">
-                        <div class="text-6xl mb-4 opacity-50">🔍</div>
-                        <h3 class="text-xl font-bold text-gray-600 dark:text-gray-400">لا توجد ملفات تطابق بحثك</h3>
-                        <p class="text-gray-400 dark:text-gray-500">جرب البحث برقم الكود فقط أو كلمة عامة</p>
-                    </div>`;
-                document.getElementById('count').textContent = 0;
-                return;
-            }
+    if (list.length === 0) {
+        container.innerHTML = `
+            <div class="col-span-full text-center py-16">
+                <div class="text-6xl mb-4 opacity-50">🔍</div>
+                <h3 class="text-xl font-bold text-gray-600 dark:text-gray-400">لا توجد ملفات تطابق بحثك</h3>
+                <p class="text-gray-400 dark:text-gray-500">جرب البحث برقم الكود فقط أو كلمة عامة</p>
+            </div>`;
+        document.getElementById('count').textContent = 0;
+        return;
+    }
 
-            document.getElementById('count').textContent = list.length;
+    document.getElementById('count').textContent = list.length;
 
-            list.forEach((file) => {
-                const isComingSoon = file.fileName === "#";
-                
-               {
-              code: "ACI 211.1-22",
-             title: "تصميم الخلطات الخرسانية (الإصدار الحديث)",
-             desc: "الشرح التفصيلي لأحدث إصدار من مواصفة ACI لتصميم الخلطات الخرسانية العادية والثقيلة والكتلية مع أمثلة تطبيقية.",
-             group: "ACI",
-            fileName: "31-ACI 211.1-22-Mo.elkasaby.pdf" // تم تحديث اسم الملف وتفعيله
-            },
-
+    list.forEach((file) => {
+        const isComingSoon = file.fileName === "#";
+        
+        let badge = '';
+        if (isComingSoon) {
+            badge = '<div class="soon-badge">قريباً ⏳</div>'; 
+        } else if (file.code === "ACI 211.1-22") {
+            // إضافة شريط "جديد" لمواصفة ACI فقط
+            badge = '<div class="new-badge">جديد 🔥</div>';
+        }
                 let actionButtons = '';
                 if (isComingSoon) {
                     actionButtons = `
