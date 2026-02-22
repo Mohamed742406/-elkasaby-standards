@@ -254,7 +254,14 @@
     <script>
         // --- 1. إدارة الملفات ---
         const files = [
-            
+
+            {
+        code: "ASTM C142",
+        title: "الكتل الطينية والحبيبات القابلة للتفتت",
+        desc: "شرح مفصل لاختبار فحص الكتل الطينية داخل الركام (الرمل والسن) لضمان قوة تماسك الخرسانة وطول عمرها الافتراضي.",
+        group: "ASTM",
+        fileName: "ASTM C142-Mo.elkasaby.pdf"
+           },
           
            {
                code: "ACI 211.1-22",
@@ -479,11 +486,11 @@ function displayFiles(list) {
     list.forEach((file) => {
         const isComingSoon = file.fileName === "#";
         
-        let badge = '';
+let badge = '';
         if (isComingSoon) {
             badge = '<div class="soon-badge">قريباً ⏳</div>'; 
-        } else if (file.code === "ACI 211.1-22") {
-            // إضافة شريط "جديد" لمواصفة ACI فقط
+        } else if (file.code === "ASTM C142") {
+            // دلوقتى اللقب راح للمواصفة الجديدة ASTM C142
             badge = '<div class="new-badge">جديد 🔥</div>';
         }
                 let actionButtons = '';
