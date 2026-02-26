@@ -256,6 +256,14 @@
         const files = [
 
             {
+    code: "ASTM C913",
+    title: "المنشآت الخرسانية مسبقة الصب",
+    desc: "الشرح الكامل لمواصفة ASTM C913 الخاصة بغرف التفتيش والمطابق، مع شرح 'كلاس' التحمل وحسابات ضغط التربة والمياه الجوفية.",
+    group: "ASTM",
+    fileName: "ASTM C913.Mo.elkasaby.pdf"
+           },
+
+            {
         code: "ASTM C142",
         title: "الكتل الطينية والحبيبات القابلة للتفتت",
         desc: "شرح مفصل لاختبار فحص الكتل الطينية داخل الركام (الرمل والسن) لضمان قوة تماسك الخرسانة وطول عمرها الافتراضي.",
@@ -489,8 +497,8 @@ function displayFiles(list) {
 let badge = '';
         if (isComingSoon) {
             badge = '<div class="soon-badge">قريباً ⏳</div>'; 
-        } else if (file.code === "ASTM C142") {
-            // دلوقتى اللقب راح للمواصفة الجديدة ASTM C142
+        } else if (file.code === "ASTM C913") {
+            // شريط جديد يظهر فقط على آخر مواصفة رفعت الآن
             badge = '<div class="new-badge">جديد 🔥</div>';
         }
                 let actionButtons = '';
