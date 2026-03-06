@@ -254,6 +254,13 @@
     <script>
         // --- 1. إدارة الملفات ---
         const files = [
+           {
+    code: "ASTM D1883",
+    title: "اختبار نسبة تحمل كاليفورنيا (CBR)",
+    desc: "الشرح التفصيلي الكامل لاختبار CBR في المختبر، يشمل تجهيز العينات، الغمر بالمياه، وعملية الغرز لحساب قوة تحمل التربة والركام.",
+    group: "ASTM",
+    fileName: "ASTM D1883-Mo.elkasaby.pdf"
+}, 
 
             {
     code: "ASTM C913",
@@ -497,8 +504,8 @@ function displayFiles(list) {
 let badge = '';
         if (isComingSoon) {
             badge = '<div class="soon-badge">قريباً ⏳</div>'; 
-        } else if (file.code === "ASTM C913") {
-            // شريط جديد يظهر فقط على آخر مواصفة رفعت الآن
+        } else if (file.code === "ASTM D1883") {
+            // دلوقتى شريط جديد بقى لمواصفة الـ CBR
             badge = '<div class="new-badge">جديد 🔥</div>';
         }
                 let actionButtons = '';
