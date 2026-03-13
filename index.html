@@ -13,16 +13,16 @@
     <meta property="og:locale" content="ar_SA">
     <script type="application/ld+json">{"@context":"https://schema.org","@type":"EducationalOrganization","name":"منصة القصبى للمواصفات الهندسية","inLanguage":"ar","author":{"@type":"Person","name":"م. محمد القصبي","email":"elkasaby1988@gmail.com"}}</script>
     <meta name="theme-color" content="#1E3A8A">
-
+ 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
     <!-- Font Awesome removed — using emoji icons instead -->
-
+ 
     <style>
         *, *::before, *::after { font-family: 'Cairo', sans-serif; box-sizing: border-box; }
         html { scroll-behavior: smooth; }
         body { background: #f8fafc; color: #1f2937; transition: background .3s, color .3s; }
-
+ 
         /* Dark Mode */
         body.dark { background: #111827 !important; color: #f3f4f6 !important; }
         body.dark .d-card  { background: #1f2937 !important; border-color: #374151 !important; color: #f3f4f6 !important; }
@@ -42,34 +42,36 @@
         body.dark .d-sep { border-color: #374151 !important; }
         body.dark .share-btn-neutral { border-color: #4b5563 !important; color: #d1d5db !important; }
         body.dark .d-action-btn { border-color: #4b5563 !important; color: #d1d5db !important; }
-
+ 
         /* Topic badge colours */
         .topic-خرسانة { background: #dbeafe; color: #1e40af; }
         .topic-تربة   { background: #fef3c7; color: #92400e; }
         .topic-أسفلت  { background: #f3f4f6; color: #374151; }
         .topic-مواسير { background: #d1fae5; color: #065f46; }
         .topic-ركام   { background: #ede9fe; color: #5b21b6; }
+        .topic-أسمنت  { background: #fce7f3; color: #9d174d; }
         body.dark .topic-خرسانة { background: rgba(30,64,175,.3); color: #93c5fd; }
         body.dark .topic-تربة   { background: rgba(146,64,14,.3); color: #fcd34d; }
         body.dark .topic-أسفلت  { background: rgba(55,65,81,.6);  color: #d1d5db; }
         body.dark .topic-مواسير { background: rgba(6,95,70,.3);   color: #6ee7b7; }
         body.dark .topic-ركام   { background: rgba(91,33,182,.3); color: #c4b5fd; }
-
+        body.dark .topic-أسمنت  { background: rgba(157,23,77,.3); color: #f9a8d4; }
+ 
         /* Buttons */
         .btn-primary { background: linear-gradient(135deg,#1E3A8A,#1e40af); color: #fff; border: none; cursor: pointer; transition: .25s; }
         .btn-primary:hover { box-shadow: 0 4px 12px rgba(30,58,138,.35); transform: translateY(-1px); }
         .btn-outline  { border: 2px solid #1E3A8A; color: #1E3A8A; background: transparent; cursor: pointer; transition: .25s; }
         .btn-outline:hover { background: #eff6ff; }
-
+ 
         /* Cards */
         .file-card { position: relative; overflow: hidden; border-radius: 1rem; background: #fff; border: 1px solid #e5e7eb; padding: 1.5rem; cursor: pointer; box-shadow: 0 1px 3px rgba(0,0,0,.07); transition: all .3s ease; }
         .file-card:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(0,0,0,.12); border-color: #93c5fd; }
-
+ 
         /* Badges */
         .new-badge  { position: absolute; top: 12px; left: -32px; background: #ef4444; color: #fff; padding: 4px 40px; font-size: .72rem; font-weight: 700; transform: rotate(-45deg); z-index: 10; }
         .soon-badge { position: absolute; top: 12px; left: -32px; background: #f59e0b; color: #fff; padding: 4px 40px; font-size: .72rem; font-weight: 700; transform: rotate(-45deg); z-index: 10; }
         .hot-badge  { position: absolute; top: 12px; left: -32px; background: #f97316; color: #fff; padding: 4px 40px; font-size: .72rem; font-weight: 700; transform: rotate(-45deg); z-index: 10; }
-
+ 
         /* Category / Topic buttons */
         .cat-btn { background: #fff; border: 2px solid #e5e7eb; border-radius: 1rem; padding: .75rem; text-align: center; cursor: pointer; transition: .25s; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 88px; }
         .cat-btn:hover { border-color: #1E3A8A; }
@@ -77,7 +79,7 @@
         .topic-btn { padding: .5rem 1rem; border-radius: 9999px; border: 2px solid #d1d5db; color: #4b5563; font-weight: 700; font-size: .875rem; cursor: pointer; transition: .25s; background: transparent; }
         .topic-btn:hover { border-color: #1E3A8A; color: #1E3A8A; }
         .topic-btn.active { background: #1E3A8A !important; color: #fff !important; border-color: #1E3A8A !important; }
-
+ 
         /* Grid layouts */
         .g-stats    { display: grid; grid-template-columns: repeat(2,1fr); gap: 1rem; margin: 1.5rem 0; }
         .g-cats     { display: grid; grid-template-columns: repeat(3,1fr); gap: .75rem; }
@@ -86,51 +88,71 @@
         @media(min-width:640px)  { .g-stats { grid-template-columns: repeat(4,1fr); } }
         @media(min-width:768px)  { .g-cats { grid-template-columns: repeat(6,1fr); } .g-files { grid-template-columns: repeat(2,1fr); } .g-services { grid-template-columns: repeat(3,1fr); } }
         @media(min-width:1024px) { .g-files { grid-template-columns: repeat(3,1fr); } }
-
+ 
         /* Misc */
         .line-clamp-2 { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
         .fade-in { animation: fadeIn .45s ease forwards; opacity: 0; }
         @keyframes fadeIn { from{ opacity:0; transform:translateY(8px); } to{ opacity:1; transform:translateY(0); } }
         @keyframes pulse  { 0%,100%{ opacity:1; } 50%{ opacity:.4; } }
         .pulse { animation: pulse 2s infinite; }
-
+ 
         /* Scroll-top */
         #scrollTopBtn { display: none; position: fixed; bottom: 30px; left: 30px; z-index: 99; border: none; background: #1E3A8A; color: #fff; cursor: pointer; width: 50px; height: 50px; border-radius: 50%; font-size: 1.1rem; box-shadow: 0 4px 15px rgba(0,0,0,.3); transition: .3s; align-items: center; justify-content: center; }
         #scrollTopBtn:hover { background: #1e40af; transform: scale(1.1); }
-
+ 
+        /* Modal */
+        .modal-wrap { display:none; position:fixed; inset:0; background:rgba(0,0,0,.55); z-index:1000; align-items:center; justify-content:center; padding:1rem; backdrop-filter:blur(3px); }
+        .modal-wrap.open { display:flex; }
+ 
+        /* New arrival banner */
+        .new-arrival-banner { background: linear-gradient(135deg, #1e3a8a 0%, #7c3aed 100%); color:#fff; padding:1rem 1.25rem; border-radius:1rem; margin-bottom:1.5rem; display:flex; align-items:center; gap:.875rem; position:relative; overflow:hidden; }
+        .new-arrival-banner::before { content:''; position:absolute; inset:0; background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E"); }
+        body.dark .new-arrival-banner { background: linear-gradient(135deg, #1e3a8a 0%, #6d28d9 100%); }
+ 
+        /* Service cards */
+        .svc-card { display:flex; flex-direction:column; padding:1.5rem; border-radius:1rem; text-decoration:none; color:#fff; transition:.3s; }
+        .svc-card:hover { transform:translateY(-4px); box-shadow:0 12px 28px rgba(0,0,0,.2); }
+ 
+        /* Subscribe banner */
+        .subscribe-banner { background:linear-gradient(135deg,#1e3a8a,#1e40af); color:#fff; padding:2.5rem 1.5rem; border-radius:1rem; text-align:center; margin-bottom:2rem; }
+ 
+        /* Search keyboard hint */
+        .kbd-hint { font-size:.65rem; background:rgba(255,255,255,.15); border:1px solid rgba(255,255,255,.3); border-radius:.3rem; padding:.1rem .3rem; font-family:monospace; color:#9ca3af; }
+        body.dark .kbd-hint { background:rgba(255,255,255,.08); }
+ 
         /* Toast */
         #toast { position: fixed; bottom: 80px; right: 20px; z-index: 999; transform: translateX(150%); transition: transform .4s ease; }
         #toast.show { transform: translateX(0); }
-
+ 
         /* Modal */
         .modal-wrap { display: none; position: fixed; inset: 0; background: rgba(0,0,0,.7); z-index: 200; align-items: center; justify-content: center; padding: 1rem; backdrop-filter: blur(4px); }
         .modal-wrap.open { display: flex; }
-
+ 
         /* Service cards */
         .svc-card { border-radius: 1rem; padding: 1.5rem; color: #fff; box-shadow: 0 4px 16px rgba(0,0,0,.2); transition: .3s; text-decoration: none; display: block; }
         .svc-card:hover { transform: translateY(-6px); }
-
+ 
         /* Subscribe */
         .subscribe-banner { background: linear-gradient(135deg,#1E3A8A,#1e40af); border-radius: 1rem; padding: 2rem; text-align: center; color: #fff; margin-bottom: 2rem; }
-
+ 
         /* Header */
         .hdr { background: linear-gradient(to right,#1E3A8A,#172554); color: #fff; padding: 1rem; box-shadow: 0 4px 12px rgba(0,0,0,.2); position: sticky; top: 0; z-index: 50; }
         body.dark .hdr { background: linear-gradient(to right,#1f2937,#030712); }
     </style>
 </head>
-
+ 
 <body>
-
+ 
 <!-- Toast -->
 <div id="toast">
     <div style="background:#16a34a;color:#fff;padding:.75rem 1.25rem;border-radius:.75rem;box-shadow:0 4px 20px rgba(0,0,0,.3);display:flex;align-items:center;gap:.75rem;font-weight:700;">
         ✅<span id="toastMsg">تم!</span>
     </div>
 </div>
-
+ 
 <!-- Scroll Top -->
 <button id="scrollTopBtn" onclick="topFunction()">↑</button>
-
+ 
 <!-- ══ HEADER ══ -->
 <header class="hdr">
     <div style="max-width:1280px;margin:0 auto;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:.75rem;">
@@ -156,17 +178,16 @@
                style="background:#16a34a;color:#fff;padding:.45rem .875rem;border-radius:.5rem;font-size:.875rem;font-weight:700;text-decoration:none;display:flex;align-items:center;gap:.35rem;">
                 📱<span>واتساب</span>
             </a>
-            <a href="mailto:elkasaby1988@gmail.com"
-               style="background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);color:#fff;padding:.45rem .875rem;border-radius:.5rem;font-size:.875rem;font-weight:700;text-decoration:none;display:flex;align-items:center;gap:.35rem;">
+            <a href="/cdn-cgi/l/email-protection#fb9e97909a889a9982cac2c3c3bb9c969a9297d5989496" style="background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);color:#fff;padding:.45rem .875rem;border-radius:.5rem;font-size:.875rem;font-weight:700;text-decoration:none;display:flex;align-items:center;gap:.35rem;">
                 ✉️<span>إيميل</span>
             </a>
         </div>
     </div>
 </header>
-
+ 
 <!-- ══ MAIN ══ -->
 <main style="max-width:1280px;margin:0 auto;padding:1rem;">
-
+ 
     <!-- Stats -->
     <div class="g-stats">
         <div class="d-stat" style="background:#fff;padding:1.25rem;border-radius:1rem;box-shadow:0 1px 3px rgba(0,0,0,.07);border-bottom:4px solid #2563eb;">
@@ -188,7 +209,7 @@
             </div>
         </div>
     </div>
-
+ 
     <!-- Search -->
     <div class="d-card" style="background:#fff;padding:1.25rem;border-radius:1rem;box-shadow:0 1px 3px rgba(0,0,0,.06);border:1px solid #e5e7eb;margin-bottom:1.25rem;">
         <div style="display:flex;flex-wrap:wrap;gap:.75rem;">
@@ -196,7 +217,7 @@
                 <input type="text" id="searchInput" oninput="searchFiles()" class="d-input"
                     style="width:100%;padding:.875rem 3rem .875rem 1rem;border:2px solid #e5e7eb;border-radius:.75rem;font-size:.95rem;outline:none;background:#fff;"
                     onfocus="this.style.borderColor='#1E3A8A'" onblur="this.style.borderColor='#e5e7eb'"
-                    placeholder="🔍 ابحث برقم الكود مثلاً C94 أو بالموضوع...">
+                    placeholder="🔍 ابحث برقم الكود مثلاً C94 أو بالموضوع... ( / )">
                 <span id="searchClear" onclick="clearSearch()"
                     style="display:none;position:absolute;left:1rem;top:50%;transform:translateY(-50%);color:#9ca3af;cursor:pointer;">✕</span>
             </div>
@@ -213,7 +234,18 @@
             <span id="activeFiltersLabel" style="font-size:.72rem;color:#2563eb;font-weight:700;"></span>
         </div>
     </div>
-
+ 
+    <!-- ✨ New Arrival Banner -->
+    <div class="new-arrival-banner">
+        <div style="font-size:2.25rem;flex-shrink:0;">🏭</div>
+        <div style="flex:1;position:relative;z-index:1;">
+            <div style="font-size:.7rem;font-weight:700;opacity:.7;margin-bottom:.15rem;letter-spacing:.05em;">🆕 أحدث إضافة</div>
+            <div style="font-weight:700;font-size:.95rem;margin-bottom:.2rem;">ASTM C150 — مواصفة الأسمنت البورتلاندي</div>
+            <div style="font-size:.78rem;opacity:.8;">شرح عربي شامل: الأنواع العشرة، حسابات Bogue، Mill Test Report</div>
+        </div>
+        <button onclick="filterTopic('أسمنت')" style="background:rgba(255,255,255,.2);border:1px solid rgba(255,255,255,.4);color:#fff;padding:.5rem .875rem;border-radius:.625rem;font-weight:700;font-size:.78rem;cursor:pointer;flex-shrink:0;white-space:nowrap;position:relative;z-index:1;">عرض ←</button>
+    </div>
+ 
     <!-- Category Filter -->
     <div style="display:flex;align-items:center;gap:.5rem;margin-bottom:.875rem;">
         <span style="width:.25rem;height:1.75rem;background:#1E3A8A;border-radius:9999px;display:inline-block;"></span>
@@ -227,7 +259,7 @@
         <div class="cat-btn"       data-category="AASHTO" onclick="filterCategory('AASHTO')"><span style="font-size:1.3rem;margin-bottom:.2rem;">🛣️</span><span style="font-weight:700;font-size:.8rem;">AASHTO</span></div>
         <div class="cat-btn"       data-category="أخرى"   onclick="filterCategory('أخرى')"> <span style="font-size:1.3rem;margin-bottom:.2rem;">🌐</span><span style="font-weight:700;font-size:.8rem;">أخرى</span></div>
     </div>
-
+ 
     <!-- Topic Filter -->
     <div style="display:flex;align-items:center;gap:.5rem;margin-bottom:.875rem;">
         <span style="width:.25rem;height:1.75rem;background:#16a34a;border-radius:9999px;display:inline-block;"></span>
@@ -240,11 +272,12 @@
         <button class="topic-btn"       data-topic="أسفلت"  onclick="filterTopic('أسفلت')">🛣️ أسفلت</button>
         <button class="topic-btn"       data-topic="مواسير" onclick="filterTopic('مواسير')">🔧 مواسير</button>
         <button class="topic-btn"       data-topic="ركام"   onclick="filterTopic('ركام')">🪨 ركام</button>
+        <button class="topic-btn"       data-topic="أسمنت"  onclick="filterTopic('أسمنت')">🏭 أسمنت</button>
     </div>
-
+ 
     <!-- Files -->
     <div id="filesContainer" class="g-files" style="margin-bottom:3rem;"></div>
-
+ 
     <!-- Services -->
     <div style="margin-bottom:2.5rem;">
         <div style="display:flex;align-items:center;gap:.5rem;margin-bottom:1.25rem;">
@@ -272,16 +305,15 @@
             </a>
         </div>
     </div>
-
+ 
     <!-- Subscribe Banner -->
     <div class="subscribe-banner">
         <div style="font-size:2.25rem;margin-bottom:.75rem;">📬</div>
         <h3 style="font-size:1.15rem;font-weight:700;margin-bottom:.5rem;">اشترك في تحديثات المنصة</h3>
         <p style="color:#bfdbfe;font-size:.875rem;margin-bottom:1.5rem;max-width:480px;margin-left:auto;margin-right:auto;">ابعتلنا إيميل أو رسالة واتساب وهنبعتلك إشعار فور إضافة مواصفة جديدة — مجاناً</p>
         <div style="display:flex;flex-wrap:wrap;gap:.75rem;justify-content:center;">
-            <a href="mailto:elkasaby1988@gmail.com?subject=اشتراك في تحديثات المنصة&body=السلام عليكم، أريد الاشتراك في تحديثات منصة القصبى"
-               style="background:#fff;color:#1E3A8A;padding:.75rem 1.25rem;border-radius:.75rem;font-weight:700;font-size:.875rem;text-decoration:none;display:inline-flex;align-items:center;gap:.4rem;">
-                ✉️ elkasaby1988@gmail.com
+            <a href="/cdn-cgi/l/email-protection#f491989f958795968dc5cdccccb49399959d98da979b99cb8781969e919780c92c532c402c5e2c452c532d77d42d752d7ed42c5e2c592c5b2d7e2c5f2c532c5ed42c532d702d712d722c412c5dd2969b908dc92c532d702c472d702c532d71d42c4d2d702d7e2d772d712c78d42c572c452d7e2c5bd42c532d702c532c402c5e2c452c532d77d42d752d7ed42c5e2c592c5b2d7e2c5f2c532c5ed42d712d722c412c5dd42c532d702d762c412c5c2d7d" style="background:#fff;color:#1E3A8A;padding:.75rem 1.25rem;border-radius:.75rem;font-weight:700;font-size:.875rem;text-decoration:none;display:inline-flex;align-items:center;gap:.4rem;">
+                ✉️ <span class="__cf_email__" data-cfemail="fe9b92959f8d9f9c87cfc7c6c6be99939f9792d09d9193">[email&#160;protected]</span>
             </a>
             <a href="https://wa.me/966581295794?text=السلام%20عليكم،%20أريد%20الاشتراك%20في%20تحديثات%20منصة%20القصبى" target="_blank"
                style="background:#16a34a;color:#fff;padding:.75rem 1.25rem;border-radius:.75rem;font-weight:700;font-size:.875rem;text-decoration:none;display:inline-flex;align-items:center;gap:.4rem;">
@@ -289,13 +321,13 @@
             </a>
         </div>
     </div>
-
+ 
     <!-- Community -->
     <div class="d-card" style="background:#fff;padding:2rem;border-radius:1rem;border:1px solid #e5e7eb;">
         <h2 class="d-text d-sep" style="font-size:1rem;font-weight:700;margin-bottom:1.25rem;display:flex;align-items:center;gap:.5rem;padding-bottom:1rem;border-bottom:1px solid #e5e7eb;">
             💬 مجتمع المنصة
         </h2>
-        <script src="https://giscus.app/client.js"
+        <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="https://giscus.app/client.js"
             data-repo="Mohamed742406/-elkasaby-standards"
             data-repo-id="R_kgDONOlQMQ"
             data-category="General"
@@ -312,21 +344,21 @@
         </script>
     </div>
 </main>
-
+ 
 <!-- Footer -->
 <footer style="background:#111827;color:#9ca3af;text-align:center;padding:2rem;margin-top:3rem;border-top:1px solid #1f2937;">
     <div style="max-width:1280px;margin:0 auto;">
         <p style="font-weight:700;font-size:1.1rem;color:#fff;margin-bottom:.5rem;">© 2025 منصة القصبى للمواصفات الهندسية</p>
         <p style="font-size:.875rem;margin-bottom:.5rem;">إعداد وترجمة: م. محمد القصبي</p>
-        <a href="mailto:elkasaby1988@gmail.com" style="color:#60a5fa;font-weight:700;font-size:.875rem;text-decoration:none;display:inline-flex;align-items:center;gap:.35rem;margin-bottom:1rem;">
-            ✉️ elkasaby1988@gmail.com
+        <a href="/cdn-cgi/l/email-protection#82e7eee9e3f1e3e0fbb3bbbabac2e5efe3ebeeace1edef" style="color:#60a5fa;font-weight:700;font-size:.875rem;text-decoration:none;display:inline-flex;align-items:center;gap:.35rem;margin-bottom:1rem;">
+            ✉️ <span class="__cf_email__" data-cfemail="30555c5b51435152490109080870575d51595c1e535f5d">[email&#160;protected]</span>
         </a>
         <p style="font-size:.72rem;color:#4b5563;border-top:1px solid #1f2937;padding-top:1rem;max-width:580px;margin:0 auto;">
             إخلاء مسؤولية: الملفات المترجمة والشروحات هي مجهود شخصي لغرض التيسير التعليمي. المرجع الرسمي والملزم هو نص الكود الأصلي باللغة الإنجليزية.
         </p>
     </div>
 </footer>
-
+ 
 <!-- ══ MODAL: Detail ══ -->
 <div id="detailModal" class="modal-wrap" onclick="if(event.target===this)closeModal('detailModal')">
     <div class="d-modal" style="background:#fff;border-radius:1rem;max-width:32rem;width:100%;padding:2rem;box-shadow:0 20px 60px rgba(0,0,0,.3);position:relative;max-height:90vh;overflow-y:auto;">
@@ -334,7 +366,7 @@
         <div id="modalContent"></div>
     </div>
 </div>
-
+ 
 <!-- ══ MODAL: Comment ══ -->
 <div id="commentModal" class="modal-wrap">
     <div class="d-modal" style="background:#fff;padding:2rem;border-radius:1rem;max-width:26rem;width:100%;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,.3);border:2px solid #1E3A8A;">
@@ -356,7 +388,7 @@
         </div>
     </div>
 </div>
-
+ 
 <!-- ══ MODAL: Share ══ -->
 <div id="shareModal" class="modal-wrap" onclick="if(event.target===this)closeModal('shareModal')">
     <div class="d-modal" style="background:#fff;border-radius:1rem;max-width:22rem;width:100%;padding:1.5rem;box-shadow:0 20px 60px rgba(0,0,0,.3);position:relative;">
@@ -367,10 +399,11 @@
         <div id="shareContent" style="display:flex;flex-direction:column;gap:.75rem;"></div>
     </div>
 </div>
-
+ 
 <!-- ══ JS ══ -->
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 var files = [
+    {code:"ASTM C150",title:"مواصفة الأسمنت البورتلاندي",desc:"الشرح العربي الشامل لمواصفة ASTM C150: أنواع الأسمنت العشرة، المتطلبات الكيميائية والفيزيائية، حسابات Bogue، جداول التركيب، وشهادة Mill Test Report - مع شرح مبسط بالعامية المصرية.",group:"ASTM",topic:"أسمنت",fileName:"ASTM_C150_Mo_elkasaby.pdf",isNew:true},
     {code:"ASTM D1883",title:"اختبار نسبة تحمل كاليفورنيا (CBR)",desc:"الشرح التفصيلي الكامل لاختبار CBR في المختبر، يشمل تجهيز العينات والغمر بالمياه وعملية الغرز لحساب قوة تحمل التربة والركام.",group:"ASTM",topic:"تربة",fileName:"ASTM D1883-Mo.elkasaby.pdf",isNew:true},
     {code:"ASTM C913",title:"المنشآت الخرسانية مسبقة الصب",desc:"الشرح الكامل لمواصفة ASTM C913 الخاصة بغرف التفتيش والمطابق، مع شرح كلاس التحمل وحسابات ضغط التربة والمياه الجوفية.",group:"ASTM",topic:"مواسير",fileName:"ASTM C913.Mo.elkasaby.pdf"},
     {code:"ASTM C142",title:"الكتل الطينية والحبيبات القابلة للتفتت",desc:"شرح مفصل لاختبار فحص الكتل الطينية داخل الركام لضمان قوة تماسك الخرسانة وطول عمرها الافتراضي.",group:"ASTM",topic:"ركام",fileName:"ASTM C142-Mo.elkasaby.pdf"},
@@ -403,13 +436,13 @@ var files = [
     {code:"ASTM C478",title:"غرف التفتيش (Manholes)",desc:"غرف المنهولات الخرسانية والقطع الانتقالية.",group:"ASTM",topic:"مواسير",fileName:"C478M -Mo.elkasaby.pdf"},
     {code:"ASTM C1433",title:"العبارات الصندوقية",desc:"العبارات الخرسانية Box Culverts وأحجامها ومواصفاتها.",group:"ASTM",topic:"مواسير",fileName:"C1433M - 16b .Mo.elkasaby.pdf"}
 ];
-
+ 
 var currentCategory = 'all';
 var currentTopic    = 'all';
 var pendingFile     = null;
 var pendingCode     = null;
 var NS = 'elkasaby-v4';
-
+ 
 // ── Stats ──────────────────────────────
 function loadStats() {
     fetch('https://api.counterapi.dev/v1/' + NS + '/visits/up')
@@ -427,7 +460,7 @@ function loadStats() {
     setEl('filesCount', files.filter(function(f){ return f.fileName !== '#'; }).length);
     setEl('count', files.length);
 }
-
+ 
 function incrementDownload(code) {
     fetch('https://api.counterapi.dev/v1/' + NS + '/downloads/up')
         .then(function(r){ return r.json(); })
@@ -439,7 +472,7 @@ function incrementDownload(code) {
         });
     fetch('https://api.counterapi.dev/v1/' + NS + '/dl-' + code.replace(/\s/g,'_') + '/up').catch(function(){});
 }
-
+ 
 function setEl(id, val){
     var el = document.getElementById(id);
     if(!el) return;
@@ -449,7 +482,7 @@ function setEl(id, val){
         el.textContent = val;
     }
 }
-
+ 
 // ── Theme ──────────────────────────────
 function toggleTheme() {
     var dark = document.body.classList.contains('dark');
@@ -470,14 +503,14 @@ function toggleTheme() {
         if(l) l.textContent = 'نهاري';
     }
 })();
-
+ 
 // ── Scroll ─────────────────────────────
 window.onscroll = function() {
     var b = document.getElementById('scrollTopBtn');
     if(b) b.style.display = (document.documentElement.scrollTop > 300) ? 'flex' : 'none';
 };
 function topFunction() { window.scrollTo({top:0,behavior:'smooth'}); }
-
+ 
 // ── Toast ──────────────────────────────
 function showToast(msg) {
     var t = document.getElementById('toast');
@@ -485,15 +518,15 @@ function showToast(msg) {
     t.classList.add('show');
     setTimeout(function(){ t.classList.remove('show'); }, 3000);
 }
-
+ 
 // ── Display Files ──────────────────────
-var TOPIC_ICONS = {خرسانة:'🏗️', تربة:'🌍', أسفلت:'🛣️', مواسير:'🔧', ركام:'🪨'};
-
+var TOPIC_ICONS = {خرسانة:'🏗️', تربة:'🌍', أسفلت:'🛣️', مواسير:'🔧', ركام:'🪨', أسمنت:'🏭'};
+ 
 function displayFiles(list) {
     var c = document.getElementById('filesContainer');
     c.innerHTML = '';
     setEl('count', list.length);
-
+ 
     if (!list.length) {
         c.style.display = 'block';
         c.innerHTML = '<div style="text-align:center;padding:5rem 1rem;">'
@@ -505,19 +538,19 @@ function displayFiles(list) {
         return;
     }
     c.style.display = '';
-
+ 
     list.forEach(function(file, i) {
         var isSoon = file.fileName === '#';
         var icon   = TOPIC_ICONS[file.topic] || '📄';
         var fn = file.fileName.replace(/\\/g,'\\\\').replace(/'/g,"\\'");
         var fc = file.code.replace(/'/g,"\\'");
         var ft = file.title.replace(/'/g,"\\'");
-
+ 
         var badge = '';
         if (isSoon)          badge = '<div class="soon-badge">قريباً ⏳</div>';
         else if (file.isNew) badge = '<div class="new-badge">جديد 🔥</div>';
         else if (file.isHot) badge = '<div class="hot-badge">الأكثر طلباً ⭐</div>';
-
+ 
         var actions = '';
         if (isSoon) {
             actions = '<div style="text-align:center;padding:.625rem;border-radius:.75rem;font-weight:700;background:#f3f4f6;color:#9ca3af;border:1px solid #e5e7eb;width:100%;">'
@@ -528,18 +561,18 @@ function displayFiles(list) {
                 + 'onclick="event.stopPropagation()" '
                 + 'style="padding:.5rem;border-radius:.75rem;font-weight:700;display:flex;align-items:center;justify-content:center;gap:.25rem;width:33%;font-size:.78rem;text-decoration:none;">'
                 + '👁️<span>معاينة</span></a>'
-
+ 
                 + '<button class="btn-primary" '
                 + 'onclick="openCommentModal(\'' + fn + '\',\'' + fc + '\',\'' + ft + '\');event.stopPropagation();" '
                 + 'style="padding:.5rem;border-radius:.75rem;font-weight:700;display:flex;align-items:center;justify-content:center;gap:.25rem;width:33%;font-size:.78rem;">'
                 + '⬇️<span>تحميل</span></button>'
-
+ 
                 + '<button class="d-action-btn" '
                 + 'onclick="openShare(\'' + fc + '\',\'' + ft + '\',\'' + fn + '\');event.stopPropagation();" '
                 + 'style="padding:.5rem;border-radius:.75rem;font-weight:700;display:flex;align-items:center;justify-content:center;gap:.25rem;width:33%;font-size:.78rem;border:2px solid #d1d5db;background:transparent;color:#4b5563;cursor:pointer;">'
                 + '↗️<span>شارك</span></button>';
         }
-
+ 
         var card = document.createElement('div');
         card.className = 'file-card d-card fade-in';
         card.style.animationDelay = (i * 0.035) + 's';
@@ -553,7 +586,7 @@ function displayFiles(list) {
             + '<h3 class="d-text" style="font-size:.9rem;font-weight:700;margin-bottom:.4rem;line-height:1.45;">' + file.title + '</h3>'
             + '<p class="d-text2 line-clamp-2" style="color:#6b7280;font-size:.82rem;margin-bottom:1.1rem;line-height:1.55;">' + file.desc + '</p>'
             + '<div style="padding-top:.875rem;border-top:1px solid #f3f4f6;display:flex;gap:.4rem;">' + actions + '</div>';
-
+ 
         if (!isSoon) {
             card.addEventListener('click', (function(f){ return function(e){
                 if (!e.target.closest('button') && !e.target.closest('a')) openDetail(f);
@@ -562,26 +595,26 @@ function displayFiles(list) {
         c.appendChild(card);
     });
 }
-
+ 
 // ── Filters ────────────────────────────
 function filterCategory(cat) {
     currentCategory = cat;
     document.querySelectorAll('.cat-btn').forEach(function(b){ b.classList.toggle('active', b.dataset.category === cat); });
     searchFiles();
 }
-
+ 
 function filterTopic(topic) {
     currentTopic = topic;
     document.querySelectorAll('.topic-btn').forEach(function(b){ b.classList.toggle('active', b.dataset.topic === topic); });
     searchFiles();
 }
-
+ 
 function searchFiles() {
     var q    = document.getElementById('searchInput').value.toLowerCase().trim();
     var sort = document.getElementById('sortSelect').value;
     var clr  = document.getElementById('searchClear');
     if(clr) clr.style.display = q ? 'block' : 'none';
-
+ 
     var filtered = files.filter(function(f){
         var ms = !q || (f.title.toLowerCase().includes(q)||f.code.toLowerCase().includes(q)||f.desc.toLowerCase().includes(q)||(f.topic||'').includes(q));
         return ms && (currentCategory==='all'||f.group===currentCategory) && (currentTopic==='all'||f.topic===currentTopic);
@@ -589,7 +622,7 @@ function searchFiles() {
     if (sort==='newest')         filtered.sort(function(a,b){ return (b.isNew?1:0)-(a.isNew?1:0); });
     else if (sort==='mostDownloaded') filtered.sort(function(a,b){ return (b.isHot?1:0)-(a.isHot?1:0); });
     else if (sort==='alpha')     filtered.sort(function(a,b){ return a.code.localeCompare(b.code); });
-
+ 
     var labels = [];
     if (currentCategory!=='all') labels.push(currentCategory);
     if (currentTopic!=='all')    labels.push(currentTopic);
@@ -597,13 +630,13 @@ function searchFiles() {
     setEl('activeFiltersLabel', labels.length ? 'فلاتر: '+labels.join(' · ') : '');
     displayFiles(filtered);
 }
-
+ 
 function clearSearch() {
     document.getElementById('searchInput').value = '';
     document.getElementById('searchClear').style.display = 'none';
     searchFiles();
 }
-
+ 
 function resetFilters() {
     currentCategory = 'all'; currentTopic = 'all';
     document.querySelectorAll('.cat-btn').forEach(function(b){ b.classList.toggle('active', b.dataset.category==='all'); });
@@ -612,7 +645,7 @@ function resetFilters() {
     document.getElementById('sortSelect').value  = 'default';
     searchFiles();
 }
-
+ 
 // ── Detail Modal ───────────────────────
 function openDetail(file) {
     var icon = TOPIC_ICONS[file.topic] || '📄';
@@ -637,7 +670,7 @@ function openDetail(file) {
     );
     document.getElementById('detailModal').classList.add('open');
 }
-
+ 
 // ── Download ───────────────────────────
 function openCommentModal(fileName, code, title) {
     pendingFile = fileName; pendingCode = code;
@@ -646,7 +679,7 @@ function openCommentModal(fileName, code, title) {
     if(el) el.href = 'https://wa.me/966581295794?text=' + encodeURIComponent(wa);
     document.getElementById('commentModal').classList.add('open');
 }
-
+ 
 function proceedDownload() {
     closeModal('commentModal');
     if (!pendingFile) return;
@@ -660,7 +693,7 @@ function proceedDownload() {
     showToast('شكراً لك! ❤️ جاري التحميل...');
     pendingFile = null; pendingCode = null;
 }
-
+ 
 // ── Share ──────────────────────────────
 function openShare(code, title, fileName) {
     var url  = window.location.href.split('?')[0];
@@ -674,19 +707,43 @@ function openShare(code, title, fileName) {
         + '<p style="text-align:center;font-size:.72rem;color:#9ca3af;margin-top:.25rem;">مشاركة: <strong>' + title + '</strong></p>';
     document.getElementById('shareModal').classList.add('open');
 }
-
+ 
 function copyLink(url) {
-    navigator.clipboard.writeText(url)
-        .then(function(){ closeModal('shareModal'); showToast('تم نسخ الرابط! 🔗'); })
-        .catch(function(){ showToast('انسخ الرابط يدوياً'); });
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(url).then(function(){ showToast('✅ تم نسخ الرابط!'); });
+    } else {
+        var ta = document.createElement('textarea');
+        ta.value = url; ta.style.position='fixed'; ta.style.opacity='0';
+        document.body.appendChild(ta); ta.select();
+        try { document.execCommand('copy'); showToast('✅ تم نسخ الرابط!'); } catch(e){}
+        document.body.removeChild(ta);
+    }
 }
-
-// ── Modals ─────────────────────────────
-function closeModal(id) { var m = document.getElementById(id); if(m) m.classList.remove('open'); }
-
+ 
+function closeModal(id) {
+    var el = document.getElementById(id);
+    if (el) el.classList.remove('open');
+}
+ 
+// ── Keyboard shortcuts ─────────────────
+document.addEventListener('keydown', function(e){
+    if (e.key === 'Escape') {
+        closeModal('detailModal'); closeModal('commentModal'); closeModal('shareModal');
+    }
+    if (e.key === '/' && document.activeElement.tagName !== 'INPUT') {
+        e.preventDefault();
+        var s = document.getElementById('searchInput');
+        if (s) { s.focus(); s.select(); }
+    }
+});
+ 
 // ── Init ───────────────────────────────
-loadStats();
-displayFiles(files);
+window.onload = function() {
+    // Fix أسمنت icon in TOPIC_ICONS
+    TOPIC_ICONS['أسمنت'] = '🏭';
+    loadStats();
+    searchFiles();
+};
 </script>
 </body>
 </html>
