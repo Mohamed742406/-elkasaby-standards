@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>منصة القصبى للمواصفات الهندسية | ASTM ACI شرح عربي</title>
-    <meta name="description" content="منصة متخصصة في شرح وترجمة المواصفات الهندسية العالمية ASTM وACI وBS وAASHTO للمهندسين والفنيين العرب.">
-    <meta name="keywords" content="شرح مواصفات ASTM, ACI عربي, خرسانة جاهزة, ASTM C94, هندسة مدنية, ضبط جودة, اختبارات مواد, منصة القصبي">
+    <title>منصة القصبى للمواصفات الهندسية | ASTM ACI شرح عربي — C494 جديد</title>
+    <meta name="description" content="منصة متخصصة في شرح وترجمة المواصفات الهندسية العالمية ASTM وACI وBS وAASHTO للمهندسين والفنيين العرب. جديد: ASTM C494 الإضافات الكيميائية للخرسانة.">
+    <meta name="keywords" content="شرح مواصفات ASTM, ACI عربي, خرسانة جاهزة, ASTM C94, ASTM C494, إضافات خرسانة, هندسة مدنية, ضبط جودة, اختبارات مواد, منصة القصبي">
     <meta name="author" content="م. محمد القصبي">
     <meta property="og:title" content="منصة القصبى للمواصفات الهندسية">
     <meta property="og:description" content="شرح وترجمة المواصفات الهندسية ASTM وACI للمهندسين العرب - تحميل مجاني">
@@ -62,6 +62,8 @@
         body.dark .topic-مواسير { background: rgba(6,95,70,.3);   color: #6ee7b7; }
         body.dark .topic-ركام   { background: rgba(91,33,182,.3); color: #c4b5fd; }
         body.dark .topic-أسمنت  { background: rgba(157,23,77,.3); color: #f9a8d4; }
+        .topic-إضافات { background: #ecfdf5; color: #065f46; }
+        body.dark .topic-إضافات { background: rgba(6,95,70,.3); color: #6ee7b7; }
  
         /* Buttons */
         .btn-primary { background: linear-gradient(135deg,#1E3A8A,#1e40af); color: #fff; border: none; cursor: pointer; transition: .25s; }
@@ -122,6 +124,13 @@
         /* Subscribe banner */
         .subscribe-banner { background:linear-gradient(135deg,#1e3a8a,#1e40af); color:#fff; padding:2.5rem 1.5rem; border-radius:1rem; text-align:center; margin-bottom:2rem; }
  
+        /* إضافات topic */
+        .topic-إضافات { background: #ecfdf5; color: #065f46; }
+        body.dark .topic-إضافات { background: rgba(6,95,70,.3); color: #6ee7b7; }
+
+        /* Search highlight */
+        .search-hl { background: #fef08a; color: #713f12; border-radius: 2px; padding: 0 1px; }
+
         /* Search keyboard hint */
         .kbd-hint { font-size:.65rem; background:rgba(255,255,255,.15); border:1px solid rgba(255,255,255,.3); border-radius:.3rem; padding:.1rem .3rem; font-family:monospace; color:#9ca3af; }
         body.dark .kbd-hint { background:rgba(255,255,255,.08); }
@@ -184,7 +193,7 @@
                style="background:#16a34a;color:#fff;padding:.45rem .875rem;border-radius:.5rem;font-size:.875rem;font-weight:700;text-decoration:none;display:flex;align-items:center;gap:.35rem;">
                 📱<span>واتساب</span>
             </a>
-            <a href="mailto:elkasaby1988@gmail.com" style="background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);color:#fff;padding:.45rem .875rem;border-radius:.5rem;font-size:.875rem;font-weight:700;text-decoration:none;display:flex;align-items:center;gap:.35rem;">
+            <a href="/cdn-cgi/l/email-protection#fc9990979d8f9d9e85cdc5c4c4bc9b919d9590d29f9391" style="background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);color:#fff;padding:.45rem .875rem;border-radius:.5rem;font-size:.875rem;font-weight:700;text-decoration:none;display:flex;align-items:center;gap:.35rem;">
                 ✉️<span>إيميل</span>
             </a>
         </div>
@@ -205,7 +214,7 @@
             <div id="downloadsCount" style="font-size:1.5rem;font-weight:900;color:#1E3A8A;">—</div>
         </div>
         <div class="d-stat" style="background:#fff;padding:1.25rem;border-radius:1rem;box-shadow:0 1px 3px rgba(0,0,0,.07);border-bottom:4px solid #9333ea;">
-            <div style="font-size:.68rem;font-weight:700;color:#9ca3af;text-transform:uppercase;letter-spacing:.08em;margin-bottom:.25rem;">📄 الملفات</div>
+            <div style="font-size:.68rem;font-weight:700;color:#9ca3af;text-transform:uppercase;letter-spacing:.08em;margin-bottom:.25rem;">📄 الملفات <span style="background:#dc2626;color:#fff;border-radius:9999px;font-size:.6rem;padding:0 .3rem;margin-right:.2rem;">+1</span></div>
             <div id="filesCount" style="font-size:1.5rem;font-weight:900;color:#1E3A8A;">0</div>
         </div>
         <div class="d-stat" style="background:#fff;padding:1.25rem;border-radius:1rem;box-shadow:0 1px 3px rgba(0,0,0,.07);border-bottom:4px solid #f97316;">
@@ -223,7 +232,7 @@
                 <input type="text" id="searchInput" oninput="searchFiles()" class="d-input"
                     style="width:100%;padding:.875rem 3rem .875rem 1rem;border:2px solid #e5e7eb;border-radius:.75rem;font-size:.95rem;outline:none;background:#fff;"
                     onfocus="this.style.borderColor='#1E3A8A'" onblur="this.style.borderColor='#e5e7eb'"
-                    placeholder="🔍 ابحث برقم الكود مثلاً C94 أو بالموضوع... ( / )">
+                    placeholder="🔍 ابحث برقم الكود مثلاً C94 أو C494 أو بالموضوع... ( / )">
                 <span id="searchClear" onclick="clearSearch()"
                     style="display:none;position:absolute;left:1rem;top:50%;transform:translateY(-50%);color:#9ca3af;cursor:pointer;">✕</span>
             </div>
@@ -243,13 +252,13 @@
  
     <!-- ✨ New Arrival Banner -->
     <div class="new-arrival-banner">
-        <div style="font-size:2.25rem;flex-shrink:0;">🏭</div>
+        <div style="font-size:2.25rem;flex-shrink:0;">🧪</div>
         <div style="flex:1;position:relative;z-index:1;">
             <div style="font-size:.7rem;font-weight:700;opacity:.7;margin-bottom:.15rem;letter-spacing:.05em;">🆕 أحدث إضافة</div>
-            <div style="font-weight:700;font-size:.95rem;margin-bottom:.2rem;">ASTM C150 — مواصفة الأسمنت البورتلاندي</div>
-            <div style="font-size:.78rem;opacity:.8;">شرح عربي شامل: الأنواع العشرة، حسابات Bogue، Mill Test Report</div>
+            <div style="font-weight:700;font-size:.95rem;margin-bottom:.2rem;">ASTM C494 — الإضافات الكيميائية للخرسانة</div>
+            <div style="font-size:.78rem;opacity:.8;">الأنواع A-S كاملة، جدول المتطلبات، أمثلة عملية من الموقع</div>
         </div>
-        <button onclick="filterTopic('أسمنت')" style="background:rgba(255,255,255,.2);border:1px solid rgba(255,255,255,.4);color:#fff;padding:.5rem .875rem;border-radius:.625rem;font-weight:700;font-size:.78rem;cursor:pointer;flex-shrink:0;white-space:nowrap;position:relative;z-index:1;">عرض ←</button>
+        <button onclick="openDetail(files[0])" style="background:rgba(255,255,255,.2);border:1px solid rgba(255,255,255,.4);color:#fff;padding:.5rem .875rem;border-radius:.625rem;font-weight:700;font-size:.78rem;cursor:pointer;flex-shrink:0;white-space:nowrap;position:relative;z-index:1;">عرض ←</button>
     </div>
  
     <!-- Category Filter -->
@@ -279,6 +288,7 @@
         <button class="topic-btn"       data-topic="مواسير" onclick="filterTopic('مواسير')">🔧 مواسير</button>
         <button class="topic-btn"       data-topic="ركام"   onclick="filterTopic('ركام')">🪨 ركام</button>
         <button class="topic-btn"       data-topic="أسمنت"  onclick="filterTopic('أسمنت')">🏭 أسمنت</button>
+        <button class="topic-btn"       data-topic="إضافات" onclick="filterTopic('إضافات')">🧪 إضافات</button>
     </div>
  
     <!-- Files -->
@@ -318,7 +328,7 @@
         <h3 style="font-size:1.15rem;font-weight:700;margin-bottom:.5rem;">اشترك في تحديثات المنصة</h3>
         <p style="color:#bfdbfe;font-size:.875rem;margin-bottom:1.5rem;max-width:480px;margin-left:auto;margin-right:auto;">ابعتلنا إيميل أو رسالة واتساب وهنبعتلك إشعار فور إضافة مواصفة جديدة — مجاناً</p>
         <div style="display:flex;flex-wrap:wrap;gap:.75rem;justify-content:center;">
-            <a href="mailto:elkasaby1988@gmail.com" style="color:#60a5fa;font-weight:700;font-size:.875rem;text-decoration:none;display:inline-flex;align-items:center;gap:.35rem;margin-bottom:1rem;">✉️ elkasaby1988@gmail.com</a>
+            <a href="/cdn-cgi/l/email-protection#e2878e89839183809bd3dbdadaa2858f838b8ecc818d8f" style="color:#60a5fa;font-weight:700;font-size:.875rem;text-decoration:none;display:inline-flex;align-items:center;gap:.35rem;margin-bottom:1rem;">✉️ <span class="__cf_email__" data-cfemail="46232a2d273527243f777f7e7e06212b272f2a6825292b">[email&#160;protected]</span></a>
             <a href="https://wa.me/966581295794?text=السلام%20عليكم،%20أريد%20الاشتراك%20في%20تحديثات%20منصة%20القصبى" target="_blank"
                style="background:#16a34a;color:#fff;padding:.75rem 1.25rem;border-radius:.75rem;font-weight:700;font-size:.875rem;text-decoration:none;display:inline-flex;align-items:center;gap:.4rem;">
                 📱 واتساب
@@ -331,7 +341,7 @@
         <h2 class="d-text d-sep" style="font-size:1rem;font-weight:700;margin-bottom:1.25rem;display:flex;align-items:center;gap:.5rem;padding-bottom:1rem;border-bottom:1px solid #e5e7eb;">
             💬 مجتمع المنصة
         </h2>
-        <script src="https://giscus.app/client.js"
+        <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="https://giscus.app/client.js"
             data-repo="Mohamed742406/-elkasaby-standards"
             data-repo-id="R_kgDONOlQMQ"
             data-category="General"
@@ -354,7 +364,7 @@
     <div style="max-width:1280px;margin:0 auto;">
         <p style="font-weight:700;font-size:1.1rem;color:#fff;margin-bottom:.5rem;">© 2025 منصة القصبى للمواصفات الهندسية</p>
         <p style="font-size:.875rem;margin-bottom:.5rem;">إعداد وترجمة: م. محمد القصبي</p>
-        <a href="mailto:elkasaby1988@gmail.com" style="color:#60a5fa;font-weight:700;font-size:.875rem;text-decoration:none;display:inline-flex;align-items:center;gap:.35rem;margin-bottom:1rem;">✉️ elkasaby1988@gmail.com</a>
+        <a href="/cdn-cgi/l/email-protection#70151c1b11031112094149484830171d11191c5e131f1d" style="color:#60a5fa;font-weight:700;font-size:.875rem;text-decoration:none;display:inline-flex;align-items:center;gap:.35rem;margin-bottom:1rem;">✉️ <span class="__cf_email__" data-cfemail="bbded7d0dac8dad9c28a828383fbdcd6dad2d795d8d4d6">[email&#160;protected]</span></a>
         <p style="font-size:.72rem;color:#4b5563;border-top:1px solid #1f2937;padding-top:1rem;max-width:580px;margin:0 auto;">
             إخلاء مسؤولية: الملفات المترجمة والشروحات هي مجهود شخصي لغرض التيسير التعليمي. المرجع الرسمي والملزم هو نص الكود الأصلي باللغة الإنجليزية.
         </p>
@@ -403,9 +413,10 @@
 </div>
  
 <!-- ══ JS ══ -->
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 var files = [
-    {code:"ASTM C150",title:"مواصفة الأسمنت البورتلاندي",desc:"الشرح العربي الشامل لمواصفة ASTM C150: أنواع الأسمنت العشرة، المتطلبات الكيميائية والفيزيائية، حسابات Bogue، جداول التركيب، وشهادة Mill Test Report - مع شرح مبسط بالعامية المصرية.",group:"ASTM",topic:"أسمنت",fileName:"ASTM C150.Mo.elkasaby.pdf",isNew:true},
+    {code:"ASTM C494",title:"الإضافات الكيميائية للخرسانة",desc:"الشرح العربي الشامل لمواصفة ASTM C494/C494M-17: الأنواع الثمانية A-S، آلية عمل كل إضافة، جدول المتطلبات الفيزيائية، بروتوكول البصمة والكشف، وأمثلة عملية من الموقع .",group:"ASTM",topic:"إضافات",fileName:"ASTM C494.Mo.elkasaby.pdf",isNew:true,pages:78},
+    {code:"ASTM C150",title:"مواصفة الأسمنت البورتلاندي",desc:"الشرح العربي الشامل لمواصفة ASTM C150: أنواع الأسمنت العشرة، المتطلبات الكيميائية والفيزيائية، حسابات Bogue، جداول التركيب، وشهادة Mill Test Report - مع شرح مبسط بالعامية المصرية.",group:"ASTM",topic:"أسمنت",fileName:"ASTM C150.Mo.elkasaby.pdf"},
     {code:"ASTM D1883",title:"اختبار نسبة تحمل كاليفورنيا (CBR)",desc:"الشرح التفصيلي الكامل لاختبار CBR في المختبر، يشمل تجهيز العينات والغمر بالمياه وعملية الغرز لحساب قوة تحمل التربة والركام.",group:"ASTM",topic:"تربة",fileName:"ASTM D1883-Mo.elkasaby.pdf",isNew:true},
     {code:"ASTM C913",title:"المنشآت الخرسانية مسبقة الصب",desc:"الشرح الكامل لمواصفة ASTM C913 الخاصة بغرف التفتيش والمطابق، مع شرح كلاس التحمل وحسابات ضغط التربة والمياه الجوفية.",group:"ASTM",topic:"مواسير",fileName:"ASTM C913.Mo.elkasaby.pdf"},
     {code:"ASTM C142",title:"الكتل الطينية والحبيبات القابلة للتفتت",desc:"شرح مفصل لاختبار فحص الكتل الطينية داخل الركام لضمان قوة تماسك الخرسانة وطول عمرها الافتراضي.",group:"ASTM",topic:"ركام",fileName:"ASTM C142-Mo.elkasaby.pdf"},
@@ -443,7 +454,7 @@ var currentCategory = 'all';
 var currentTopic    = 'all';
 var pendingFile     = null;
 var pendingCode     = null;
-var NS = 'elkasaby-v4';
+var NS = 'elkasaby-v5';
  
 // ── Stats ──────────────────────────────
 function loadStats() {
@@ -518,7 +529,7 @@ function showToast(msg) {
 }
  
 // ── Display Files ──────────────────────
-var TOPIC_ICONS = {خرسانة:'🏗️', تربة:'🌍', أسفلت:'🛣️', مواسير:'🔧', ركام:'🪨', أسمنت:'🏭'};
+var TOPIC_ICONS = {خرسانة:'🏗️', تربة:'🌍', أسفلت:'🛣️', مواسير:'🔧', ركام:'🪨', أسمنت:'🏭', إضافات:'🧪'};
  
 function displayFiles(list) {
     var c = document.getElementById('filesContainer');
@@ -576,7 +587,7 @@ function displayFiles(list) {
         card.style.animationDelay = (i * 0.035) + 's';
         card.innerHTML = badge
             + '<div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:.75rem;">'
-            + '<span style="background:#eff6ff;color:#1E3A8A;padding:.2rem .6rem;border-radius:.5rem;font-weight:700;font-family:monospace;font-size:.78rem;border:1px solid #bfdbfe;">' + file.code + '</span>'
+            + '<span title="اضغط لنسخ رقم الكود" onclick="navigator.clipboard&&navigator.clipboard.writeText(\'' + file.code.replace(/\'/g,"\\'\"+'\"'+"\\'") + '\');showToast(\"✅ تم نسخ رقم الكود!\");event.stopPropagation();" style="background:#eff6ff;color:#1E3A8A;padding:.2rem .6rem;border-radius:.5rem;font-weight:700;font-family:monospace;font-size:.78rem;border:1px solid #bfdbfe;cursor:copy;">' + file.code + '</span>'
             + '<div style="display:flex;gap:.35rem;align-items:center;">'
             + '<span class="topic-' + file.topic + '" style="padding:.15rem .5rem;border-radius:9999px;font-size:.7rem;font-weight:700;">' + icon + ' ' + file.topic + '</span>'
             + '<span style="background:#f3f4f6;color:#6b7280;padding:.15rem .5rem;border-radius:9999px;font-size:.7rem;font-weight:700;">' + file.group + '</span>'
@@ -650,9 +661,10 @@ function openDetail(file) {
     var fn = file.fileName.replace(/\\/g,'\\\\').replace(/'/g,"\\'");
     var fc = file.code.replace(/'/g,"\\'");
     var ft = file.title.replace(/'/g,"\\'");
+    var pagesHtml = file.pages ? '<span style="background:#f0fdf4;color:#166534;padding:.2rem .6rem;border-radius:.5rem;font-size:.72rem;font-weight:700;border:1px solid #bbf7d0;margin-right:.5rem;">📄 ' + file.pages + ' صفحة</span>' : '';
     setEl('modalContent',
         '<div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:1rem;">'
-        + '<span style="background:#eff6ff;color:#1E3A8A;padding:.25rem .75rem;border-radius:.5rem;font-weight:700;font-family:monospace;font-size:.85rem;">' + file.code + '</span>'
+        + '<div style="display:flex;align-items:center;flex-wrap:wrap;gap:.35rem;">' + pagesHtml + '<span style="background:#eff6ff;color:#1E3A8A;padding:.25rem .75rem;border-radius:.5rem;font-weight:700;font-family:monospace;font-size:.85rem;">' + file.code + '</span></div>'
         + '<span class="topic-' + file.topic + '" style="padding:.2rem .75rem;border-radius:9999px;font-size:.78rem;font-weight:700;">' + icon + ' ' + file.topic + '</span></div>'
         + '<h3 class="d-text" style="font-size:1.15rem;font-weight:700;margin-bottom:.875rem;">' + file.title + '</h3>'
         + '<p class="d-text2" style="color:#6b7280;line-height:1.7;margin-bottom:1.25rem;">' + file.desc + '</p>'
@@ -726,22 +738,4 @@ function closeModal(id) {
 // ── Keyboard shortcuts ─────────────────
 document.addEventListener('keydown', function(e){
     if (e.key === 'Escape') {
-        closeModal('detailModal'); closeModal('commentModal'); closeModal('shareModal');
-    }
-    if (e.key === '/' && document.activeElement.tagName !== 'INPUT') {
-        e.preventDefault();
-        var s = document.getElementById('searchInput');
-        if (s) { s.focus(); s.select(); }
-    }
-});
- 
-// ── Init ───────────────────────────────
-window.onload = function() {
-    // Fix أسمنت icon in TOPIC_ICONS
-    TOPIC_ICONS['أسمنت'] = '🏭';
-    loadStats();
-    searchFiles();
-};
-</script>
-</body>
-</html>
+        closeModal('detailModal'); closeModal(
