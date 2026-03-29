@@ -580,8 +580,8 @@
           <div class="db-card dbc-blue">
             <div class="db-m-icon dbc-blue">📄</div>
             <div class="db-m-label">إجمالي الملفات</div>
-            <div class="db-m-value">33</div>
-            <div class="db-m-sub up">↑ +1 هذا الشهر</div>
+            <div class="db-m-value">34</div>
+            <div class="db-m-sub up">↑ +2 هذا الشهر</div>
             <svg class="db-spark" viewBox="0 0 100 40" preserveAspectRatio="none">
               <polyline points="0,34 15,30 30,26 45,20 55,22 65,16 75,12 85,9 100,6" fill="none" stroke="#3b82f6" stroke-width="1.5"/>
               <polygon points="0,40 0,34 15,30 30,26 45,20 55,22 65,16 75,12 85,9 100,6 100,40" fill="#3b82f6" opacity=".08"/>
@@ -1544,10 +1544,10 @@ function initDashboard() {
     // ── Data ────────────────────────────────
     var isDark = document.body.classList.contains('dark');
     var tLabels  = ['تربة','خرسانة','ركام','أسفلت','مواسير','إضافات','أسمنت'];
-    var tCounts  = [9,7,7,5,4,1,1];
+    var tCounts  = [10,7,7,5,4,1,1];
     var tColors  = ['#10b981','#3b82f6','#f59e0b','#6b7280','#8b5cf6','#06b6d4','#f43f5e'];
     var gLabels  = ['ASTM','ACI','أخرى'];
-    var gCounts  = [29,3,1];
+    var gCounts  = [30,3,1];
     var gColors  = ['#3b82f6','#10b981','#6b7280'];
     var gridColor = isDark ? 'rgba(255,255,255,.06)' : 'rgba(0,0,0,.05)';
     var tickColor = isDark ? '#475569' : '#9ca3af';
@@ -1570,7 +1570,8 @@ function initDashboard() {
             options:{
                 responsive:true,maintainAspectRatio:false,cutout:'68%',
                 plugins:{legend:{display:false},tooltip:{
-                    callbacks:{label:c=>' '+c.label+': '+c.raw+' ('+Math.round(c.raw/33*100)+'%)'},
+                    // تم التعديل القسمة على 34 بدلاً من 33
+                    callbacks:{label:c=>' '+c.label+': '+c.raw+' ('+Math.round(c.raw/34*100)+'%)'},
                     backgroundColor:ttBg,titleColor:'#f1f5f9',bodyColor:'#94a3b8',
                     borderColor:'rgba(255,255,255,.1)',borderWidth:1,padding:10,rtl:true
                 }}
@@ -1607,7 +1608,7 @@ function initDashboard() {
             options:{
                 responsive:true,maintainAspectRatio:false,
                 plugins:{legend:{display:false},tooltip:{
-                    callbacks:{label:c=>' '+c.raw+' ملف ('+Math.round(c.raw/33*100)+'%)'},
+                    callbacks:{label:c=>' '+c.raw+' ملف ('+Math.round(c.raw/34*100)+'%)'},
                     backgroundColor:ttBg,titleColor:'#f1f5f9',bodyColor:'#94a3b8',
                     borderColor:'rgba(255,255,255,.1)',borderWidth:1,padding:10,rtl:true
                 }},
@@ -1621,6 +1622,7 @@ function initDashboard() {
 
     // ── Files table ─────────────────────────
     var topFiles=[
+        {code:'ASTM D2419',name:'المكافئ الرملي (SE)',  topic:'تربة',   pages:66, hot:true}, // أضفتها هنا كـ Hot
         {code:'ASTM C494',name:'الإضافات الكيميائية',topic:'إضافات',pages:78,hot:true},
         {code:'ASTM C94', name:'الخرسانة الجاهزة',   topic:'خرسانة', pages:45,hot:true},
         {code:'ASTM C150',name:'الأسمنت البورتلاندي', topic:'أسمنت',  pages:62,hot:true},
@@ -1659,7 +1661,7 @@ function initDashboard() {
     // ── Coverage bars ────────────────────────
     var cbEl=document.getElementById('dbCovBars');
     var covData=[
-        {name:'ASTM',count:29,color:'#3b82f6'},
+        {name:'ASTM',count:30,color:'#3b82f6'},
         {name:'ACI', count:3, color:'#10b981'},
         {name:'AASHTO',count:0,color:'#f59e0b'},
         {name:'BS / أخرى',count:1,color:'#6b7280'},
@@ -1669,7 +1671,7 @@ function initDashboard() {
             cbEl.innerHTML+='<div style="display:flex;align-items:center;gap:.75rem;margin-bottom:.8rem;">'
                 +'<div style="font-size:.78rem;min-width:64px;text-align:right;color:'+(isDark?'#94a3b8':'#6b7280')+';font-weight:500">'+c.name+'</div>'
                 +'<div style="flex:1;height:5px;background:'+(isDark?'rgba(255,255,255,.07)':'#f3f4f6')+';border-radius:3px;overflow:hidden">'
-                +'<div style="width:'+Math.round(c.count/33*100)+'%;height:100%;background:'+c.color+';border-radius:3px"></div></div>'
+                +'<div style="width:'+Math.round(c.count/34*100)+'%;height:100%;background:'+c.color+';border-radius:3px"></div></div>'
                 +'<div style="font-size:.72rem;font-weight:700;min-width:18px;color:'+(isDark?'#475569':'#9ca3af')+'">'+c.count+'</div>'
                 +'</div>';
         });
