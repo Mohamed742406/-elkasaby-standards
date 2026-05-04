@@ -1380,6 +1380,50 @@ function resetFilters() {
     document.getElementById('sortSelect').value  = 'default';
     searchFiles();
 }
+const INFOGRAPHICS = {
+  "ASTM C31": "./images/ASTM-C31.jpg",
+  "ASTM C172": "./images/ASTM-C172.jpg",
+  "ASTM D1140": "./images/ASTM-D1140.jpg",
+  "ASTM D3282": "./images/ASTM-D3282.jpg",
+  "ASTM C29": "./images/ASTM-C29.jpg",
+  "BS EN 12390-8": "./images/BS-EN-12390-8.jpg",
+  "ASTM C511": "./images/ASTM-C511.jpg",
+  "ASTM C117": "./images/ASTM-C117.jpg",
+  "ASTM D2419": "./images/ASTM-D2419.jpg",
+  "ASTM C494": "./images/ASTM-C494.jpg",
+  "ASTM C150": "./images/ASTM-C150.jpg",
+  "ASTM D1883": "./images/ASTM-D1883.jpg",
+  "ASTM C913": "./images/ASTM-C913.jpg",
+  "ASTM C142": "./images/ASTM-C142.jpg",
+  "ACI 211.1-22": "./images/ACI-211.1-22.jpg",
+  "ASTM D1195": "./images/ASTM-D1195.jpg",
+  "ASTM D1196": "./images/ASTM-D1196.jpg",
+  "ASTM D854": "./images/ASTM-D854.jpg",
+  "ASTM D4318": "./images/ASTM-D4318.jpg",
+  "ASTM C94": "./images/ASTM-C94.jpg",
+  "DIN 18134": "./images/DIN-18134.jpg",
+  "ACI 211": "./images/ACI-211.jpg",
+  "ASTM D6913": "./images/ASTM-D6913.jpg",
+  "ASTM C42": "./images/ASTM-C42.jpg",
+  "ACI 214R-11": "./images/ACI-214R-11.jpg",
+  "ASTM C39": "./images/ASTM-C39.jpg",
+  "ASTM C131": "./images/ASTM-C131.jpg",
+  "ASTM C136": "./images/ASTM-C136.jpg",
+  "ASTM C127": "./images/ASTM-C127.jpg",
+  "ASTM C702": "./images/ASTM-C702.jpg",
+  "ASTM D75": "./images/ASTM-D75.jpg",
+  "ASTM C1231": "./images/ASTM-C1231.jpg",
+  "ASTM D1557": "./images/ASTM-D1557.jpg",
+  "ASTM D2216": "./images/ASTM-D2216.jpg",
+  "ASTM D2041": "./images/ASTM-D2041.jpg",
+  "ASTM D6926": "./images/ASTM-D6926.jpg",
+  "ASTM D2172": "./images/ASTM-D2172.jpg",
+  "ASTM D2726": "./images/ASTM-D2726.jpg",
+  "ASTM D5444": "./images/ASTM-D5444.jpg",
+  "ASTM C76": "./images/ASTM-C76.jpg",
+  "ASTM C478": "./images/ASTM-C478.jpg",
+  "ASTM C1433": "./images/ASTM-C1433.jpg"
+};
  
 // ── Detail Modal ───────────────────────
 function openDetail(file) {
@@ -1388,10 +1432,13 @@ function openDetail(file) {
     var fn = file.fileName.replace(/\\/g,'\\\\').replace(/'/g,"\\'");
     var fc = file.code.replace(/'/g,"\\'");
     var ft = file.title.replace(/'/g,"\\'");
+    var img = INFOGRAPHICS[file.code];
+
     setEl('modalContent',
         '<div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:1rem;">'
         + '<span style="background:#eff6ff;color:#1E3A8A;padding:.25rem .75rem;border-radius:.5rem;font-weight:700;font-family:monospace;font-size:.85rem;">' + file.code + '</span>'
         + '<span class="topic-' + file.topic + '" style="padding:.2rem .75rem;border-radius:9999px;font-size:.78rem;font-weight:700;">' + icon + ' ' + file.topic + '</span></div>'
+        + (img ? '<div style="margin-bottom:1rem;border-radius:.875rem;overflow:hidden;border:1px solid #e5e7eb;box-shadow:0 2px 8px rgba(0,0,0,.07)"><img src="' + img + '" alt="' + file.code + '" style="width:100%;display:block;"></div>' : '')
         + '<h3 class="d-text" style="font-size:1.15rem;font-weight:700;margin-bottom:.875rem;">' + file.title + '</h3>'
         + '<p class="d-text2" style="color:#6b7280;line-height:1.7;margin-bottom:1.25rem;">' + file.desc + '</p>'
         + '<div style="display:grid;grid-template-columns:1fr 1fr;gap:.625rem;margin-bottom:1.25rem;">'
@@ -1400,15 +1447,15 @@ function openDetail(file) {
         + '</div>'
         + '<div style="display:flex;flex-direction:column;gap:.625rem;">'
         + '<a href="' + encodeURI(file.fileName) + '" target="_blank" rel="noopener" class="btn-outline" style="padding:.875rem;border-radius:.75rem;font-weight:700;display:flex;align-items:center;justify-content:center;gap:.4rem;text-decoration:none;border:2px solid #1E3A8A;color:#1E3A8A;">👁️ معاينة الملف</a>'
-        + '<button class="btn-primary" onclick="openCommentModal(\'' + fn + '\',\'' + fc + '\',\'' + ft + '\');closeModal(\'detailModal\');" style="padding:.875rem;border-radius:.75rem;font-weight:700;display:flex;align-items:center;justify-content:center;gap:.4rem;">⬇️ تحميل الملف</button>'
-        + '<button class="d-action-btn" onclick="openShare(\'' + fc + '\',\'' + ft + '\',\'' + fn + '\');closeModal(\'detailModal\');" style="padding:.875rem;border-radius:.75rem;font-weight:700;display:flex;align-items:center;justify-content:center;gap:.4rem;border:2px solid #d1d5db;background:transparent;color:#4b5563;cursor:pointer;">↗️ مشاركة</button>'
+        + '<button class="btn-primary" onclick="openCommentModal(\\'' + fn + '\\',\\'' + fc + '\\',\\'' + ft + '\\');closeModal(\\'detailModal\\');" style="padding:.875rem;border-radius:.75rem;font-weight:700;display:flex;align-items:center;justify-content:center;gap:.4rem;">⬇️ تحميل الملف</button>'
+        + '<button class="d-action-btn" onclick="openShare(\\'' + fc + '\\',\\'' + ft + '\\',\\'' + fn + '\\');closeModal(\\'detailModal\\');" style="padding:.875rem;border-radius:.75rem;font-weight:700;display:flex;align-items:center;justify-content:center;gap:.4rem;border:2px solid #d1d5db;background:transparent;color:#4b5563;cursor:pointer;">↗️ مشاركة</button>'
         + '</div>'
         + (file.dateAdded ? '<div style="margin-top:.5rem;font-size:.72rem;color:#9ca3af">📅 أضيف: ' + formatDate(file.dateAdded) + '</div>' : '')
         + '<div style="margin-top:.75rem;display:flex;align-items:center;gap:.5rem">'
-        + '<button class="copy-link-btn" onclick="copyDeepLink(\'' + fc + '\');event.stopPropagation()">🔗 نسخ رابط المواصفة</button>'
+        + '<button class="copy-link-btn" onclick="copyDeepLink(\\'' + fc + '\\');event.stopPropagation()">🔗 نسخ رابط المواصفة</button>'
         + '</div>'
         + (getRelated(file.code).length ? '<div class="related-strip"><div class="related-title">مواصفات ذات صلة</div><div class="related-chips">'
-        + getRelated(file.code).map(function(c){ return '<div class="related-chip" onclick="openDetailByCode(\'' + c + '\');closeModal(\'detailModal\')">'+c+'</div>'; }).join('')
+        + getRelated(file.code).map(function(c){ return '<div class="related-chip" onclick="openDetailByCode(\\'' + c + '\\');closeModal(\\'detailModal\\')">'+c+'</div>'; }).join('')
         + '</div></div>' : '')
     );
     document.getElementById('detailModal').classList.add('open');
