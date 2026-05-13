@@ -1006,7 +1006,7 @@ img { transition: transform .35s ease; }
 <!-- ══ JS ══ -->
 <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 var files = [
-    {code:"ASTM C270",title:"مواصفة المونة للبناء بالأحجار والطوب والبلوك",desc:"مواصفة ASTM C270 هي دستور المونة في المباني — بتقولك تختار Type M أو S أو N أو O إزاي حسب الحيطة شايلة ولا لأ، وفوق الأرض ولا تحتها. وتظبط القوة واحتباس المياه والهواء عشان تتجنب الشروخ والتزهير والتفكك. فيها جدول 2 للنسب الجاهزة تشتغل بيه في الموقع على طول، وجدول 1 لو هتعمل اختبار معمل. ودليل X1.1 يقولك تستخدم أنهي نوع في الأساسات والدروة والبلاط والأرصفة، وتخلص من مشاكل الرطوبة والتزهير من أولها.",group:"ASTM",topic:"خرسانة",fileName:"ASTM C270.Mo.elkasaby.pdf",isNew:true,pages:107,dateAdded:"2026-05"},
+    {code:"ASTM C270",title:"مواصفة المونة للبناء بالأحجار والطوب والبلوك",desc:"مواصفة ASTM C270 هي دستور المونة في المباني — بتقولك تختار Type M أو S أو N أو O إزاي حسب الحيطة شايلة ولا لأ، وفوق الأرض ولا تحتها. وتظبط القوة واحتباس المياه والهواء عشان تتجنب الشروخ والتزهير والتفكك. فيها جدول 2 للنسب الجاهزة تشتغل بيه في الموقع على طول، وجدول 1 لو هتعمل اختبار معمل. ودليل X1.1 يقولك تستخدم أنهي نوع في الأساسات والدروة والبلاط والأرصفة، وتخلص من مشاكل الرطوبة والتزهير من أولها.",group:"ASTM",topic:"خرسانة",fileName:"ASTM C270.Mo.elkasaby.pdf",isNew:true,badgeText:"بناءً على طلب الزملاء 🤝",pages:107,dateAdded:"2026-05"},
     {code:"ASTM D6927",title:"اختبار مارشال للخلطات الأسفلتية (Marshall Stability)",desc:"مواصفة ASTM D6927 هي العمود الفقري لجودة الطرق؛ لأنها بتكشف لنا أسرار خلطة الأسفلت عن طريق اختبار مارشال. من خلال قيم (الثبات والانسياب)، بنقدر نضمن إن الطريق مش بس هيتحمل أوزان النقل التقيل من غير ما يحصل له 'تخدد أو تشوه لدن لكن كمان هيكون فيه النفس أو المرونة الكافية اللي تحميه من التشرخ. هي ببساطة 'تأمين شامل' إن الأسفلت هيعيش ويواجه أصعب ظروف التشغيل بكفاءة عالية.",group:"ASTM",topic:"أسفلت",fileName:"ASTM D6927.Mo.elkasaby.pdf",pages:29,dateAdded:"2026-05"},
     {code:"ASTM C31",title:"صنع وحفظ عينات الخرسانة في الموقع",desc:"مواصفة ASTM C31 هي دستور صناعة العينات لأنها بتعلمنا إزاي نصب ونعالج أسطوانات وكمرات الخرسانة في الموقع صح. المواصفة دي هي الضمان إن العينة اللي هتتكسر في المعمل بتمثل فعلاً قوة الخرسانة اللي في المنشأ، وبتحمينا من نتايج المقاومة 'الوهمية' اللي ممكن تطلع بسبب سوء التخزين أو النقل. هي ببساطة الأمانة في تجهيز العينة عشان ناخد قرار هندسي سليم بخصوص فك الشدات أو قبول الخلطة.",group:"ASTM",topic:"خرسانة",fileName:"ASTM C31.Mo.elkasaby.pdf",pages:36,dateAdded:"2026-05"},
     {code:"ASTM C172",title:"أخذ عينات الخرسانة الطازجة",desc:"مواصفة ASTM C172 هي 'حارس البوابة' لأي اختبار خرسانة؛ لأنها بتعلمنا إزاي ناخد عينة ممثلة وشاملة من قلب الخلاطة أو العربية. الاختبارات اللي بنعملها زي الهبوط أو المقاومة مش هيكون ليها أي قيمة لو العينة نفسها اتأخدت غلط. المواصفة دي بتضمن إن العينة اللي هتروح المعمل بتعبر فعلاً عن جودة الخرسانة اللي اتصبت في الموقع، مع الالتزام التام بتوقيتات الاختبار عشان نحافظ على خواص الخرسانة الطازة.",group:"ASTM",topic:"خرسانة",fileName:"ASTM C172.Mo.elkasaby.pdf",pages:18,dateAdded:"2026-05"},
@@ -1329,9 +1329,10 @@ function displayFiles(list, q) {
  
         var badge = '';
         var pagesBadge = file.pages ? '<div style="position:absolute;bottom:.6rem;left:.75rem;background:#f0fdf4;color:#166534;border:1px solid #bbf7d0;border-radius:.4rem;font-size:.65rem;font-weight:700;padding:.1rem .4rem;z-index:5;">📄 ' + file.pages + '</div>' : '';
-        if (isSoon)          badge = '<div class="soon-badge">قريباً ⏳</div>';
-        else if (file.isNew) badge = '<div class="new-badge">جديد 🔥</div>';
-        else if (file.isHot) badge = '<div class="hot-badge">الأكثر طلباً ⭐</div>';
+        if (isSoon)               badge = '<div class="soon-badge">قريباً ⏳</div>';
+        else if (file.badgeText) badge = '<div class="new-badge">' + file.badgeText + '</div>';
+        else if (file.isNew)     badge = '<div class="new-badge">جديد 🔥</div>';
+        else if (file.isHot)     badge = '<div class="hot-badge">الأكثر طلباً ⭐</div>';
         badge += pagesBadge;
  
         var actions = '';
@@ -1445,7 +1446,6 @@ function resetFilters() {
  
 // ── Detail Modal ───────────────────────
 var INFOGRAPHICS = {
-    'ASTM C270': 'images/astm_c270_infographic_v3.png',
     'ASTM D6927': 'images/astm_D6927_infographic.png',
     'ASTM C76': 'images/astm_c76_infographic.png',
     'ASTM C478': 'images/astm_c478_infographic.png',
