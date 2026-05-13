@@ -580,6 +580,27 @@ img { transition: transform .35s ease; }
         .copy-link-btn:hover { background:#f9fafb; color:#1E3A8A; border-color:#bfdbfe; }
         body.dark .copy-link-btn { border-color:#374151; color:#6b7280; }
         body.dark .copy-link-btn:hover { background:#1f2937; color:#93c5fd; }
+
+        /* ══ RATING ══ */
+        .star-row { display:flex; align-items:center; gap:.25rem; margin-top:.4rem; }
+        .star-btn { background:none; border:none; cursor:pointer; font-size:.95rem; padding:0; line-height:1; transition:transform .15s; color:#d1d5db; }
+        .star-btn:hover, .star-btn.active { color:#f59e0b; }
+        .star-btn:hover { transform:scale(1.25); }
+        .star-btn.active { transform:scale(1.05); }
+        .rating-count { font-size:.65rem; color:#9ca3af; margin-right:.25rem; font-weight:600; }
+        .rating-avg   { font-size:.7rem; font-weight:700; color:#f59e0b; }
+        body.dark .star-btn           { color:#4b5563; }
+        body.dark .star-btn:hover,
+        body.dark .star-btn.active    { color:#fbbf24; }
+        /* modal rating */
+        .modal-star-btn { background:none; border:none; cursor:pointer; font-size:1.6rem; padding:0 .1rem; line-height:1; transition:transform .15s; color:#d1d5db; }
+        .modal-star-btn:hover, .modal-star-btn.active { color:#f59e0b; }
+        .modal-star-btn:hover { transform:scale(1.2); }
+        body.dark .modal-star-btn           { color:#4b5563; }
+        body.dark .modal-star-btn:hover,
+        body.dark .modal-star-btn.active    { color:#fbbf24; }
+        .modal-rating-info { font-size:.78rem; color:#6b7280; margin-top:.35rem; }
+        body.dark .modal-rating-info { color:#9ca3af; }
     </style>
 </head>
  
@@ -1381,6 +1402,8 @@ function displayFiles(list, q) {
             }; })(file));
         }
         c.appendChild(card);
+        // inject rating stars
+        injectCardRating(file.code, card);
     });
 }
  
@@ -1519,8 +1542,14 @@ function openDetail(file) {
         + (getRelated(file.code).length ? '<div class="related-strip"><div class="related-title">مواصفات ذات صلة</div><div class="related-chips">'
         + getRelated(file.code).map(function(c){ return '<div class="related-chip" onclick="openDetailByCode(\'' + c + '\');closeModal(\'detailModal\')">'+c+'</div>'; }).join('')
         + '</div></div>' : '')
+        + '<div id="modal-rating-block-' + file.code.replace(/\s/g,'_') + '"></div>'
     );
     document.getElementById('detailModal').classList.add('open');
+    // Inject rating after modal opens
+    fetchRating(file.code, function(data) {
+        var el = document.getElementById('modal-rating-block-' + file.code.replace(/\s/g,'_'));
+        if (el) el.innerHTML = buildModalStars(file.code, data);
+    });
 }
  
 // ── Download ───────────────────────────
@@ -1577,6 +1606,18 @@ function closeModal(id) {
     if (el) el.classList.remove('open');
 }
  
+// ── Star click delegation ───────────────
+document.addEventListener('click', function(e) {
+    var btn = e.target.closest('.star-btn, .modal-star-btn');
+    if (!btn) return;
+    e.stopPropagation();
+    var row  = btn.closest('[data-code]');
+    if (!row) return;
+    var code  = row.getAttribute('data-code');
+    var stars = parseInt(btn.getAttribute('data-stars'), 10);
+    if (code && stars) submitRatingUI(code, stars);
+});
+
 // ── Keyboard shortcuts ─────────────────
 document.addEventListener('keydown', function(e){
     // F = toggle favorites view
@@ -1592,6 +1633,165 @@ document.addEventListener('keydown', function(e){
         if (s && document.activeElement !== s) { e.preventDefault(); s.focus(); }
     }
 });
+
+// ══ RATING SYSTEM ══════════════════════
+var NS_RATE = 'elkasaby-rate-v1';
+var ratingsCache = {};   // code -> {sum, count}
+var myRatings    = JSON.parse(localStorage.getItem('elkasaby-myratings') || '{}');
+
+function rateKey(code) {
+    return NS_RATE + '-' + code.replace(/\s/g,'_');
+}
+
+// Fetch rating (sum + count) from counterapi
+function fetchRating(code, cb) {
+    if (ratingsCache[code]) { cb(ratingsCache[code]); return; }
+    var key = rateKey(code);
+    Promise.all([
+        fetch('https://api.counterapi.dev/v1/' + key + '-sum').then(function(r){ return r.json(); }).catch(function(){ return {count:0}; }),
+        fetch('https://api.counterapi.dev/v1/' + key + '-cnt').then(function(r){ return r.json(); }).catch(function(){ return {count:0}; })
+    ]).then(function(res) {
+        var data = { sum: res[0].count || 0, count: res[1].count || 0 };
+        ratingsCache[code] = data;
+        cb(data);
+    });
+}
+
+// Submit a star rating (1-5)
+function submitRating(code, stars) {
+    var prev = myRatings[code] || 0;
+    myRatings[code] = stars;
+    localStorage.setItem('elkasaby-myratings', JSON.stringify(myRatings));
+    ratingsCache[code] = null; // invalidate cache
+
+    var key = rateKey(code);
+    var net = stars - prev; // delta to add to sum
+    var cntDelta = prev === 0 ? 1 : 0; // only increment count on first rating
+
+    // Add net delta to sum using multiple up calls (or skip if 0)
+    var sumPromises = [];
+    if (net > 0) {
+        for (var i = 0; i < net; i++) sumPromises.push(fetch('https://api.counterapi.dev/v1/' + key + '-sum/up').catch(function(){}));
+    }
+    // For count — only on first-ever rating
+    if (cntDelta > 0) {
+        fetch('https://api.counterapi.dev/v1/' + key + '-cnt/up').catch(function(){});
+    }
+
+    Promise.all(sumPromises).then(function() {
+        fetchRating(code, function(data) {
+            refreshRatingUI(code, data);
+        });
+    });
+    showToast('تم تقييمك بـ ' + '⭐'.repeat(stars) + ' شكراً!');
+}
+
+// Build stars HTML for card (small)
+function buildCardStars(code, data) {
+    var avg   = data.count > 0 ? (data.sum / data.count) : 0;
+    var my    = myRatings[code] || 0;
+    var safeId = code.replace(/\s/g,'_');
+    var html  = '<div class="star-row" id="stars-card-' + safeId + '" data-code="' + code.replace(/"/g,'&quot;') + '">';
+    for (var i = 1; i <= 5; i++) {
+        var active = (my > 0 && i <= my) ? ' active' : '';
+        html += '<button class="star-btn' + active + '" data-stars="' + i + '" title="' + i + ' نجوم">★</button>';
+    }
+    if (data.count > 0) {
+        html += '<span class="rating-avg">' + avg.toFixed(1) + '</span>';
+        html += '<span class="rating-count">(' + data.count + ')</span>';
+    } else {
+        html += '<span class="rating-count" style="font-size:.65rem;color:#9ca3af;">قيّم</span>';
+    }
+    html += '</div>';
+    return html;
+}
+
+// Build stars HTML for modal (large)
+function buildModalStars(code, data) {
+    var avg  = data.count > 0 ? (data.sum / data.count) : 0;
+    var my   = myRatings[code] || 0;
+    var safeId = code.replace(/\s/g,'_');
+    var html = '<div style="margin:1rem 0 .25rem;border-top:1px solid #f3f4f6;padding-top:1rem;" class="d-sep">';
+    html += '<div style="font-size:.72rem;font-weight:700;color:#9ca3af;margin-bottom:.5rem;letter-spacing:.05em;">⭐ تقييمك للمواصفة</div>';
+    html += '<div class="modal-star-row" id="stars-modal-' + safeId + '" data-code="' + code.replace(/"/g,'&quot;') + '">';
+    for (var i = 1; i <= 5; i++) {
+        var active = (my > 0 && i <= my) ? ' active' : '';
+        html += '<button class="modal-star-btn' + active + '" data-stars="' + i + '" title="' + i + ' نجوم">★</button>';
+    }
+    html += '</div>';
+    if (data.count > 0) {
+        html += '<div class="modal-rating-info">متوسط التقييم: <strong style="color:#f59e0b;">' + avg.toFixed(1) + ' / 5</strong> — من <strong>' + data.count + '</strong> مقيّم</div>';
+    } else {
+        html += '<div class="modal-rating-info">كن أول من يقيّم هذه المواصفة!</div>';
+    }
+    html += '</div>';
+    return html;
+}
+
+function submitRatingUI(code, stars) {
+    submitRating(code, stars);
+    // Immediately update UI optimistically
+    var data = { sum: stars, count: 1 };
+    if (ratingsCache[code]) {
+        var prev = myRatings[code] || 0;
+        data.sum   = Math.max(0, ratingsCache[code].sum + stars - prev);
+        data.count = ratingsCache[code].count + (prev === 0 ? 1 : 0);
+    }
+    refreshRatingUI(code, data);
+}
+
+function refreshRatingUI(code, data) {
+    var safeId = code.replace(/\s/g,'_');
+    var avg    = data.count > 0 ? (data.sum / data.count) : 0;
+    var my     = myRatings[code] || 0;
+
+    // Update card stars
+    var cardEl = document.getElementById('stars-card-' + safeId);
+    if (cardEl) {
+        var btns = cardEl.querySelectorAll('.star-btn');
+        btns.forEach(function(b, idx) {
+            b.classList.toggle('active', my > 0 && idx < my);
+        });
+        var avgEl = cardEl.querySelector('.rating-avg');
+        var cntEl = cardEl.querySelector('.rating-count');
+        if (data.count > 0) {
+            if (!avgEl) {
+                var sp1 = document.createElement('span'); sp1.className='rating-avg';
+                var sp2 = document.createElement('span'); sp2.className='rating-count';
+                cardEl.appendChild(sp1); cardEl.appendChild(sp2);
+                avgEl = sp1; cntEl = sp2;
+            }
+            avgEl.textContent = avg.toFixed(1);
+            cntEl.textContent = '(' + data.count + ')';
+        }
+    }
+
+    // Update modal stars
+    var modalEl = document.getElementById('stars-modal-' + safeId);
+    if (modalEl) {
+        var mbtns = modalEl.querySelectorAll('.modal-star-btn');
+        mbtns.forEach(function(b, idx) {
+            b.classList.toggle('active', my > 0 && idx < my);
+        });
+        var infoEl = modalEl.nextElementSibling;
+        if (infoEl && infoEl.classList.contains('modal-rating-info') && data.count > 0) {
+            infoEl.innerHTML = 'متوسط التقييم: <strong style="color:#f59e0b;">' + avg.toFixed(1) + ' / 5</strong> — من <strong>' + data.count + '</strong> مقيّم';
+        }
+    }
+}
+
+// Inject rating row into card after render
+function injectCardRating(code, cardEl) {
+    var safeId = code.replace(/\s/g,'_');
+    if (document.getElementById('stars-card-' + safeId)) return;
+    fetchRating(code, function(data) {
+        var div = document.createElement('div');
+        div.innerHTML = buildCardStars(code, data);
+        var actions = cardEl.querySelector('[style*="border-top:1px solid #f3f4f6;display:flex"]');
+        if (actions) cardEl.insertBefore(div.firstChild, actions);
+        else cardEl.appendChild(div.firstChild);
+    });
+}
 
 // ── Init ───────────────────────────────
 window.addEventListener('DOMContentLoaded', function(){
