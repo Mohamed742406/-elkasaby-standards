@@ -869,6 +869,23 @@ img { transition: transform .35s ease; }
         <button onclick="showFavorites()" style="margin-right:auto;background:#1E3A8A;color:#fff;border:none;padding:.25rem .75rem;border-radius:.5rem;font-size:.78rem;font-weight:700;cursor:pointer;">عرضها</button>
         <button onclick="showAll()" style="background:none;border:none;color:#6b7280;font-size:.78rem;cursor:pointer;">الكل</button>
     </div>
+    <!-- ══ NEW ARRIVAL BANNER: ASTM C128 ══ -->
+    <div class="new-arrival-banner reveal" style="margin-bottom:1.5rem;">
+        <div style="font-size:2.2rem;flex-shrink:0;">🪨</div>
+        <div style="flex:1;position:relative;z-index:1;">
+            <div style="font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#bfdbfe;margin-bottom:.2rem;">🌟 مواصفة جديدة مهمة جداً</div>
+            <div style="font-size:1rem;font-weight:800;margin-bottom:.35rem;">ASTM C128 — الوزن النوعي والامتصاص للركام الناعم</div>
+            <div style="font-size:.82rem;color:#e0e7ff;line-height:1.6;margin-bottom:.625rem;">عمرك سألت نفسك ليه الخلطة بتفصل مية أو بتطلع ناشفة رغم إن أوزانك مظبوطة؟ السر كله مستخبي في الرمال! اكتشف حالة SSD، احسب 3 أنواع وزن نوعي، وخليك تكشف الأرقام المضروبة في ثواني.</div>
+            <div style="display:flex;flex-wrap:wrap;gap:.5rem;align-items:center;">
+                <span style="background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.25);border-radius:.4rem;padding:.15rem .5rem;font-size:.72rem;font-weight:700;">📄 40 صفحة</span>
+                <span style="background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.25);border-radius:.4rem;padding:.15rem .5rem;font-size:.72rem;font-weight:700;">🪨 ركام ناعم</span>
+                <span style="background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.25);border-radius:.4rem;padding:.15rem .5rem;font-size:.72rem;font-weight:700;">🔬 SSD + OD + Apparent</span>
+                <button onclick="filterTopic('ركام');document.getElementById('searchInput').value='C128';searchFiles();" style="background:#fff;color:#1e3a8a;border:none;padding:.3rem .875rem;border-radius:.5rem;font-size:.8rem;font-weight:800;cursor:pointer;margin-right:auto;">عرض المواصفة ←</button>
+            </div>
+        </div>
+    </div>
+    <!-- ══ END NEW ARRIVAL BANNER ══ -->
+
     <div id="filesContainer" class="g-files" style="margin-bottom:3rem;"></div>
  
     <!-- Services -->
@@ -1027,6 +1044,7 @@ img { transition: transform .35s ease; }
 <!-- ══ JS ══ -->
 <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 var files = [
+    {code:"ASTM C128",title:"الوزن النوعي والامتصاص للركام الناعم (الرمال)",desc:"عمرك سألت نفسك ليه الخلطة بتفصل مية أو بتطلع ناشفة رغم إن أوزانك مظبوطة؟ السر كله مستخبي في الرمال! مواصفة ASTM C128 هي دليلك العملي لفك الشفرة والتغلب على الصدمة الشاملة من الركام الناعم أدق من 4.75 مم. في الملف ده هنبسطك لغز الوصول لحالة SSD باختبار المخروط والمدك خطوة بخطوة، وهنديك الخلاصة اللي تكتشف بيها أي أرقام مضروبة في تقارير المعمل في ثواني. المواصفة بتشرحلك ازاي تحسب 3 أنواع وزن نوعي: جاف في الفرن OD، ومشبع سطح جاف SSD، وظاهري — وكمان نسبة الامتصاص اللي بتفرق معاك في تصميم الخلطة. وبتديك حدود الدقة اللي تقبل بيها الفرق بين نتيجتين في معملك أو بينك وبين معمل تاني، وتأكد عليك تغسل العينة على منخل 75 ميكرون عشان البودرة ميضربوش الأرقام. حمل المواصفة دلوقتي واعرف ازاي تظبط نسبة المية للأسمنت W/C على الشعرة — متخليش حبة رمل تخدعك وتخرب مشروعك!",group:"ASTM",topic:"ركام",fileName:"ASTM C128.Mo.elkasaby.pdf",isNew:true,badgeText:"مهمة جداً 🌟",pages:40,dateAdded:"2026-05"},
     {code:"ASTM C270",title:"مواصفة المونة للبناء بالأحجار والطوب والبلوك",desc:"مواصفة ASTM C270 هي دستور المونة في المباني — بتقولك تختار Type M أو S أو N أو O إزاي حسب الحيطة شايلة ولا لأ، وفوق الأرض ولا تحتها. وتظبط القوة واحتباس المياه والهواء عشان تتجنب الشروخ والتزهير والتفكك. فيها جدول 2 للنسب الجاهزة تشتغل بيه في الموقع على طول، وجدول 1 لو هتعمل اختبار معمل. ودليل X1.1 يقولك تستخدم أنهي نوع في الأساسات والدروة والبلاط والأرصفة، وتخلص من مشاكل الرطوبة والتزهير من أولها.",group:"ASTM",topic:"خرسانة",fileName:"ASTM C270.Mo.elkasaby.pdf",isNew:true,badgeText:"بناءً على طلب الزملاء 🤝",pages:107,dateAdded:"2026-05"},
     {code:"ASTM D6927",title:"اختبار مارشال للخلطات الأسفلتية (Marshall Stability)",desc:"مواصفة ASTM D6927 هي العمود الفقري لجودة الطرق؛ لأنها بتكشف لنا أسرار خلطة الأسفلت عن طريق اختبار مارشال. من خلال قيم (الثبات والانسياب)، بنقدر نضمن إن الطريق مش بس هيتحمل أوزان النقل التقيل من غير ما يحصل له 'تخدد أو تشوه لدن لكن كمان هيكون فيه النفس أو المرونة الكافية اللي تحميه من التشرخ. هي ببساطة 'تأمين شامل' إن الأسفلت هيعيش ويواجه أصعب ظروف التشغيل بكفاءة عالية.",group:"ASTM",topic:"أسفلت",fileName:"ASTM D6927.Mo.elkasaby.pdf",pages:29,dateAdded:"2026-05"},
     {code:"ASTM C31",title:"صنع وحفظ عينات الخرسانة في الموقع",desc:"مواصفة ASTM C31 هي دستور صناعة العينات لأنها بتعلمنا إزاي نصب ونعالج أسطوانات وكمرات الخرسانة في الموقع صح. المواصفة دي هي الضمان إن العينة اللي هتتكسر في المعمل بتمثل فعلاً قوة الخرسانة اللي في المنشأ، وبتحمينا من نتايج المقاومة 'الوهمية' اللي ممكن تطلع بسبب سوء التخزين أو النقل. هي ببساطة الأمانة في تجهيز العينة عشان ناخد قرار هندسي سليم بخصوص فك الشدات أو قبول الخلطة.",group:"ASTM",topic:"خرسانة",fileName:"ASTM C31.Mo.elkasaby.pdf",pages:36,dateAdded:"2026-05"},
@@ -1201,7 +1219,8 @@ var RELATED = {
     'ASTM C117':  ['ASTM C136','ASTM C142','ASTM D2419'],
     'ASTM D2419': ['ASTM C117','ASTM C136','ASTM C127'],
     'ASTM C136':  ['ASTM C117','ASTM D2419','ASTM C127'],
-    'ASTM C127':  ['ASTM C136','ASTM C702','ASTM C142'],
+    'ASTM C128':  ['ASTM C127','ASTM C136','ASTM C117'],
+    'ASTM C127':  ['ASTM C128','ASTM C136','ASTM C702'],
     'ASTM D2041': ['ASTM D6926','ASTM D2726','ASTM D2172'],
     'ASTM D6926': ['ASTM D2041','ASTM D2726','ASTM D2172'],
 };
@@ -1469,6 +1488,7 @@ function resetFilters() {
  
 // ── Detail Modal ───────────────────────
 var INFOGRAPHICS = {
+    'ASTM C128': 'images/astm_c128_infographic',
     'ASTM C270': 'images/astm_c270_infographic_v3.png',
     'ASTM D6927': 'images/astm_D6927_infographic.png',
     'ASTM C76': 'images/astm_c76_infographic.png',
