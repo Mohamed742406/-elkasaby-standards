@@ -14,28 +14,34 @@
   "categories": ["education", "productivity"],
   "icons": [
     {
-      "src": "https://mohamed742406.github.io/-elkasaby-standards/images/elkasaby_logo.png",
+      "src": "images/elkasaby_logo.png",
       "type": "image/png",
       "sizes": "1024x1024",
       "purpose": "any maskable"
     },
     {
-      "src": "https://mohamed742406.github.io/-elkasaby-standards/images/elkasaby_logo.png",
+      "src": "images/icon-512.png",
       "type": "image/png",
       "sizes": "512x512",
       "purpose": "any maskable"
     },
     {
-      "src": "https://mohamed742406.github.io/-elkasaby-standards/images/elkasaby_logo.png",
+      "src": "images/icon-192.png",
       "type": "image/png",
       "sizes": "192x192",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "images/icon-64.png",
+      "type": "image/png",
+      "sizes": "64x64",
       "purpose": "any maskable"
     }
   ],
   "screenshots": [
     {
-      "src": "https://mohamed742406.github.io/-elkasaby-standards/images/elkasaby_cover_v2_daylight.png",
-      "sizes": "1600x685",
+      "src": "images/screenshot-wide.png",
+      "sizes": "1920x1080",
       "type": "image/png",
       "form_factor": "wide",
       "label": "منصة القصبى للمواصفات الهندسية"
@@ -47,14 +53,14 @@
       "short_name": "C494",
       "description": "الإضافات الكيميائية للخرسانة",
       "url": "https://mohamed742406.github.io/-elkasaby-standards/?q=C494",
-      "icons": [{"src": "https://mohamed742406.github.io/-elkasaby-standards/images/elkasaby_logo.png", "sizes": "192x192"}]
+      "icons": [{"src": "images/icon-64.png", "sizes": "64x64"}]
     },
     {
       "name": "ASTM C94 - الخرسانة الجاهزة",
       "short_name": "C94",
       "description": "مواصفة الخرسانة الجاهزة",
       "url": "https://mohamed742406.github.io/-elkasaby-standards/?q=C94",
-      "icons": [{"src": "https://mohamed742406.github.io/-elkasaby-standards/images/elkasaby_logo.png", "sizes": "192x192"}]
+      "icons": [{"src": "images/icon-64.png", "sizes": "64x64"}]
     }
   ]
 }
