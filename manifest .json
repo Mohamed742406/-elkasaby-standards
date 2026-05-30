@@ -1,32 +1,59 @@
 {
-  "background_color": "#ffffff",
-  "description": "منصة متخصصة في شرح وترجمة المواصفات الهندسية العالمية ASTM وACI وBS وAASHTO للمهندسين والفنيين العرب.",
-  "dir": "rtl",
-  "display": "standalone",
   "name": "منصة القصبى للمواصفات الهندسية",
-  "orientation": "any",
-  "scope": "/",
   "short_name": "منصة القصبى",
+  "description": "منصة متخصصة في شرح وترجمة المواصفات الهندسية العالمية ASTM وACI وBS وAASHTO للمهندسين والفنيين العرب.",
   "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#1E3A8A",
   "theme_color": "#1E3A8A",
+  "lang": "ar",
+  "dir": "rtl",
+  "categories": ["education", "productivity"],
   "icons": [
     {
       "src": "images/elkasaby_logo.png",
-      "type": "image/png",
       "sizes": "1024x1024",
+      "type": "image/png",
       "purpose": "any maskable"
     },
     {
       "src": "images/elkasaby_logo.png",
-      "type": "image/png",
       "sizes": "512x512",
+      "type": "image/png",
       "purpose": "any maskable"
     },
     {
       "src": "images/elkasaby_logo.png",
-      "type": "image/png",
       "sizes": "192x192",
+      "type": "image/png",
       "purpose": "any maskable"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "images/elkasaby_cover_v2_daylight.png",
+      "sizes": "1600x685",
+      "type": "image/png",
+      "form_factor": "wide",
+      "label": "منصة القصبى للمواصفات الهندسية"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "ASTM C494 - الإضافات",
+      "short_name": "C494",
+      "description": "الإضافات الكيميائية للخرسانة",
+      "url": "/?q=C494",
+      "icons": [{"src": "images/elkasaby_logo.png", "sizes": "192x192"}]
+    },
+    {
+      "name": "ASTM C94 - الخرسانة الجاهزة",
+      "short_name": "C94",
+      "description": "مواصفة الخرسانة الجاهزة",
+      "url": "/?q=C94",
+      "icons": [{"src": "images/elkasaby_logo.png", "sizes": "192x192"}]
     }
   ]
 }
