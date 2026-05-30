@@ -1,39 +1,40 @@
 {
-  "name": "منصة القصبى للمواصفات الهندسية",
+  "id": "elkasaby-standards",
+  "name": "منصة القصبي للمواصفات الهندسية",
   "short_name": "منصة القصبى",
   "description": "منصة متخصصة في شرح وترجمة المواصفات الهندسية العالمية ASTM وACI وBS وAASHTO للمهندسين والفنيين العرب.",
-  "start_url": "/",
-  "scope": "/",
-  "display": "standalone",
-  "orientation": "portrait-primary",
-  "background_color": "#1E3A8A",
-  "theme_color": "#1E3A8A",
   "lang": "ar",
   "dir": "rtl",
+  "display": "standalone",
+  "orientation": "natural",
+  "background_color": "#1E3A8A",
+  "theme_color": "#1E3A8A",
+  "scope": "https://mohamed742406.github.io/-elkasaby-standards/",
+  "start_url": "https://mohamed742406.github.io/-elkasaby-standards/",
   "categories": ["education", "productivity"],
   "icons": [
     {
-      "src": "images/elkasaby_logo.png",
+      "src": "https://mohamed742406.github.io/-elkasaby-standards/images/elkasaby_logo.png",
+      "type": "image/png",
       "sizes": "1024x1024",
-      "type": "image/png",
       "purpose": "any maskable"
     },
     {
-      "src": "images/elkasaby_logo.png",
+      "src": "https://mohamed742406.github.io/-elkasaby-standards/images/elkasaby_logo.png",
+      "type": "image/png",
       "sizes": "512x512",
-      "type": "image/png",
       "purpose": "any maskable"
     },
     {
-      "src": "images/elkasaby_logo.png",
-      "sizes": "192x192",
+      "src": "https://mohamed742406.github.io/-elkasaby-standards/images/elkasaby_logo.png",
       "type": "image/png",
+      "sizes": "192x192",
       "purpose": "any maskable"
     }
   ],
   "screenshots": [
     {
-      "src": "images/elkasaby_cover_v2_daylight.png",
+      "src": "https://mohamed742406.github.io/-elkasaby-standards/images/elkasaby_cover_v2_daylight.png",
       "sizes": "1600x685",
       "type": "image/png",
       "form_factor": "wide",
@@ -45,15 +46,15 @@
       "name": "ASTM C494 - الإضافات",
       "short_name": "C494",
       "description": "الإضافات الكيميائية للخرسانة",
-      "url": "/?q=C494",
-      "icons": [{"src": "images/elkasaby_logo.png", "sizes": "192x192"}]
+      "url": "https://mohamed742406.github.io/-elkasaby-standards/?q=C494",
+      "icons": [{"src": "https://mohamed742406.github.io/-elkasaby-standards/images/elkasaby_logo.png", "sizes": "192x192"}]
     },
     {
       "name": "ASTM C94 - الخرسانة الجاهزة",
       "short_name": "C94",
       "description": "مواصفة الخرسانة الجاهزة",
-      "url": "/?q=C94",
-      "icons": [{"src": "images/elkasaby_logo.png", "sizes": "192x192"}]
+      "url": "https://mohamed742406.github.io/-elkasaby-standards/?q=C94",
+      "icons": [{"src": "https://mohamed742406.github.io/-elkasaby-standards/images/elkasaby_logo.png", "sizes": "192x192"}]
     }
   ]
 }
