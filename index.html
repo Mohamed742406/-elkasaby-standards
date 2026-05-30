@@ -220,7 +220,7 @@ img { transition: transform .35s ease; }
 </style>
 
     <!-- ── PWA Manifest ── -->
-    <link rel="manifest" id="manifestLink">
+    <link rel="manifest" href="manifest.json" id="manifestLink">
     <script>
     (function(){
       var mf = {
@@ -237,14 +237,20 @@ img { transition: transform .35s ease; }
   "dir": "rtl",
   "icons": [
     {
-      "src": "icon-192.png",
-      "sizes": "192x192",
+      "src": "images/elkasaby_logo.png",
+      "sizes": "1024x1024",
       "type": "image/png",
       "purpose": "any maskable"
     },
     {
-      "src": "icon-512.png",
+      "src": "images/elkasaby_logo.png",
       "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "images/elkasaby_logo.png",
+      "sizes": "192x192",
       "type": "image/png",
       "purpose": "any maskable"
     }
