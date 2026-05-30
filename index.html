@@ -2322,10 +2322,15 @@ function initDuaModal() {
 }
 
 // ── Service Worker Registration ─────────────
-// يعمل فقط على http/https (GitHub Pages) وليس blob أو file
 if ('serviceWorker' in navigator &&
     (location.protocol === 'https:' || location.protocol === 'http:')) {
     window.addEventListener('load', function(){
+        navigator.serviceWorker.register('/sw.js', {scope: '/'})
+            .then(function(reg){ console.log('[SW] Registered:', reg.scope); })
+            .catch(function(err){ console.log('[SW] Failed:', err); });
+    });
+}
+/* legacy blob sw - disabled
         var swCode = `// منصة القصبى - Service Worker v2.0
 const CACHE_NAME = 'elkasaby-v2';
 const STATIC_ASSETS = [
@@ -2452,13 +2457,7 @@ self.addEventListener('notificationclick', function(e) {
   e.waitUntil(clients.openWindow(e.notification.data.url || '/'));
 });
 `;
-        var swBlob = new Blob([swCode], {type: 'application/javascript'});
-        var swUrl  = URL.createObjectURL(swBlob);
-        navigator.serviceWorker.register(swUrl, {scope: './'})
-            .then(function(reg){ console.log('[SW] Registered inline'); })
-            .catch(function(err){ console.log('[SW] Failed:', err); });
-    });
-}
+*/
 </script>
 
 <!-- Floating WhatsApp CTA -->
