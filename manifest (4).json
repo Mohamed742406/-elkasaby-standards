@@ -1,0 +1,32 @@
+{
+  "background_color": "#ffffff",
+  "description": "منصة متخصصة في شرح وترجمة المواصفات الهندسية العالمية ASTM وACI وBS وAASHTO للمهندسين والفنيين العرب.",
+  "dir": "rtl",
+  "display": "standalone",
+  "name": "منصة القصبى للمواصفات الهندسية",
+  "orientation": "any",
+  "scope": "/",
+  "short_name": "منصة القصبى",
+  "start_url": "/",
+  "theme_color": "#1E3A8A",
+  "icons": [
+    {
+      "src": "images/elkasaby_logo.png",
+      "type": "image/png",
+      "sizes": "1024x1024",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "images/elkasaby_logo.png",
+      "type": "image/png",
+      "sizes": "512x512",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "images/elkasaby_logo.png",
+      "type": "image/png",
+      "sizes": "192x192",
+      "purpose": "any maskable"
+    }
+  ]
+}
