@@ -1,14 +1,14 @@
 // منصة القصبى - Service Worker v3.0
 const CACHE_NAME = 'elkasaby-v3';
+const BASE = '/-elkasaby-standards';
 const STATIC_ASSETS = [
-  '/',
-  '/index.html',
-  '/manifest.json',
-  '/images/elkasaby_logo.png',
+  BASE + '/',
+  BASE + '/index.html',
+  BASE + '/manifest.json',
+  BASE + '/images/elkasaby_logo.png',
   'https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css'
 ];
 
-// Install
 self.addEventListener('install', function(e) {
   e.waitUntil(
     caches.open(CACHE_NAME).then(function(cache) {
@@ -19,7 +19,6 @@ self.addEventListener('install', function(e) {
   );
 });
 
-// Activate
 self.addEventListener('activate', function(e) {
   e.waitUntil(
     caches.keys().then(function(keys) {
@@ -33,7 +32,6 @@ self.addEventListener('activate', function(e) {
   );
 });
 
-// Fetch
 self.addEventListener('fetch', function(e) {
   var url = e.request.url;
   if (e.request.method !== 'GET') return;
@@ -75,7 +73,7 @@ self.addEventListener('fetch', function(e) {
       }).catch(function() {
         if (cached) return cached;
         if (e.request.headers.get('accept') && e.request.headers.get('accept').includes('text/html')) {
-          return caches.match('/index.html');
+          return caches.match(BASE + '/index.html');
         }
       });
       return cached || fetchPromise;
@@ -83,24 +81,23 @@ self.addEventListener('fetch', function(e) {
   );
 });
 
-// Push Notifications
 self.addEventListener('push', function(e) {
   if (!e.data) return;
   var data = e.data.json();
   e.waitUntil(
     self.registration.showNotification(data.title || 'منصة القصبى', {
       body: data.body || 'تم إضافة مواصفة جديدة',
-      icon: '/images/elkasaby_logo.png',
-      badge: '/images/elkasaby_logo.png',
+      icon: BASE + '/images/elkasaby_logo.png',
+      badge: BASE + '/images/elkasaby_logo.png',
       dir: 'rtl',
       lang: 'ar',
       vibrate: [100, 50, 100],
-      data: { url: data.url || '/' }
+      data: { url: data.url || BASE + '/' }
     })
   );
 });
 
 self.addEventListener('notificationclick', function(e) {
   e.notification.close();
-  e.waitUntil(clients.openWindow(e.notification.data.url || '/'));
+  e.waitUntil(clients.openWindow(e.notification.data.url || BASE + '/'));
 });
