@@ -1,0 +1,8 @@
+[{
+  "relation": ["delegate_permission/common.handle_all_urls"],
+  "target": {
+    "namespace": "android_app",
+    "package_name": "com.elkasaby.standards",
+    "sha256_cert_fingerprints": ["DA:61:7B:DA:C8:A4:46:C9:C7:DA:F2:2B:FD:51:6E:C6:6F:E8:85:E4:90:84:68:F5:D1:0B:9C:F9:3B:68:A5:42"]
+  }
+}]
