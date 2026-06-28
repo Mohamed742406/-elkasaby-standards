@@ -96,6 +96,9 @@
         .new-badge  { position: absolute; top: 12px; left: -32px; background: #ef4444; color: #fff; padding: 4px 40px; font-size: .72rem; font-weight: 700; transform: rotate(-45deg); z-index: 10; }
         .soon-badge { position: absolute; top: 12px; left: -32px; background: #f59e0b; color: #fff; padding: 4px 40px; font-size: .72rem; font-weight: 700; transform: rotate(-45deg); z-index: 10; }
         .hot-badge  { position: absolute; top: 12px; left: -32px; background: #f97316; color: #fff; padding: 4px 40px; font-size: .72rem; font-weight: 700; transform: rotate(-45deg); z-index: 10; }
+        /* C618 special important strip */
+        .c618-important-strip { background: linear-gradient(90deg,#4c1d95,#7c3aed,#4c1d95); color:#fde68a; font-size:.68rem; font-weight:800; letter-spacing:.06em; text-align:center; padding:.3rem .5rem; border-radius:.4rem; margin-bottom:.6rem; display:flex; align-items:center; justify-content:center; gap:.35rem; animation: c618pulse 2s ease-in-out infinite; }
+        @keyframes c618pulse { 0%,100%{ box-shadow:0 0 0 0 rgba(124,58,237,.5); } 50%{ box-shadow:0 0 8px 3px rgba(124,58,237,.2); } }
  
         /* Category / Topic buttons */
         .cat-btn { background: #fff; border: 2px solid #e5e7eb; border-radius: 1rem; padding: .75rem; text-align: center; cursor: pointer; transition: .25s; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 88px; }
@@ -997,22 +1000,45 @@ img { transition: transform .35s ease; }
         <button onclick="showFavorites()" style="margin-right:auto;background:#1E3A8A;color:#fff;border:none;padding:.25rem .75rem;border-radius:.5rem;font-size:.78rem;font-weight:700;cursor:pointer;">عرضها</button>
         <button onclick="showAll()" style="background:none;border:none;color:#6b7280;font-size:.78rem;cursor:pointer;">الكل</button>
     </div>
-    <!-- ══ NEW ARRIVAL BANNER: ASTM C143 ══ -->
-    <div class="new-arrival-banner reveal" style="margin-bottom:1.5rem;background:linear-gradient(135deg,#0f172a 0%,#1e3a8a 60%,#2563eb 100%);">
-        <div style="font-size:2.2rem;flex-shrink:0;">📐</div>
+    <!-- ══ NEW ARRIVAL BANNER: ASTM C618 ══ -->
+    <div class="new-arrival-banner reveal" style="margin-bottom:1.5rem;background:linear-gradient(135deg,#1a0533 0%,#4c1d95 45%,#7c3aed 80%,#6d28d9 100%);border:1px solid rgba(167,139,250,.25);box-shadow:0 8px 32px rgba(109,40,217,.35);">
+        <!-- Animated glow orbs -->
+        <div style="position:absolute;top:-20px;right:-20px;width:120px;height:120px;background:radial-gradient(circle,rgba(167,139,250,.25) 0%,transparent 70%);border-radius:50%;pointer-events:none;"></div>
+        <div style="position:absolute;bottom:-30px;left:60px;width:90px;height:90px;background:radial-gradient(circle,rgba(124,58,237,.3) 0%,transparent 70%);border-radius:50%;pointer-events:none;"></div>
+
+        <!-- Icon -->
+        <div style="font-size:2.4rem;flex-shrink:0;filter:drop-shadow(0 0 12px rgba(167,139,250,.6));position:relative;z-index:1;">🔬</div>
+
         <div style="flex:1;position:relative;z-index:1;">
-            <div style="font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#bfdbfe;margin-bottom:.2rem;">🆕 مواصفة جديدة — أضيفت الآن</div>
-            <div style="font-size:1rem;font-weight:800;margin-bottom:.35rem;">ASTM C143 — اختبار هبوط الخرسانة الطازجة (السلمب)</div>
-            <div style="font-size:.82rem;color:#dbeafe;line-height:1.6;margin-bottom:.625rem;">اختبار الهبوط (السلمب) هو أكثر من مجرد خطوات مكررة؛ هو المقياس الحقيقي لمدى نجاح الخرسانة في تنفيذ دورها داخل الموقع. دليل يوضح وصول الخرسانة من المحطة إلى مكان الصب بالقوام الصحيح، مما يمنع أي فجوات أو تعشيش ويحافظ على سلامة الهيكل.</div>
+            <!-- Label -->
+            <div style="display:inline-flex;align-items:center;gap:.4rem;background:rgba(251,191,36,.15);border:1px solid rgba(251,191,36,.35);border-radius:.4rem;padding:.2rem .6rem;margin-bottom:.4rem;">
+                <span style="width:.45rem;height:.45rem;background:#fbbf24;border-radius:50%;display:inline-block;animation:pulse 1.5s infinite;"></span>
+                <span style="font-size:.68rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:#fde68a;">🔥 جديد وهام جداً — أضيف الآن</span>
+            </div>
+
+            <!-- Title -->
+            <div style="font-size:1.05rem;font-weight:800;margin-bottom:.4rem;color:#fff;text-shadow:0 0 20px rgba(167,139,250,.4);">
+                ASTM C618 — الرماد الطائر والبوزولانا الطبيعية
+            </div>
+
+            <!-- Description -->
+            <div style="font-size:.81rem;color:#ddd6fe;line-height:1.7;margin-bottom:.75rem;">
+                الدستور الرسمي اللي بيقفل باب الاجتهادات ويديك المفاتيح تفرق بين الفئات الثلاثة <strong style="color:#fde68a;">N وF وC</strong>، وتتحقق كيميائياً من الأكاسيد والكبريت والفقدان بالاشتعال — والضمان القانوني إنك ترفض أي شحنة مغشوشة أو منتهية الصلاحية.
+            </div>
+
+            <!-- Tags + CTA -->
             <div style="display:flex;flex-wrap:wrap;gap:.5rem;align-items:center;">
-                <span style="background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.25);border-radius:.4rem;padding:.15rem .5rem;font-size:.72rem;font-weight:700;">📄 24 صفحة</span>
-                <span style="background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.25);border-radius:.4rem;padding:.15rem .5rem;font-size:.72rem;font-weight:700;">📐 اختبار الهبوط</span>
-                <span style="background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.25);border-radius:.4rem;padding:.15rem .5rem;font-size:.72rem;font-weight:700;">🏗️ قابلية التشغيل</span>
-                <button onclick="filterTopic('خرسانة');document.getElementById('searchInput').value='C143';searchFiles();" style="background:#fff;color:#1e3a8a;border:none;padding:.3rem .875rem;border-radius:.5rem;font-size:.8rem;font-weight:800;cursor:pointer;margin-right:auto;">عرض المواصفة ←</button>
+                <span style="background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);border-radius:.4rem;padding:.15rem .55rem;font-size:.72rem;font-weight:700;">📄 27 صفحة</span>
+                <span style="background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);border-radius:.4rem;padding:.15rem .55rem;font-size:.72rem;font-weight:700;">🧪 فلاي أش وبوزولانا</span>
+                <span style="background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);border-radius:.4rem;padding:.15rem .55rem;font-size:.72rem;font-weight:700;">🏭 N · F · C</span>
+                <span style="background:rgba(251,191,36,.18);border:1px solid rgba(251,191,36,.35);border-radius:.4rem;padding:.15rem .55rem;font-size:.72rem;font-weight:700;color:#fde68a;">⭐ Mo.elkasaby</span>
+                <button onclick="filterTopic('أسمنت');document.getElementById('searchInput').value='C618';searchFiles();" style="background:linear-gradient(135deg,#fbbf24,#f59e0b);color:#1a0533;border:none;padding:.35rem 1rem;border-radius:.5rem;font-size:.82rem;font-weight:800;cursor:pointer;margin-right:auto;box-shadow:0 4px 12px rgba(251,191,36,.4);transition:.2s;" onmouseover="this.style.transform='translateY(-1px)'" onmouseout="this.style.transform='none'">
+                    عرض المواصفة ←
+                </button>
             </div>
         </div>
     </div>
-    <!-- ══ END NEW ARRIVAL BANNER: ASTM C143 ══ -->
+    <!-- ══ END NEW ARRIVAL BANNER: ASTM C618 ══ -->
 
     <div id="filesContainer" class="g-files" style="margin-bottom:3rem;"></div>
  
@@ -1172,10 +1198,11 @@ img { transition: transform .35s ease; }
 <!-- ══ JS ══ -->
 <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 var files = [
-    {code:"ASTM C143",title:"اختبار هبوط الخرسانة الطازجة (السلمب)",desc:"اختبار الهبوط (السلمب) هو أكثر من مجرد خطوات مكررة؛ هو المقياس الحقيقي لمدى النجاح الخرافي في تنفيذ دورها داخل الموقع. المواصفة ASTM C143 ليست مجرد إلكترونيات، بل هي دليل يحتوي على الوصول الخرساني من المحطة إلى مكان الصب بالقوام الصحيح، مما يمنع أي فجوات أو تعشيش مما يسمح بسلامة الهيكل. في هذا الملف، قمت بإنشاء النصوص المواصفة الدولية إلى لغة محددة ومباشرة، بعيدة عن التعقيد، للتركيز على جوهر الاختبار. ستكتشف هنا التعليمات التي تفرق بين النتيجة العشوائية والنتيجة الصغيرة الموثوقة، وتعلم كيف يحدث الكثير من الأسباب وغالباً ما يكون أفضل للخلطة. من الآن، ستكون القراءة التي ستحصل عليها من الموقع هي الأساس الموثوق الذي يعتمد على التكنولوجيا بكل ثقة واحترافية.",group:"ASTM",topic:"خرسانة",fileName:"ASTEM C143-Mo.elkasaby.pdf",isNew:true,badgeText:"جديد 📐",pages:24,dateAdded:"2026-06"},
-    {code:"ASTM D4944",title:"اختبار رطوبة التربة الميداني السريع بالكربيد",desc:"اختبار الـ Speedy بالمواصفة ASTM D4944 ليس مجرد إجراء روتيني يتم تنفيذه في الموقع — بل هو خط الدفاع الأول الذي يحدد جودة طبقات التربة ومدى جاهزيتها للدمك. الهدف الأساسي من الاختبار هو التقدير السريع والمباشر للمحتوى المائي في التربة من خلال التفاعل الكيميائي لغاز كربيد الكالسيوم، مما يضمن مطابقة التربة لنسبة الرطوبة المثالية قبل بدء عمليات الدمك أو الإنشاءات. في هذا الكارت، قمت بتفكيك المواصفة العالمية لأجزاء صغيرة وشرحها بأسلوب عملي ومبسط بعيداً عن صياغة الكتب المعقدة. هنا ستجد أسرار المهنة التي تفرق بين الفني المحترف وغيره، وكيفية تأمين نتائجك لتجنب أي أخطاء قد تضيع وقتك أو تتسبب في إعادة الاختبار. من الآن، عندما تقدم تقريرك للاستشاري، ستكون واثقاً تماماً في أرقامك وقرارك الفني.",group:"ASTM",topic:"تربة",fileName:"ASTEM D4944-Mo.elkasaby.pdf",isNew:true,badgeText:"جديد 💧",pages:35,dateAdded:"2026-06"},
-    {code:"ASTM D4959",title:"اختبار الرطوبة بالحرارة المباشرة (التجفيف المباشر)",desc:"اختبار الرطوبة بالحرارة المباشرة ASTM D4959 هو أكثر من مجرد تجفيف عينة على سخان؛ إنه ترمومتر الجودة الفعلي في مواقع الإنشاءات. يعتمد هذا الاختبار على منهجية دقيقة لتقدير المحتوى المائي، مما يوفر بيانات حاسمة تضمن الوصول إلى الكثافة الجافة المطلوبة للتربة وتجنب مخاطر الفشل الإنشائي. في هذه السلسلة، قمت بإعادة صياغة المواصفة الدولية لتصبح دليلاً عملياً مباشراً، بعيداً عن صياغات الكتب الجامدة. هنا، سنكشف أسرار التعامل مع العينات، وكيفية التحكم في الحرارة والتقليب للوصول إلى الكتلة الثابتة بمعايير دقيقة. بفضل هذه المنهجية، ستتحول نتائجك من مجرد أرقام يومية إلى مستندات فنية قوية تحمي سمعتك المهنية، وتمنحك الثقة الكاملة في كل قرار تتخذه داخل المعمل أو في الموقع أمام الاستشاري.",group:"ASTM",topic:"تربة",fileName:"ASTM D4959-Mo.elkasaby.pdf",isNew:true,badgeText:"جديد 🔥",pages:33,dateAdded:"2026-06"},
-    {code:"ASTM D1556",title:"اختبار المخروط الرملي لكثافة التربة في الموقع",desc:"اختبار المخروط الرملي D1556 مش خطوات بنعملها في الموقع — ده هو الميزان الحقيقي اللي بيقيم جودة طبقات الأرض عندك. وفي المواصفة دي فكتلك المواصفة العالمية الجديدة لأجزاء صغيرة وشرحها الصغير اللي بنستخدمها في مواقعنا، وذلك لصياغة الكتب المعقدة. وتجد هنا تريكات القضاء الخفيف اللي بتفرق بين الفنيين الشاطر والهاوي، وازاي تأمين نتايجك وتتجنب سبب اللي بتضيع وقتك — لذلك لما تقدم تقريرك تكون واثقاً في أرقامك وقرارك الفني أمام أي استشاري.",group:"ASTM",topic:"تربة",fileName:"ASTEM D1556-Mo.elkasaby.pdf",isNew:true,badgeText:"جديد 🏔️",pages:54,dateAdded:"2026-06"},
+    {code:"ASTM C618",title:"مواصفة الرماد الطائر والبوزولانا الطبيعية (Fly Ash & Natural Pozzolan)",desc:"مواصفة ASTM C618 هي الدستور والكتالوج المؤهل اللي بيمشي عليه أي حد عاوز يشتغل صح في الفلاي أش والبوزولانا الطبيعي ويتميز. الكود ده من الآخر جاي يقفل باب الاجتهادات ويديك المفاتيح رسمي تفرق بيها بين الطبقات الثلاثة المطلوبة N وF وC، وتعرف ميكانيكية وظيفة كل فئة. وجوه المواصفة دي هتنديك الفرق بين مادة محققة كيمياء صح ولا مغشوشة عن طريق قياس مجموع الأكاسيد الثلاثة ونسب الكبريت والرطوبة والفقدان بالاشتعال. ومش بس كده — دي بتنزلك المعمل اختبارات برج تنقيط السيولة والنعومة ومؤشر النشاط وثبات الحجم، وتأكدلك إن البودرة دي هتتفاعل وتديك المقاومة الأساسية مش مجرد حشو يملا الخلطة وخلاص. الكود كمان بيديك القوة القانونية إنك كمهندس جودة أو موقع ترفض أي شحنة ناقصة في الوزن أو مخزنة أكتر من 6 شهور، وتطالب المورد بشهادة تحليل معتمدة فيها كل تفاصيل الأكاسيد. من الآخر — ASTM C618 هتخليك فاهم أصول اللعبة ومسيطر على جودة الخرسانة وبتحميها من الكبريتات وتفاعل السيليكا على المدى البعيد بأعلى احترافية هندسية.",group:"ASTM",topic:"أسمنت",fileName:"ASTM C618.Mo.elkasaby.pdf",isNew:true,pinned:true,badgeText:"جديد 🔥",pages:27,dateAdded:"2026-06"},
+    {code:"ASTM C143",title:"اختبار هبوط الخرسانة الطازجة (السلمب)",desc:"اختبار الهبوط (السلمب) هو أكثر من مجرد خطوات مكررة؛ هو المقياس الحقيقي لمدى النجاح الخرافي في تنفيذ دورها داخل الموقع. المواصفة ASTM C143 ليست مجرد إلكترونيات، بل هي دليل يحتوي على الوصول الخرساني من المحطة إلى مكان الصب بالقوام الصحيح، مما يمنع أي فجوات أو تعشيش مما يسمح بسلامة الهيكل. في هذا الملف، قمت بإنشاء النصوص المواصفة الدولية إلى لغة محددة ومباشرة، بعيدة عن التعقيد، للتركيز على جوهر الاختبار. ستكتشف هنا التعليمات التي تفرق بين النتيجة العشوائية والنتيجة الصغيرة الموثوقة، وتعلم كيف يحدث الكثير من الأسباب وغالباً ما يكون أفضل للخلطة. من الآن، ستكون القراءة التي ستحصل عليها من الموقع هي الأساس الموثوق الذي يعتمد على التكنولوجيا بكل ثقة واحترافية.",group:"ASTM",topic:"خرسانة",fileName:"ASTEM C143-Mo.elkasaby.pdf",pages:24,dateAdded:"2026-06"},
+    {code:"ASTM D4944",title:"اختبار رطوبة التربة الميداني السريع بالكربيد",desc:"اختبار الـ Speedy بالمواصفة ASTM D4944 ليس مجرد إجراء روتيني يتم تنفيذه في الموقع — بل هو خط الدفاع الأول الذي يحدد جودة طبقات التربة ومدى جاهزيتها للدمك. الهدف الأساسي من الاختبار هو التقدير السريع والمباشر للمحتوى المائي في التربة من خلال التفاعل الكيميائي لغاز كربيد الكالسيوم، مما يضمن مطابقة التربة لنسبة الرطوبة المثالية قبل بدء عمليات الدمك أو الإنشاءات. في هذا الكارت، قمت بتفكيك المواصفة العالمية لأجزاء صغيرة وشرحها بأسلوب عملي ومبسط بعيداً عن صياغة الكتب المعقدة. هنا ستجد أسرار المهنة التي تفرق بين الفني المحترف وغيره، وكيفية تأمين نتائجك لتجنب أي أخطاء قد تضيع وقتك أو تتسبب في إعادة الاختبار. من الآن، عندما تقدم تقريرك للاستشاري، ستكون واثقاً تماماً في أرقامك وقرارك الفني.",group:"ASTM",topic:"تربة",fileName:"ASTEM D4944-Mo.elkasaby.pdf",pages:35,dateAdded:"2026-06"},
+    {code:"ASTM D4959",title:"اختبار الرطوبة بالحرارة المباشرة (التجفيف المباشر)",desc:"اختبار الرطوبة بالحرارة المباشرة ASTM D4959 هو أكثر من مجرد تجفيف عينة على سخان؛ إنه ترمومتر الجودة الفعلي في مواقع الإنشاءات. يعتمد هذا الاختبار على منهجية دقيقة لتقدير المحتوى المائي، مما يوفر بيانات حاسمة تضمن الوصول إلى الكثافة الجافة المطلوبة للتربة وتجنب مخاطر الفشل الإنشائي. في هذه السلسلة، قمت بإعادة صياغة المواصفة الدولية لتصبح دليلاً عملياً مباشراً، بعيداً عن صياغات الكتب الجامدة. هنا، سنكشف أسرار التعامل مع العينات، وكيفية التحكم في الحرارة والتقليب للوصول إلى الكتلة الثابتة بمعايير دقيقة. بفضل هذه المنهجية، ستتحول نتائجك من مجرد أرقام يومية إلى مستندات فنية قوية تحمي سمعتك المهنية، وتمنحك الثقة الكاملة في كل قرار تتخذه داخل المعمل أو في الموقع أمام الاستشاري.",group:"ASTM",topic:"تربة",fileName:"ASTM D4959-Mo.elkasaby.pdf",pages:33,dateAdded:"2026-06"},
+    {code:"ASTM D1556",title:"اختبار المخروط الرملي لكثافة التربة في الموقع",desc:"اختبار المخروط الرملي D1556 مش خطوات بنعملها في الموقع — ده هو الميزان الحقيقي اللي بيقيم جودة طبقات الأرض عندك. وفي المواصفة دي فكتلك المواصفة العالمية الجديدة لأجزاء صغيرة وشرحها الصغير اللي بنستخدمها في مواقعنا، وذلك لصياغة الكتب المعقدة. وتجد هنا تريكات القضاء الخفيف اللي بتفرق بين الفنيين الشاطر والهاوي، وازاي تأمين نتايجك وتتجنب سبب اللي بتضيع وقتك — لذلك لما تقدم تقريرك تكون واثقاً في أرقامك وقرارك الفني أمام أي استشاري.",group:"ASTM",topic:"تربة",fileName:"ASTEM D1556-Mo.elkasaby.pdf",pages:54,dateAdded:"2026-06"},
     {code:"ASTM C1064",title:"قياس درجة حرارة الخرسانة الطازجة",desc:"قياس درجة حرارة الخرسانة (ASTM C1064) مش مجرد خطوة روتينية في الموقع، دي هي الترمومتر الحقيقي اللي بيطمنك على حالة الخرسانة قبل ما تبدأ صب. الهدف من المواصفة دي إننا نضمن تنفيذ الاختبار باحترافية، ونطلع نتيجة دقيقة بعيدة عن أي تأثيرات خارجية أو أخطاء بشرية ممكن تأثر على قراءة الجهاز. الفكرة إن كل درجة حرارة بتقيسها صح، هي خطوة أساسية بنبني بيها منشأ قوي ومطابق للمعايير العالمية، لأن دقة القراءة دي هي اللي بتحدد استقرار تفاعلات الخرسانة وتضمن جودتها في النهاية.",group:"ASTM",topic:"خرسانة",fileName:"ASTM C1064.Mo.elkasaby.pdf",pages:13,dateAdded:"2026-06"},
     {code:"ASTM C138",title:"قياس الكثافة الظاهرية والإنتاجية ونسبة الهواء للخرسانة الطازجة",desc:"مواصفة ASTM C138 هي ميزان المحطة والترمومتر اللي بيكشف حقيقة الخرسانة الطازجة في الموقع. لو عمرك استلمت خرسانة وحسيت إن الكمية اللي في الخلاطة أقل من المطلوبة، أو شاكك إن الخلطة مليانة هوا هيوقع المقاومة، فالمواصفة دي هي الحل! لأنها بتشرحلك إزاي تقيس الكثافة الفعلية (الوزن الحجمي) وتحسب الإنتاجية عشان تضمن إن المتر المكعب اللي طلبته واصلك كامل بالملي. وكمان بتكشفلك نسبة الهواء جوه الخلطة بالطريقة الوزنية. باختصار دي الأداة اللي بتخليك تراجع ورا محطة الخلط وتتأكد إن تصميم الخلطة اللي على الورق هو نفسه اللي بيتصب قدامك في الموقع، بدون أي تلاعب.",group:"ASTM",topic:"خرسانة",fileName:"ASTM C138.Mo.elkasaby.pdf",pages:38,dateAdded:"2026-05"},
     {code:"BS EN 12390-3",title:"اختبار مقاومة الضغط على مكعبات وأسطوانات الخرسانة المتصلدة",desc:"مواصفة BS EN 12390-3 هي ميزان العدل والكلمة الأخيرة في الخرسانة! تخيل إنك صبيت سقف وتعبت جداً، وبعدين المكعب سقط في المعمل والمقاومة طلعت ضعيفة. هنا المواصفة دي بتنقذك، لأنها بتشرحلك بكل بساطة إزاي اختبار الكسر بيتعمل على أصوله — من أول ما تحط المكعب في المكنة وتظبط معدل التحميل، لحد ما يتكسر. والأهم إنها بتعلمك سر الصنعة وتخليك، أول ما تبص بعينك على شكل المكعب وهو مكسور، تعرف فوراً: هل العيب في الخرسانة بتاعتك؟ ولا المكنة هي اللي كسرت غلط؟ أو المكعب كان محطوط مايل؟ باختصار دي المواصفة اللي هتحميك كمهندس لسه بيبدأ، وتخليك تستلم نتيجة الكسر صح، وتضمن إن محدش يضحك عليك بتقرير معمل مضلل، وتطمن إن مجهودك في الموقع متسجل بالأرقام الحقيقية.",group:"BS",topic:"خرسانة",fileName:"BS EN 12390-3.Mo.elkasaby.pdf",pages:54,dateAdded:"2026-05"},
@@ -1343,6 +1370,7 @@ var RELATED = {
     'ASTM C494': ['ASTM C94','ASTM C150','ACI 211.1-22'],
     'ASTM C94':  ['ASTM C494','ASTM C150','ASTM C39'],
     'ASTM C150': ['ASTM C494','ASTM C94','ACI 211.1-22'],
+    'ASTM C618': ['ASTM C150','ASTM C94','ACI 211.1-22'],
     'ASTM C39':  ['ASTM C94','ASTM C42','ACI 214R-11'],
     'ASTM C42':  ['ASTM C39','ASTM C94','ACI 214R-11'],
     'ACI 211.1-22': ['ASTM C150','ASTM C94','ASTM C494'],
@@ -1582,6 +1610,7 @@ function displayFiles(list, q) {
             + '<span class="topic-' + file.topic + '" style="padding:.15rem .5rem;border-radius:9999px;font-size:.7rem;font-weight:700;">' + icon + ' ' + file.topic + '</span>'
             + '<span style="background:#f3f4f6;color:#6b7280;padding:.15rem .5rem;border-radius:9999px;font-size:.7rem;font-weight:700;">' + file.group + '</span>'
             + '</div></div>'
+            + (file.code === 'ASTM C618' ? '<div class="c618-important-strip">🔥 جديد وهام جداً — دستور الفلاي أش والبوزولانا N · F · C</div>' : '')
             + '<h3 class="d-text" style="font-size:.9rem;font-weight:700;margin-bottom:.4rem;line-height:1.45;">' + hl(file.title, q) + '</h3>'
             + '<p class="d-text2 line-clamp-2" style="color:#6b7280;font-size:.82rem;margin-bottom:.5rem;line-height:1.55;">' + hl(file.desc, q) + '</p>'
             + (file.dateAdded ? '<div class="date-badge">📅 ' + file.dateAdded.replace('-','/')  + '</div>' : '')
@@ -1632,6 +1661,7 @@ function searchFiles() {
     if (sort==='newest')         filtered.sort(function(a,b){ return (b.isNew?1:0)-(a.isNew?1:0); });
     else if (sort==='mostDownloaded') filtered.sort(function(a,b){ return (b.isHot?1:0)-(a.isHot?1:0); });
     else if (sort==='alpha')     filtered.sort(function(a,b){ return a.code.localeCompare(b.code); });
+    else { filtered.sort(function(a,b){ return (b.pinned?1:0)-(a.pinned?1:0); }); }
  
     var labels = [];
     if (currentCategory!=='all') labels.push(currentCategory);
@@ -1660,6 +1690,7 @@ function resetFilters() {
  
 // ── Detail Modal ───────────────────────
 var INFOGRAPHICS = {
+    'ASTM C618': 'images/astm_c618_infographic.png',
     'ASTM C143': 'images/astm_c143_infographic.png',
     'ASTM D4944': 'images/astm_d4944_infographic.png',
     'ASTM D1556': 'images/astm_d1556_infographic.png',
