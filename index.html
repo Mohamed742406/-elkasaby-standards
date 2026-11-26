@@ -921,11 +921,11 @@ img { transition: transform .35s ease; }
     <!-- Stats -->
     <div class="g-stats">
         <div class="d-stat" style="background:#fff;padding:1.25rem;border-radius:1rem;box-shadow:0 1px 3px rgba(0,0,0,.07);border-bottom:4px solid #2563eb;">
-            <div style="font-size:.68rem;font-weight:700;color:#9ca3af;text-transform:uppercase;letter-spacing:.08em;margin-bottom:.25rem;">👥 الزوار</div>
+            <div style="font-size:.68rem;font-weight:700;color:#9ca3af;text-transform:uppercase;letter-spacing:.08em;margin-bottom:.25rem;">👥 الزيارات (متصفحات يومية)</div>
             <div id="visitorsCount" style="font-size:1.5rem;font-weight:900;color:#1E3A8A;">—</div>
         </div>
         <div class="d-stat" style="background:#fff;padding:1.25rem;border-radius:1rem;box-shadow:0 1px 3px rgba(0,0,0,.07);border-bottom:4px solid #16a34a;">
-            <div style="font-size:.68rem;font-weight:700;color:#9ca3af;text-transform:uppercase;letter-spacing:.08em;margin-bottom:.25rem;">⬇️ التحميلات</div>
+            <div style="font-size:.68rem;font-weight:700;color:#9ca3af;text-transform:uppercase;letter-spacing:.08em;margin-bottom:.25rem;">⬇️ ضغطات التحميل</div>
             <div id="downloadsCount" style="font-size:1.5rem;font-weight:900;color:#1E3A8A;">—</div>
         </div>
         <div class="d-stat" style="background:#fff;padding:1.25rem;border-radius:1rem;box-shadow:0 1px 3px rgba(0,0,0,.07);border-bottom:4px solid #9333ea;">
@@ -1457,31 +1457,37 @@ function showAll() {
     searchFiles();
 }
  
+// ══ STATS API (Cloudflare Worker) ══
+// ضع رابط الـ Worker هنا بعد النشر. لو تُرك فارغًا تظهر «—» و«التقييم غير متاح».
+var STATS_API = 'https://elkasaby-stats.elkasaby1988.workers.dev';
+var statsCache = null, statsWaiters = null;
+function fmtN(n){ return (typeof n==='number' && n>0) ? n.toLocaleString('ar-EG') : '—'; }
+function loadServerStats(cb){
+    if (!STATS_API) { cb(null); return; }
+    if (statsCache) { cb(statsCache); return; }
+    if (statsWaiters) { statsWaiters.push(cb); return; }
+    statsWaiters = [cb];
+    fetch(STATS_API + '/stats').then(function(r){ return r.ok ? r.json() : null; }).catch(function(){ return null; })
+      .then(function(d){ statsCache = d; var w = statsWaiters; statsWaiters = null; w.forEach(function(f){ f(d); }); });
+}
 // ── Stats ──────────────────────────────
 function loadStats() {
     updateFavBar();
-    fetch('https://api.counterapi.dev/v1/' + NS + '/visits/up')
-        .then(function(r){ return r.json(); })
-        .then(function(d){ setEl('visitorsCount', (typeof d.count==='number' && d.count>0) ? d.count.toLocaleString('ar-EG') : '—'); })
-        .catch(function(){
-            setEl('visitorsCount', '—');
-        });
-    fetch('https://api.counterapi.dev/v1/' + NS + '/downloads')
-        .then(function(r){ return r.json(); })
-        .then(function(d){ setEl('downloadsCount', (typeof d.count==='number' && d.count>0) ? d.count.toLocaleString('ar-EG') : '—'); })
-        .catch(function(){ setEl('downloadsCount', '—'); });
     setEl('filesCount', files.filter(function(f){ return f.fileName !== '#'; }).length);
     setEl('count', files.length);
+    if (!STATS_API) return;
+    var vd = localStorage.getItem('elk-visit-day'), today = new Date().toISOString().slice(0,10);
+    if (vd !== today) { fetch(STATS_API + '/visit', {method:'POST', headers:{'content-type':'application/json'}, body:'{}'}).then(function(){ localStorage.setItem('elk-visit-day', today); }).catch(function(){}); }
+    loadServerStats(function(d){
+        if (!d) return;
+        setEl('visitorsCount', fmtN(d.visits));
+        setEl('downloadsCount', fmtN(d.downloads));
+    });
 }
  
 function incrementDownload(code) {
-    fetch('https://api.counterapi.dev/v1/' + NS + '/downloads/up')
-        .then(function(r){ return r.json(); })
-        .then(function(d){ setEl('downloadsCount', (typeof d.count==='number' && d.count>0) ? d.count.toLocaleString('ar-EG') : '—'); })
-        .catch(function(){
-            setEl('downloadsCount', '—');
-        });
-    fetch('https://api.counterapi.dev/v1/' + NS + '/dl-' + code.replace(/\s/g,'_') + '/up').catch(function(){});
+    if (!STATS_API) return;
+    fetch(STATS_API + '/download', {method:'POST', headers:{'content-type':'application/json'}, body: JSON.stringify({code: code})}).catch(function(){});
 }
  
 function setEl(id, val){
@@ -1914,49 +1920,18 @@ function rateKey(code) {
 
 // Fetch rating (sum + count) from counterapi
 function fetchRating(code, cb) {
-    if (ratingsCache[code]) { cb(ratingsCache[code]); return; }
-    var key = rateKey(code);
-    Promise.all([
-        fetch('https://api.counterapi.dev/v1/' + key + '-sum').then(function(r){ return r.ok ? r.json() : null; }).catch(function(){ return null; }),
-        fetch('https://api.counterapi.dev/v1/' + key + '-cnt').then(function(r){ return r.ok ? r.json() : null; }).catch(function(){ return null; })
-    ]).then(function(res) {
-        if (!res[0] || !res[1] || typeof res[0].count !== 'number' || typeof res[1].count !== 'number') {
-            ratingsCache[code] = null;
-            cb(null);
-            return;
-        }
-        var data = { sum: res[0].count, count: res[1].count };
-        ratingsCache[code] = data;
-        cb(data);
-    });
+    loadServerStats(function(d){ cb(d && d.ratings ? (d.ratings[code] || {sum:0, count:0}) : null); });
 }
 
 // Submit a star rating (1-5)
 function submitRating(code, stars) {
-    var prev = myRatings[code] || 0;
     myRatings[code] = stars;
     localStorage.setItem('elkasaby-myratings', JSON.stringify(myRatings));
-    ratingsCache[code] = null; // invalidate cache
-
-    var key = rateKey(code);
-    var net = stars - prev; // delta to add to sum
-    var cntDelta = prev === 0 ? 1 : 0; // only increment count on first rating
-
-    // Add net delta to sum using multiple up calls (or skip if 0)
-    var sumPromises = [];
-    if (net > 0) {
-        for (var i = 0; i < net; i++) sumPromises.push(fetch('https://api.counterapi.dev/v1/' + key + '-sum/up').catch(function(){}));
-    }
-    // For count — only on first-ever rating
-    if (cntDelta > 0) {
-        fetch('https://api.counterapi.dev/v1/' + key + '-cnt/up').catch(function(){});
-    }
-
-    Promise.all(sumPromises).then(function() {
-        fetchRating(code, function(data) {
-            refreshRatingUI(code, data);
-        });
-    });
+    if (!STATS_API) return;
+    fetch(STATS_API + '/rate', {method:'POST', headers:{'content-type':'application/json'}, body: JSON.stringify({code: code, stars: stars})})
+      .then(function(r){ return r.json(); })
+      .then(function(r){ if (r && r.ok) { if (statsCache && statsCache.ratings) statsCache.ratings[code] = {sum:r.sum, count:r.count}; refreshRatingUI(code, {sum:r.sum, count:r.count}); } })
+      .catch(function(){});
     showToast('تم تقييمك بـ ' + '⭐'.repeat(stars) + ' شكراً!');
 }
 
@@ -2135,17 +2110,11 @@ function initDashboard() {
     setInterval(dbTick,1000); dbTick();
 
     // ── Live stats ──────────────────────────
-    var NS2='elkasaby-v6';
-    fetch('https://api.counterapi.dev/v1/'+NS2+'/downloads')
-        .then(function(r){return r.json();}).then(function(d){
-            var el=document.getElementById('db-dlCount');
-            if(el) el.textContent=(typeof d.count==='number' && d.count>0) ? d.count.toLocaleString('ar-EG') : '—';
-        }).catch(function(){});
-    fetch('https://api.counterapi.dev/v1/'+NS2+'/visits')
-        .then(function(r){return r.json();}).then(function(d){
-            var el=document.getElementById('db-visCount');
-            if(el) el.textContent=(typeof d.count==='number' && d.count>0) ? d.count.toLocaleString('ar-EG') : '—';
-        }).catch(function(){});
+    loadServerStats(function(d){
+        if(!d) return;
+        var a=document.getElementById('db-dlCount'); if(a) a.textContent=fmtN(d.downloads);
+        var b=document.getElementById('db-visCount'); if(b) b.textContent=fmtN(d.visits);
+    });
 
     // ── Auto-Counters from files ─────────
     var totalFiles = files.length;
