@@ -1920,7 +1920,7 @@ document.addEventListener('keydown', function(e){
 // ══ RATING SYSTEM ══════════════════════
 var NS_RATE = 'elkasaby-rate-v1';
 var ratingsCache = {};   // code -> {sum, count}
-var myRatings    = JSON.parse(localStorage.getItem('elkasaby-myratings') || '{}');
+var myRatings    = JSON.parse(localStorage.getItem('elkasaby-myratings-v2') || '{}');
 
 function rateKey(code) {
     return NS_RATE + '-' + code.replace(/\s/g,'_');
@@ -1931,16 +1931,28 @@ function fetchRating(code, cb) {
     loadServerStats(function(d){ cb(d && d.ratings ? (d.ratings[code] || {sum:0, count:0}) : null); });
 }
 
-// Submit a star rating (1-5)
+// Submit a star rating (1-5). The vote and the highlighted stars are shown only after the server confirms.
+var ratingBusy = {};
 function submitRating(code, stars) {
-    myRatings[code] = stars;
-    localStorage.setItem('elkasaby-myratings', JSON.stringify(myRatings));
-    if (!STATS_API) return;
+    if (!STATS_API) { showToast('التقييم غير متاح حاليًا'); return; }
+    if (ratingBusy[code]) return;
+    ratingBusy[code] = true;
+    var failed = function() {
+        ratingBusy[code] = false;
+        showToast('ما اتحفظش التقييم، حاول تاني بعد شوية');
+    };
     fetch(STATS_API + '/rate', {method:'POST', headers:{'content-type':'application/json'}, body: JSON.stringify({code: code, stars: stars})})
-      .then(function(r){ return r.json(); })
-      .then(function(r){ if (r && r.ok) { if (statsCache && statsCache.ratings) statsCache.ratings[code] = {sum:r.sum, count:r.count}; refreshRatingUI(code, {sum:r.sum, count:r.count}); } })
-      .catch(function(){});
-    showToast('تم تقييمك بـ ' + '⭐'.repeat(stars) + ' شكراً!');
+      .then(function(res){ return res.json().then(function(j){ return {ok: res.ok, j: j}; }); })
+      .then(function(x){
+          if (!(x.ok && x.j && x.j.ok)) { failed(); return; }
+          ratingBusy[code] = false;
+          myRatings[code] = stars;
+          try { localStorage.setItem('elkasaby-myratings-v2', JSON.stringify(myRatings)); } catch(e){}
+          if (statsCache && statsCache.ratings) statsCache.ratings[code] = {sum: x.j.sum, count: x.j.count};
+          refreshRatingUI(code, {sum: x.j.sum, count: x.j.count});
+          showToast('تم حفظ تقييمك ' + '⭐'.repeat(stars) + ' شكراً!');
+      })
+      .catch(failed);
 }
 
 // Build stars HTML for card (small)
@@ -1986,15 +1998,7 @@ function buildModalStars(code, data) {
 }
 
 function submitRatingUI(code, stars) {
-    submitRating(code, stars);
-    // Immediately update UI optimistically
-    var data = { sum: stars, count: 1 };
-    if (ratingsCache[code]) {
-        var prev = myRatings[code] || 0;
-        data.sum   = Math.max(0, ratingsCache[code].sum + stars - prev);
-        data.count = ratingsCache[code].count + (prev === 0 ? 1 : 0);
-    }
-    refreshRatingUI(code, data);
+    submitRating(code, stars);   // UI updates only after the server confirms
 }
 
 function refreshRatingUI(code, data) {
