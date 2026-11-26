@@ -1461,13 +1461,14 @@ function showAll() {
 // ضع رابط الـ Worker هنا بعد النشر. لو تُرك فارغًا تظهر «—» و«التقييم غير متاح».
 var STATS_API = 'https://elkasaby-stats.elkasaby1988.workers.dev';
 var statsCache = null, statsWaiters = null;
-function fmtN(n){ return (typeof n==='number' && n>0) ? n.toLocaleString('ar-EG') : '—'; }
-function loadServerStats(cb){
+function fmtN(n){ return (typeof n==='number') ? n.toLocaleString('ar-EG') : '—'; }
+function loadServerStats(cb, force){
     if (!STATS_API) { cb(null); return; }
+    if (force) { statsCache = null; }
     if (statsCache) { cb(statsCache); return; }
     if (statsWaiters) { statsWaiters.push(cb); return; }
     statsWaiters = [cb];
-    fetch(STATS_API + '/stats').then(function(r){ return r.ok ? r.json() : null; }).catch(function(){ return null; })
+    fetch(STATS_API + '/stats', {cache:'no-store'}).then(function(r){ return r.ok ? r.json() : null; }).catch(function(){ return null; })
       .then(function(d){ statsCache = d; var w = statsWaiters; statsWaiters = null; w.forEach(function(f){ f(d); }); });
 }
 // ── Stats ──────────────────────────────
@@ -1477,12 +1478,19 @@ function loadStats() {
     setEl('count', files.length);
     if (!STATS_API) return;
     var vd = localStorage.getItem('elk-visit-day'), today = new Date().toISOString().slice(0,10);
-    if (vd !== today) { fetch(STATS_API + '/visit', {method:'POST', headers:{'content-type':'application/json'}, body:'{}'}).then(function(){ localStorage.setItem('elk-visit-day', today); }).catch(function(){}); }
-    loadServerStats(function(d){
-        if (!d) return;
-        setEl('visitorsCount', fmtN(d.visits));
-        setEl('downloadsCount', fmtN(d.downloads));
-    });
+    var showStats = function(force){
+        loadServerStats(function(d){
+            if (!d) return;
+            setEl('visitorsCount', fmtN(d.visits));
+            setEl('downloadsCount', fmtN(d.downloads));
+        }, force);
+    };
+    if (vd !== today) {
+        fetch(STATS_API + '/visit', {method:'POST', headers:{'content-type':'application/json'}, body:'{}'})
+          .then(function(r){ if (r.ok) localStorage.setItem('elk-visit-day', today); })
+          .catch(function(){})
+          .then(function(){ showStats(true); });
+    } else { showStats(false); }
 }
  
 function incrementDownload(code) {
