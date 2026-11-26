@@ -1,5 +1,5 @@
 // منصة القصبى - Service Worker v4.0
-const CACHE_NAME = 'elkasaby-v4';
+const CACHE_NAME = 'elkasaby-v5';
 
 self.addEventListener('install', function(e) {
   self.skipWaiting();
@@ -22,6 +22,7 @@ self.addEventListener('fetch', function(e) {
   var url = e.request.url;
   if (e.request.method !== 'GET') return;
   if (url.startsWith('chrome-extension')) return;
+  if (url.indexOf('https://elkasaby-stats.elkasaby1988.workers.dev/') === 0) return; // stats API only: always network, never cached
   if (url.includes('counterapi.dev')) {
     e.respondWith(
       fetch(e.request).catch(function() {
